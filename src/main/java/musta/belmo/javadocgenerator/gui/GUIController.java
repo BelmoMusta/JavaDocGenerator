@@ -9,6 +9,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import musta.belmo.javadocgenerator.JavaDocGenerator;
 
+import java.io.File;
 import java.io.IOException;
 
 public class GUIController {
@@ -16,6 +17,9 @@ public class GUIController {
     public CheckBox toZip;
     @FXML
     public ProgressIndicator progressBar;
+    @FXML
+    public CheckBox deleteOldJavadoc;
+
     java.io.File src;
     java.io.File dest;
 
@@ -55,10 +59,15 @@ public class GUIController {
             protected Void call() throws Exception {
                 try {
                     progressBar.setVisible(true);
-                    if (src == null || dest == null){
-                        JavaDocGenerator.generateJavaDocForAllClasses(sourceText.getText(), destText.getText(), toZip.isSelected());
+                    if (src == null || dest == null) {
+                        JavaDocGenerator.generateJavaDocForAllClasses(sourceText.getText(),
+                                destText.getText(),
+                                toZip.isSelected(),
+                                deleteOldJavadoc.isSelected());
                     } else {
-                        JavaDocGenerator.generateJavaDocForAllClasses(src, dest, toZip.isSelected());
+                        JavaDocGenerator.generateJavaDocForAllClasses(src, dest,
+                                toZip.isSelected(),
+                                deleteOldJavadoc.isSelected());
                     }
 
                 } catch (Exception e) {
@@ -86,5 +95,14 @@ public class GUIController {
 
         new Thread(task).start();
 
+    }
+
+    public void loadProperties(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(JavaDocGenerator.PROPERTIES_PATH);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            JavaDocGenerator.loadProperties(file.getAbsolutePath());
+        }
     }
 }

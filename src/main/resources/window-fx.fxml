@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
 <GridPane alignment="center" hgap="3.0" prefHeight="457.0" prefWidth="648.0" vgap="1.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musta.belmo.javadocgenerator.gui.GUIController">
     <padding>
@@ -33,7 +32,7 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <HBox prefHeight="47.0" prefWidth="556.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <HBox prefHeight="47.0" prefWidth="556.0" spacing="5.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
             <children>
                 <Button fx:id="chooseDire" mnemonicParsing="false" onAction="#chooseSourceDirectory" prefHeight="25.0" prefWidth="24.0" text="..." />
                 <TextField fx:id="sourceText" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="452.0" text="" />
@@ -46,15 +45,26 @@
                 <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
             </padding>
         </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <children>
-            <VBox>
-               <children>
-                  <CheckBox fx:id="toZip" mnemonicParsing="false" text="zip" />
-                  <Button mnemonicParsing="false" onAction="#generateDoc" text="Generate" />
-               </children>
-            </VBox>
+            <CheckBox fx:id="toZip" mnemonicParsing="false" text="zip">
+               <HBox.margin>
+                  <Insets bottom="5.0" right="38.0" top="4.0" />
+               </HBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="deleteOldJavadoc" mnemonicParsing="false" text="delete old javadoc">
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets right="35.0" top="4.0" />
+               </HBox.margin>
+            </CheckBox>
+            <Button mnemonicParsing="false" onAction="#generateDoc" text="Generate" />
          </children>
+         <GridPane.margin>
+            <Insets bottom="1.0" left="137.0" right="10.0" top="5.0" />
+         </GridPane.margin>
       </HBox>
         <HBox layoutX="51.0" layoutY="174.0" prefHeight="47.0" prefWidth="558.0" spacing="5.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
             <children>
