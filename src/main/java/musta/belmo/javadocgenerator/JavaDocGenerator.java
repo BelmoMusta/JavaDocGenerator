@@ -1,6 +1,5 @@
 package musta.belmo.javadocgenerator;
 
-import ch.qos.logback.classic.util.LogbackMDCAdapter;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
@@ -32,10 +31,8 @@ import java.util.*;
  * TODO : Compléter la description de cette classe
  */
 public class JavaDocGenerator {
-    static final Logger LOG = LoggerFactory.getLogger(JavaDocGenerator.class);
-    /**
-     * La constante {@link #ATTRIBUT_COMMENT_FORMAT} de type {@link String} ayant la valeur {@value #ATTRIBUT_COMMENT_FORMAT}.
-     */
+    private static final Logger LOG = LoggerFactory.getLogger(JavaDocGenerator.class);
+
     private static final String ATTRIBUT_COMMENT_FORMAT = "ATTRIBUT_COMMENT_FORMAT";
     private static final String UTF_8 = "UTF-8";
     private static final String TODO_METHOD_TEXT = "TODO_METHOD_TEXT";
@@ -98,12 +95,15 @@ public class JavaDocGenerator {
             Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
                 generateJavaDoc(file.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
+
             }
         } else {
             generateJavaDoc(directory.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
+
         }
         if (toZip) {
             ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
+            LOG.info("file add to zip file {}", destinationZip.getAbsolutePath());
         }
         LOG.info("generateJavaDocForAllClasses : done");
     }
@@ -164,13 +164,14 @@ public class JavaDocGenerator {
         File destFile = getDestination(destinationFile, srcFile, compilationUnit);
         if (deleteOldJavaDoc) {
             deleteOldJavaDoc(compilationUnit);
+            LOG.info("deleted javadoc for  file {}", srcPath);
         }
         compilationUnit.findAll(ClassOrInterfaceDeclaration.class).forEach(JavaDocGenerator::generateClassJavaDoc);
         compilationUnit.findAll(ConstructorDeclaration.class).forEach(JavaDocGenerator::generateConstructorJavaDoc);
         compilationUnit.findAll(FieldDeclaration.class).forEach(JavaDocGenerator::generateFieldJavaDoc);
         compilationUnit.findAll(MethodDeclaration.class).forEach(JavaDocGenerator::generateMethodJavaDoc);
         FileUtils.write(destFile, compilationUnit.toString(), UTF_8);
-        System.out.println(compilationUnit);
+        LOG.info("generated javadoc for  file {}", srcPath);
     }
 
     /**
@@ -275,7 +276,7 @@ public class JavaDocGenerator {
      * @return File
      * @throws Exception Exception levée si erreur.
      */
-    public static CompilationUnit deleteJavaDoc(String srcPath, String destinationFile) throws IOException {
+    public static void deleteJavaDoc(String srcPath, String destinationFile) throws IOException {
         File srcFile = new File(srcPath);
         CompilationUnit compilationUnit = JavaParser.parse(srcFile);
         File destFile = getDestination(destinationFile, srcFile, compilationUnit);
@@ -285,7 +286,7 @@ public class JavaDocGenerator {
         compilationUnit.findAll(MethodDeclaration.class).forEach(MethodDeclaration::removeJavaDocComment);
         FileUtils.write(destFile, compilationUnit.toString(), UTF_8);
         System.out.println(compilationUnit);
-        return compilationUnit;
+        LOG.info("deleted javadoc for  file {}", srcPath);
     }
 
     public static void deleteOldJavaDoc(CompilationUnit compilationUnit) throws IOException {
@@ -293,6 +294,7 @@ public class JavaDocGenerator {
         compilationUnit.findAll(ConstructorDeclaration.class).forEach(ConstructorDeclaration::removeJavaDocComment);
         compilationUnit.findAll(FieldDeclaration.class).forEach(FieldDeclaration::removeJavaDocComment);
         compilationUnit.findAll(MethodDeclaration.class).forEach(MethodDeclaration::removeJavaDocComment);
+
     }
 
     /**
