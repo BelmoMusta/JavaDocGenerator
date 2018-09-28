@@ -1,5 +1,6 @@
 package musta.belmo.javadocgenerator;
 
+import ch.qos.logback.classic.util.LogbackMDCAdapter;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
@@ -18,27 +19,20 @@ import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * TODO : Compléter la description de cette classe
  */
 public class JavaDocGenerator {
-
-    /**
-     * La constante {@link #CAMELCASE_REGEX} de type {@link String} ayant la valeur {@value #CAMELCASE_REGEX}.
-     */
-    private static final String CAMELCASE_REGEX = "(?<!(^|[A-Z\\d]))((?=[A-Z\\d])|[A-Z](?=[\\d]))|(?<!^)(?=[A-Z\\d][a-z])";
-
-
+    static final Logger LOG = LoggerFactory.getLogger(JavaDocGenerator.class);
     /**
      * La constante {@link #ATTRIBUT_COMMENT_FORMAT} de type {@link String} ayant la valeur {@value #ATTRIBUT_COMMENT_FORMAT}.
      */
@@ -64,6 +58,7 @@ public class JavaDocGenerator {
     private static Properties properties;
 
     static {
+        LOG.info("static");
         loadProperties(null);
     }
 
@@ -72,6 +67,7 @@ public class JavaDocGenerator {
     }
 
     public static void loadProperties(String propertiesPath) {
+        LOG.info("propertiesPath {} ", propertiesPath);
         URL resource;
         if (propertiesPath == null) {
             resource = JavaDocGenerator.class.getClassLoader().getResource("application.properties");
@@ -95,6 +91,7 @@ public class JavaDocGenerator {
     }
 
     public static void generateJavaDocForAllClasses(File directory, File dest, boolean toZip, boolean deleteOldJavadoc) throws IOException {
+        LOG.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File destinationZip = new File(dest.getAbsolutePath());
         boolean isDirectory = directory.isDirectory();
         if (isDirectory) {
@@ -108,21 +105,24 @@ public class JavaDocGenerator {
         if (toZip) {
             ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
         }
+        LOG.info("generateJavaDocForAllClasses : done");
     }
 
     /**
      * Generate java doc for all classes
      *
-     * @param directory {@link String}
-     * @param dest      {@link String}
-     * @param toZip     boolean
+     * @param directory        {@link String}
+     * @param dest             {@link String}
+     * @param toZip            boolean
      * @param deleteOldJavadoc
      * @throws IOException Exception levée si erreur.
      */
     public static void generateJavaDocForAllClasses(String directory, String dest, boolean toZip, boolean deleteOldJavadoc) throws IOException {
+        LOG.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File dir = new File(directory);
         File destinationZip = new File(dest);
         generateJavaDocForAllClasses(dir, destinationZip, toZip, deleteOldJavadoc);
+        LOG.info("generateJavaDocForAllClasses : done");
     }
 
     /**
@@ -254,7 +254,7 @@ public class JavaDocGenerator {
     private static File getDestination(String destinationFile, File srcFile, CompilationUnit compilationUnit) {
         return compilationUnit.getPackageDeclaration().map(packageDeclaration
                 -> new File(destinationFile,
-                convertPackageDeclarationToPath(packageDeclaration.getName().asString())
+                Utils.convertPackageDeclarationToPath(packageDeclaration.getName().asString())
                         + File.separator + srcFile.getName())).orElseGet(()
                 -> new File(destinationFile));
     }
@@ -293,31 +293,6 @@ public class JavaDocGenerator {
         compilationUnit.findAll(ConstructorDeclaration.class).forEach(ConstructorDeclaration::removeJavaDocComment);
         compilationUnit.findAll(FieldDeclaration.class).forEach(FieldDeclaration::removeJavaDocComment);
         compilationUnit.findAll(MethodDeclaration.class).forEach(MethodDeclaration::removeJavaDocComment);
-    }
-
-    /**
-     * Un camel case
-     *
-     * @param input     {@link String}
-     * @param delimeter {@link String}
-     * @return String
-     */
-    public static String unCamelCase(String input, String delimeter) {
-        return String.join(delimeter, input.split(CAMELCASE_REGEX));
-    }
-
-    /**
-     * Convert package declaration to path
-     *
-     * @param string {@link String}
-     * @return String
-     */
-    private static String convertPackageDeclarationToPath(String string) {
-        String retValue = "";
-        if (string != null)
-            retValue = string.replaceAll("\\.", "\\\\");
-        retValue = retValue.replace(";", "");
-        return retValue;
     }
 
     /**
@@ -452,7 +427,7 @@ public class JavaDocGenerator {
                 if (isSetter || isGetter || isIs) {
                     element = new JavadocSnippet("");
                 } else if (isCamelCase(methodDeclaration.getName().asString())) {
-                    element = new JavadocSnippet(StringUtils.capitalize(StringUtils.lowerCase(unCamelCase(methodDeclaration.getName().asString(), " "))));
+                    element = new JavadocSnippet(StringUtils.capitalize(StringUtils.lowerCase(Utils.unCamelCase(methodDeclaration.getName().asString(), " "))));
                 } else {
                     element = new JavadocSnippet(readFromProperties(TODO_METHOD_TEXT));
                 }
