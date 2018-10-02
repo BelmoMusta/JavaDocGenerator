@@ -1,0 +1,21 @@
+16:19:05.655 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - start 
+16:19:05.658 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - root set 
+16:19:21.828 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseSourceDirectory 
+16:19:24.709 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - src :null 
+16:19:24.710 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - sourceText :TextField[id=sourceText, styleClass=text-input text-field] 
+16:19:34.709 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+16:19:36.558 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :null 
+16:19:36.559 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+16:19:44.125 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+16:19:47.845 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :C:\Users\mbelmokhtar\Desktop\DDD 
+16:19:47.846 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+16:20:02.685 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+16:20:02.705 [Thread-4] INFO  m.b.j.JavaDocGenerator - static
+16:20:02.705 [Thread-4] INFO  m.b.j.JavaDocGenerator - propertiesPath null 
+16:20:02.706 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory D:\platformsg2_R_64\workspace\movalnsa_2_1_C\movalnsa-metier\src\main
+ destination C:\Users\mbelmokhtar\Desktop\DDD
+16:20:02.706 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory D:\platformsg2_R_64\workspace\movalnsa_2_1_C\movalnsa-metier\src\main
+ destination C:\Users\mbelmokhtar\Desktop\DDD
+16:20:05.265 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+16:20:05.265 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+16:20:05.272 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success

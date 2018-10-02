@@ -36,6 +36,8 @@ public class GUIController {
         progressBar.setVisible(false);
     }
 
+    JavaDocGenerator mJavaDocGenerator;
+
     public void chooseSourceDirectory(ActionEvent actionEvent) {
 
         LOG.info("chooseSourceDirectory ");
@@ -63,18 +65,19 @@ public class GUIController {
 
     public void generateDoc(ActionEvent actionEvent) throws IOException, InterruptedException {
         LOG.info("generateDoc");
+        mJavaDocGenerator = new JavaDocGenerator();
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 try {
                     progressBar.setVisible(true);
                     if (src == null || dest == null) {
-                        JavaDocGenerator.generateJavaDocForAllClasses(sourceText.getText(),
+                        mJavaDocGenerator.generateJavaDocForAllClasses(sourceText.getText(),
                                 destText.getText(),
                                 toZip.isSelected(),
                                 deleteOldJavadoc.isSelected());
                     } else {
-                        JavaDocGenerator.generateJavaDocForAllClasses(src, dest,
+                        mJavaDocGenerator.generateJavaDocForAllClasses(src, dest,
                                 toZip.isSelected(),
                                 deleteOldJavadoc.isSelected());
                     }
@@ -82,6 +85,7 @@ public class GUIController {
                 } catch (Exception e) {
                     LOG.error("exception {}", e);
                     Platform.runLater(() -> {
+                        // since JavaFX 8u40
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error");
                         alert.setHeaderText("an error occured while generating javadoc");
@@ -93,6 +97,7 @@ public class GUIController {
                 Platform.runLater(() -> {
                     LOG.info("Success");
                     progressBar.setVisible(false);
+                    // since JavaFX 8u40
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
                     alert.setHeaderText("Javadoc generated successfully");
@@ -111,10 +116,10 @@ public class GUIController {
     public void loadProperties(ActionEvent actionEvent) {
         LOG.info("loadProperties");
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName(JavaDocGenerator.PROPERTIES_PATH);
+        fileChooser.setInitialFileName(mJavaDocGenerator.getPropertiesPath());
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            JavaDocGenerator.loadProperties(file.getAbsolutePath());
+            mJavaDocGenerator.loadProperties(file.getAbsolutePath());
         }
         LOG.info("file {}", file);
     }
