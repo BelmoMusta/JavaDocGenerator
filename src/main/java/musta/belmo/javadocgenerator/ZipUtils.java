@@ -7,8 +7,18 @@ import java.util.LinkedList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * TODO : Compléter la description de cette classe
+ */
 public class ZipUtils {
 
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @param in {@link InputStream}
+     * @param out {@link OutputStream}
+     * @throws IOException Exception levée si erreur.
+     */
     private static void copy(InputStream in, OutputStream out) throws IOException {
         byte[] buffer = new byte[1024];
         while (true) {
@@ -24,7 +34,7 @@ public class ZipUtils {
      * TODO: Compléter la description de cette méthode
      *
      * @param file {@link File}
-     * @param out  {@link OutputStream}
+     * @param out {@link OutputStream}
      */
     private static void copy(File file, OutputStream out) throws IOException {
         InputStream in = new FileInputStream(file);
@@ -35,12 +45,11 @@ public class ZipUtils {
         }
     }
 
-
     /**
      * TODO: Compléter la description de cette méthode
      *
      * @param directory {@link File}
-     * @param zipfile   {@link File}
+     * @param zipfile {@link File}
      */
     public static void zip(File directory, File zipfile) throws IOException {
         URI base = directory.toURI();
@@ -73,4 +82,3 @@ public class ZipUtils {
         }
     }
 }
-

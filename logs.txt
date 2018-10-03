@@ -140,3 +140,41 @@
 09:32:01.156 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 09:32:01.156 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 09:32:01.157 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+00:18:53.571 [main] DEBUG m.b.j.JavaDocGenerator - main
+00:20:09.686 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
+00:33:32.142 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
+01:10:07.172 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
+01:22:22.435 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - start 
+01:22:22.440 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - root set 
+01:22:41.336 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+01:22:48.341 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :C:\Users\DELL\Desktop 
+01:22:48.341 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+01:22:59.395 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+01:22:59.412 [JavaFX Application Thread] INFO  m.b.j.JavaDocGenerator - static
+01:22:59.412 [JavaFX Application Thread] INFO  m.b.j.JavaDocGenerator - propertiesPath null 
+01:22:59.430 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory D:\Github\JavaDocGenerator\src\main
+ destination C:\Users\DELL\Desktop\FF
+01:22:59.430 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory D:\Github\JavaDocGenerator\src\main
+ destination C:\Users\DELL\Desktop\FF
+01:23:00.149 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\FormattedJavadocBlockTag.java
+01:23:00.274 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\gui\GeneratorGUI.java
+01:23:00.415 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\gui\GUIController.java
+01:23:00.625 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\JavaDocGenerator.java
+01:23:00.669 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\logger\Level.java
+01:23:00.752 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\logger\MustaLogger.java
+01:23:00.767 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\Utils.java
+01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file D:\Github\JavaDocGenerator\src\main\java\musta\belmo\javadocgenerator\ZipUtils.java
+01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+01:23:00.808 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+01:26:23.203 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
+01:30:53.660 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:32:38.435 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:33:05.024 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:34:21.594 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:35:21.175 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:36:01.724 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 3
+01:41:09.689 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 34LOL
+01:41:22.677 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 3,4,LOL
+01:43:28.776 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with values 
+01:45:55.818 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
