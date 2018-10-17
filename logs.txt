@@ -178,3 +178,5 @@
 01:41:22.677 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 3,4,LOL
 01:43:28.776 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with values 
 01:45:55.818 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+18:01:25.040 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
+18:01:25.043 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
