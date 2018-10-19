@@ -1,13 +1,16 @@
-package musta.belmo.returncounter;
+package musta.belmo.catchverifier;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.stmt.BlockStmt;
+import com.github.javaparser.ast.stmt.CatchClause;
 import com.github.javaparser.ast.stmt.Statement;
-import musta.belmo.returncounter.gui.MethodDescriber;
+import com.github.javaparser.ast.stmt.TryStmt;
+import musta.belmo.catchverifier.gui.TryCatchDescriber;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -15,10 +18,13 @@ import org.apache.poi.hssf.util.HSSFColor;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class ReturnCounter {
+public class CatchVerifier {
+
     /**
      * @param src
      * @param out
@@ -38,21 +44,8 @@ public class ReturnCounter {
     }
 
 
-    public Map<Object, Object> countReturnStatements(File src) throws IOException {
-        Map<Object, Object> all = new HashMap<>();
-        if (src.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(src, new String[]{"java"}, true);
-            for (File file : files) {
-                all.putAll(countReturnStmtByMethod(file));
-            }
-        } else {
-            all.putAll(countReturnStmtByMethod(src));
-        }
-        return all;
-    }
-
-    public Set<MethodDescriber> countReturnStatementsM(File src) throws IOException {
-        Set<MethodDescriber> all = new HashSet<>();
+    public Set<TryCatchDescriber> verifyTryCatch(File src) throws IOException {
+        Set<TryCatchDescriber> all = new HashSet<>();
         if (src.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(src, new String[]{"java"}, true);
             for (File file : files) {
@@ -101,29 +94,31 @@ public class ReturnCounter {
         return counter;
     }
 
-    private Set<MethodDescriber> countReturnStmtByMethodM(File src) throws IOException {
-        final Set<MethodDescriber> counter = new LinkedHashSet<>();
+    private Set<TryCatchDescriber> countReturnStmtByMethodM(File src) throws IOException {
+        final Set<TryCatchDescriber> counter = new LinkedHashSet<>();
         CompilationUnit compilationUnit = JavaParser.parse(src);
         compilationUnit.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
             Optional<BlockStmt> body = methodDeclaration.getBody();
             if (body.isPresent()) {
-
                 BlockStmt blockStmt = body.get();
-                int y = 0;
-                for (Statement statement : blockStmt.getStatements()) {
-                    if (statement.isReturnStmt()) {
-                        y++;
+
+                for (Node statement : blockStmt.getChildNodes()) {
+                    TryCatchDescriber tryCatchDescriber = new TryCatchDescriber();
+                    if (statement.toString().contains("try")
+                            && statement.toString().contains("catch")) {
+                        TryStmt tryStmt = ((TryStmt) statement).asTryStmt();
+                        NodeList<CatchClause> catchClauses = tryStmt.getCatchClauses();
+                        for (CatchClause catchClause : catchClauses) {
+                            if ("Exception".equals(catchClause.getParameter().getType().toString())) {
+                                tryCatchDescriber.setValide(false);
+                                break;
+                            }
+                        }
+                        tryCatchDescriber.setEmplacement(src.getAbsolutePath());
+                        tryCatchDescriber.setLigne(statement.getBegin().get().line);
+                        counter.add(tryCatchDescriber);
                     }
                 }
-                MethodDescriber methodDescriber = new MethodDescriber();
-
-                methodDescriber.setEmplacement(src.getAbsolutePath());
-                methodDescriber.setLigne(methodDeclaration.getBegin().get().line);
-                methodDescriber.setName(getSignature(methodDeclaration));
-                methodDescriber.setNbReturns(y);
-
-                counter.add(methodDescriber);
-
             }
         });
         return counter;
@@ -169,6 +164,49 @@ public class ReturnCounter {
         sheet.autoSizeColumn(3);
         FileOutputStream fileOut = new FileOutputStream(output);
         workbook.write(fileOut);
+    }
+
+    /**
+     * TODO: provide a description for this method
+     *
+     * @param t {@link T}
+     */
+    public <T> void writeObjectToExcel(T t, File output) throws Exception {
+        Class<?> aClass = t.getClass();
+        Method[] methods = aClass.getMethods();
+        List<String> methodNames = Stream.of(methods).map(method -> method.getName()).collect(Collectors.toList());
+
+        List<String> fieldNames = methodNames.stream()
+                .filter(name -> name.startsWith("get")).collect(Collectors.toList());
+
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet();
+        int rowIndex = 0;
+
+        for (String methodName : fieldNames) {
+            HSSFRow rowHead = sheet.createRow(rowIndex++);
+            rowHead.createCell(0).setCellValue(methodName);
+        }
+
+        rowIndex = 0;
+        for (String methodName : methodNames) {
+            HSSFRow rowHead = sheet.createRow(rowIndex++);
+            rowHead.createCell(1).setCellValue(getValueByMethodName(t, methodName));
+        }
+
+
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+        sheet.autoSizeColumn(2);
+        sheet.autoSizeColumn(3);
+        FileOutputStream fileOut = new FileOutputStream(output);
+        workbook.write(fileOut);
+    }
+
+    private <T> String getValueByMethodName(T t, String methodName) throws Exception {
+        Class<?> aClass = t.getClass();
+        Method method = aClass.getMethod(methodName);
+        return String.valueOf(method.invoke(t));
     }
 
     /**

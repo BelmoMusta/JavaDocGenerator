@@ -28,7 +28,7 @@ public class TableCounterGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         LOG.info("start ");
-        URL resourceAsStream = TableCounterGUI.class.getClassLoader().getResource("table-fx.fxml");
+        URL resourceAsStream = TableCounterGUI.class.getClassLoader().getResource("returnCounterTable-fx.fxml");
         LOG.info("root set ");
         Parent root = FXMLLoader.load(resourceAsStream);
         primaryStage.setTitle("Return counter table");

@@ -44,7 +44,7 @@
             </padding>
         </HBox>
 
-        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <TableView fx:id="tableView" prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>

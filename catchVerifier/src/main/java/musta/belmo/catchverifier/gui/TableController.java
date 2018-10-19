@@ -1,6 +1,5 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.catchverifier.gui;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,9 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import musta.belmo.returncounter.ReturnCounter;
+import musta.belmo.catchverifier.CatchVerifier;
 
-import javax.swing.table.TableColumn;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
@@ -33,8 +31,7 @@ public class TableController {
         columns.clear();
         columns.add(new MustaTableColumn("Emplacement", "emplacement"));
         columns.add(new MustaTableColumn("Ligne", "ligne"));
-        columns.add(new MustaTableColumn("Méthode", "name"));
-        columns.add(new MustaTableColumn("Nombre de return", "nbReturns"));
+        columns.add(new MustaTableColumn("Valide?", "valide"));
 
         int u = 0;
         for (MustaTableColumn column : columns) {
@@ -67,12 +64,12 @@ public class TableController {
 
     public void loadReturn(ActionEvent actionEvent) throws IOException {
         tableView.getItems().clear();
-        ReturnCounter returnCounter = new ReturnCounter();
+        CatchVerifier catchVerifier = new CatchVerifier();
 
-        Set<MethodDescriber> methodDescribers = returnCounter.countReturnStatementsM(src);
+        Set<TryCatchDescriber> tryCatchDescribers = catchVerifier.verifyTryCatch(src);
 
-        for (MethodDescriber methodDescriber : methodDescribers) {
-            tableView.getItems().add(methodDescriber);
+        for (TryCatchDescriber tryCatchDescriber : tryCatchDescribers) {
+            tableView.getItems().add(tryCatchDescriber);
         }
     }
 }

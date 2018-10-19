@@ -180,3 +180,73 @@
 01:45:55.818 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
 18:01:25.040 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
 18:01:25.043 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
+18:07:27.515 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+18:07:27.519 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+18:11:47.495 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+18:11:47.498 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+18:16:57.108 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+18:16:57.127 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+18:19:12.690 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
+18:19:12.693 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
+18:19:18.168 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - create a file to save 
+18:19:21.177 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - src :D:\platformsg2_R_64\workspace\gk1geskrier_1_2_B 
+18:19:21.177 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - sourceText :TextField[id=sourceText, styleClass=text-input text-field] 
+18:19:24.153 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - chooseDestinationDirectory 
+18:19:41.000 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - dest :C:\Users\mustapha\Desktop\TMP\gk1geskrier_1_2.xls 
+18:19:41.000 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+18:19:42.443 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - countReturns
+18:19:55.823 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - Success
+22:22:35.966 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
+22:22:35.971 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
+22:24:43.314 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:24:43.319 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:30:10.904 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:30:10.907 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:32:28.449 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:32:28.452 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:32:56.551 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:32:56.555 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:33:15.797 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:33:15.801 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:33:44.616 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:33:44.619 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:34:05.242 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:34:05.244 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:35:40.275 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:35:40.288 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:35:56.247 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:35:56.250 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+22:39:36.245 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+22:39:36.248 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+09:50:10.908 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+09:50:10.920 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+09:59:18.510 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+09:59:18.513 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+10:16:21.096 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+10:16:21.098 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+10:37:54.905 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+10:37:54.909 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+15:14:50.382 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:14:50.403 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:20:31.839 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:20:31.875 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:21:56.831 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:21:56.834 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:22:56.601 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:22:56.606 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:40:20.687 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:40:20.709 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:50:12.557 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:50:12.560 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:51:27.932 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:51:27.936 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:52:34.913 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:52:34.915 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:58:42.881 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:58:42.885 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+15:59:33.159 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - start 
+15:59:33.166 [JavaFX Application Thread] INFO  m.b.c.gui.TableCounterGUI - root set 
+01:37:43.957 [JavaFX Application Thread] INFO  m.b.c.gui.CatchVerifierTableGui - start 
+01:37:43.963 [JavaFX Application Thread] INFO  m.b.c.gui.CatchVerifierTableGui - root set 
+01:42:47.678 [JavaFX Application Thread] INFO  m.b.c.gui.CatchVerifierTableGui - start 
+01:42:47.682 [JavaFX Application Thread] INFO  m.b.c.gui.CatchVerifierTableGui - root set 

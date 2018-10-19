@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.catchverifier.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,21 +11,13 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * TODO : Compléter la description de cette classe
- */
-public class ReturnCounterGUI extends Application {
 
-    /**
-     * La constante {@link #LOG} de type {@link Logger} ayant la valeur LoggerFactory.getLogger(ReturnCounterGUI.class).
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(ReturnCounterGUI.class);
+public class CatchVerifierTableGui extends Application {
 
-    /**
-     * TODO: Compléter la description de cette méthode
-     *
-     * @param args {@link String}
-     */
+
+    private static final Logger LOG = LoggerFactory.getLogger(CatchVerifierTableGui.class);
+
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -36,10 +28,10 @@ public class ReturnCounterGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         LOG.info("start ");
-        URL resourceAsStream = ReturnCounterGUI.class.getClassLoader().getResource("returnCounterGui-fx.fxml");
+        URL resourceAsStream = CatchVerifierTableGui.class.getClassLoader().getResource("catchVerifierTable-fx.fxml");
         LOG.info("root set ");
         Parent root = FXMLLoader.load(resourceAsStream);
-        primaryStage.setTitle("Return counter");
+        primaryStage.setTitle("Return counter table");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
