@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.returncounter.beans;
 
 public class MethodDescriber {
     private String emplacement;

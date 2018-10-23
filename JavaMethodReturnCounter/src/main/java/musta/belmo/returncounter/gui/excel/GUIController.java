@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.returncounter.gui.excel;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;

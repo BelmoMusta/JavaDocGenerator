@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.returncounter.gui.table;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import musta.belmo.returncounter.ReturnCounter;
+import musta.belmo.returncounter.beans.MethodDescriber;
 
 import java.io.File;
 import java.io.IOException;

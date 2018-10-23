@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui;
+package musta.belmo.returncounter.gui.table;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

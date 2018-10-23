@@ -292,3 +292,5 @@
 19:02:54.574 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
 19:02:55.842 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - countReturns
 19:02:57.718 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - Success
+18:57:13.152 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
+18:57:13.183 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 

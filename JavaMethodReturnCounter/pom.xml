@@ -29,7 +29,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>musta.belmo.returncounter.gui.ReturnCounterGUI</mainClass>
+                            <mainClass>musta.belmo.returncounter.gui.excel.ReturnCounterGUI</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

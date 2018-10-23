@@ -1,4 +1,4 @@
-package musta.belmo.returncounter;
+package musta.belmo.returncounter.service;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -8,7 +8,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.*;
-import musta.belmo.returncounter.gui.MethodDescriber;
+import musta.belmo.returncounter.beans.MethodDescriber;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
 
@@ -26,21 +26,20 @@ public class ReturnCounter {
      * @throws IOException
      */
     public Set<MethodDescriber> countReturnStatements(File src) throws IOException {
-        Set<MethodDescriber> all = new LinkedHashSet<>();
+        Set<MethodDescriber> methodDescribers = new LinkedHashSet<>();
         if (src.isDirectory()) {
             Collection<File> files = getJavaFilesInDir(src);
             for (File file : files) {
-                all.addAll(countReturnStmtByMethod(file));
+                methodDescribers.addAll(countReturnStmtByMethod(file));
             }
         } else {
-            all.addAll(countReturnStmtByMethod(src));
+            methodDescribers.addAll(countReturnStmtByMethod(src));
         }
-        return all;
+        return methodDescribers;
     }
 
     public void countReturnStatements(String src, String dest) throws IOException {
         countReturnStatements(new File(src), new File(dest));
-
     }
 
     public void countReturnStatements(File src, File dest) throws IOException {
@@ -91,14 +90,11 @@ public class ReturnCounter {
         if (blockStmt instanceof ReturnStmt) {
             count++;
         }
-       /* if (blockStmt instanceof MethodDeclaration
-                && !(blockStmt.getParentNode().get() instanceof MethodDeclaration))*/
-        {
-            List<Node> childNodes = blockStmt.getChildNodes();
-            if (childNodes != null) {
-                for (Node node : childNodes) {
-                    count += countInDepth(node);
-                }
+
+        List<Node> childNodes = blockStmt.getChildNodes();
+        if (childNodes != null) {
+            for (Node node : childNodes) {
+                count += countInDepth(node);
             }
         }
         return count;
@@ -151,9 +147,10 @@ public class ReturnCounter {
         List<String> parameterList = parameters.stream().map(
                 p -> p.getType().toString()).
                 collect(Collectors.toList());
+
         stringBuilder.append(String.join(",", parameterList))
-                .append(')');
+                .append(") : ")
+                .append(methodDeclaration.getType().asString());
         return stringBuilder.toString();
     }
-
 }
