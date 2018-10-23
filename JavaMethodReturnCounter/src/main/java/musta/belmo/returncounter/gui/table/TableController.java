@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import musta.belmo.returncounter.ReturnCounter;
+import musta.belmo.returncounter.service.ReturnCounter;
 import musta.belmo.returncounter.beans.MethodDescriber;
 
 import java.io.File;

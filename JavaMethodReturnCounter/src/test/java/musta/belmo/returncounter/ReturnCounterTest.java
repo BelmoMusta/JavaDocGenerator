@@ -1,6 +1,7 @@
 package musta.belmo.returncounter;
 
 import musta.belmo.returncounter.beans.MethodDescriber;
+import musta.belmo.returncounter.service.ReturnCounter;
 import org.junit.Before;
 import org.junit.Test;
 
