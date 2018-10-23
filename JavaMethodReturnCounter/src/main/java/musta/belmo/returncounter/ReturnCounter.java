@@ -8,102 +8,62 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.*;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import musta.belmo.returncounter.gui.MethodDescriber;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFColor;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ReturnCounter {
-    /**
-     * @param src
-     * @param out
-     * @throws IOException
-     */
-    public void countReturnStatements(File src, File out) throws IOException {
-        Map<Object, Object> all = new HashMap<>();
-        if (src.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(src, new String[]{"java"}, true);
-            for (File file : files) {
-                all.putAll(countReturnStmtByMethod(file));
-            }
-        } else {
-            all.putAll(countReturnStmtByMethod(src));
-        }
-        writeMapToExcel(all, out);
-    }
-
-
-    public Set<MethodDescriber> countReturnStatementsM(File src) throws IOException {
-        Set<MethodDescriber> all = new HashSet<>();
-        if (src.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(src, new String[]{"java"}, true);
-            for (File file : files) {
-
-                all.addAll(countReturnStmtByMethodM(file));
-            }
-        } else {
-            all.addAll(countReturnStmtByMethodM(src));
-        }
-        return all;
-    }
 
     /**
-     * @param src
-     * @param out
-     * @throws IOException
-     */
-    public void countReturnStatements(String src, String out) throws IOException {
-        countReturnStatements(new File(src), new File(out));
-    }
-
-
-    /**
-     * counts  the number of the return statements by method
-     *
      * @param src
      * @return
      * @throws IOException
      */
-    private Map<String, Integer> countReturnStmtByMethod(File src) throws IOException {
-        Map<String, Integer> counter = new HashMap<>();
-        CompilationUnit compilationUnit = JavaParser.parse(src);
-        compilationUnit.findAll(MethodDeclaration.class).stream()
-                .filter(methodDeclaration -> methodDeclaration.getParentNode().isPresent()
-                        && !(methodDeclaration.getParentNode().get() instanceof MethodDeclaration))
-                .filter(method -> method.getBody()
-                        .isPresent()).forEach(methodDeclaration -> {
-            Optional<BlockStmt> body = methodDeclaration.getBody();
-            if (body.isPresent()) {
-                BlockStmt blockStmt = body.get();
-
-                Integer y = blockStmt.getStatements().stream().reduce(0,
-                        (integer, statement) -> {
-                            int currentCount = integer;
-                            if (statement.isReturnStmt()) {
-                                currentCount++;
-                            }
-
-                            return currentCount;
-                        }, (oldCount, newCount) -> oldCount + newCount);
-
-                counter.put(src.getAbsolutePath() + " @@ "
-                        + methodDeclaration.getBegin().get().line
-                        + "@@" + getSignature(methodDeclaration), y);
+    public Set<MethodDescriber> countReturnStatements(File src) throws IOException {
+        Set<MethodDescriber> all = new LinkedHashSet<>();
+        if (src.isDirectory()) {
+            Collection<File> files = getJavaFilesInDir(src);
+            for (File file : files) {
+                all.addAll(countReturnStmtByMethod(file));
             }
-        });
-        return counter;
+        } else {
+            all.addAll(countReturnStmtByMethod(src));
+        }
+        return all;
     }
 
-    private Set<MethodDescriber> countReturnStmtByMethodM(File src) throws IOException {
+    public void countReturnStatements(String src, String dest) throws IOException {
+        countReturnStatements(new File(src), new File(dest));
+
+    }
+
+    public void countReturnStatements(File src, File dest) throws IOException {
+        Set<MethodDescriber> all = new HashSet<>();
+        if (src.isDirectory()) {
+            Collection<File> files = getJavaFilesInDir(src);
+            for (File file : files) {
+
+                all.addAll(countReturnStmtByMethod(file));
+            }
+        } else {
+            all.addAll(countReturnStmtByMethod(src));
+        }
+        writeDescribersToExcel(all, dest);
+
+    }
+
+    private Collection<File> getJavaFilesInDir(File src) {
+        return FileUtils.listFiles(src, new String[]{"java"}, true);
+    }
+
+
+    private Set<MethodDescriber> countReturnStmtByMethod(File src) throws IOException {
         final Set<MethodDescriber> counter = new LinkedHashSet<>();
         CompilationUnit compilationUnit = JavaParser.parse(src);
         compilationUnit.findAll(MethodDeclaration.class, methodDeclaration ->
@@ -141,43 +101,33 @@ public class ReturnCounter {
                 }
             }
         }
-
         return count;
     }
 
-
     /**
-     * TODO: provide a description for this method
-     *
-     * @param map {@link Map}
+     * @param methodDescribers
+     * @param output
+     * @throws IOException
      */
-    public void writeMapToExcel(Map<?, ?> map, File output) throws IOException {
+    private void writeDescribersToExcel(Collection<MethodDescriber> methodDescribers, File output) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
 
-        HSSFSheet sheet = workbook.createSheet();
-        int y = 0;
-        HSSFRow rowhead = sheet.createRow(y);
-        rowhead.createCell(0).setCellValue("Emplacement");
-        rowhead.createCell(1).setCellValue("Ligne");
-        rowhead.createCell(2).setCellValue("Méthode");
-        rowhead.createCell(3).setCellValue("Nombre de return");
-        y++;
-        for (Map.Entry<?, ?> stringIntegerEntry : map.entrySet()) {
-            rowhead = sheet.createRow(y++);
-            Object key = stringIntegerEntry.getKey();
-            Object value = stringIntegerEntry.getValue();
-            String cellValue = String.valueOf(key);
-            StringTokenizer stringTokenizer = new StringTokenizer(cellValue, "@@");
-            HSSFCell cell = rowhead.createCell(0);
+        HSSFSheet sheet = workbook.createSheet("return counter");
+        int rowCount = 0;
+        HSSFRow rowHead = sheet.createRow(rowCount);
 
-            cell.setCellValue(stringTokenizer.nextToken());
-            rowhead.createCell(1).setCellValue(stringTokenizer.nextToken());
-            rowhead.createCell(2).setCellValue(stringTokenizer.nextToken());
-            rowhead.createCell(3).setCellValue(String.valueOf(value));
+        rowHead.createCell(0).setCellValue("Emplacement");
+        rowHead.createCell(1).setCellValue("Ligne");
+        rowHead.createCell(2).setCellValue("Méthode");
+        rowHead.createCell(3).setCellValue("Nombre de return");
+        rowCount++;
 
-            HSSFCellStyle cellStyle = workbook.createCellStyle();
-            cellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
-            cell.setCellStyle(cellStyle);
+        for (MethodDescriber methodDescriber : methodDescribers) {
+            rowHead = sheet.createRow(rowCount++);
+            rowHead.createCell(0).setCellValue(methodDescriber.getEmplacement());
+            rowHead.createCell(1).setCellValue(methodDescriber.getLigne());
+            rowHead.createCell(2).setCellValue(methodDescriber.getName());
+            rowHead.createCell(3).setCellValue(methodDescriber.getNbReturns());
         }
 
         sheet.autoSizeColumn(0);

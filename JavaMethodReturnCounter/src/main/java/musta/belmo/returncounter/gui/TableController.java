@@ -1,6 +1,5 @@
 package musta.belmo.returncounter.gui;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import musta.belmo.returncounter.ReturnCounter;
 
-import javax.swing.table.TableColumn;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
@@ -69,7 +67,7 @@ public class TableController {
         tableView.getItems().clear();
         ReturnCounter returnCounter = new ReturnCounter();
 
-        Set<MethodDescriber> methodDescribers = returnCounter.countReturnStatementsM(src);
+        Set<MethodDescriber> methodDescribers = returnCounter.countReturnStatements(src);
 
         for (MethodDescriber methodDescriber : methodDescribers) {
             tableView.getItems().add(methodDescriber);

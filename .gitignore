@@ -2,4 +2,6 @@
 .idea
 target
 frames
+*.xls
+*.xlsx
 JMarkPad/

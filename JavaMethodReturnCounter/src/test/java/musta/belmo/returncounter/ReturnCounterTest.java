@@ -18,7 +18,7 @@ public class ReturnCounterTest {
     public void init() throws Exception {
         ReturnCounter returnCounter = new ReturnCounter();
         methodDescribers = returnCounter
-                .countReturnStatementsM(getFile("CompilationUnit.java"));
+                .countReturnStatements(getFile("CompilationUnit.java"));
 
     }
 
@@ -58,7 +58,7 @@ public class ReturnCounterTest {
 
     @Test
     public void countThreeReturnMethod() throws Exception {
-        MethodDescriber methodDescriber = getMethodDescriberByName("twoReturnMethod");
+        MethodDescriber methodDescriber = getMethodDescriberByName("threeReturnMethod");
         assertEquals(3, methodDescriber.getNbReturns());
 
     }
