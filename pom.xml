@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>musta.belmo</groupId>
     <artifactId>javadocgenerator</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>JavaMethodReturnCounter</module>

@@ -2,11 +2,13 @@ package musta.belmo.returncounter;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
+import com.github.javaparser.ast.stmt.*;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import musta.belmo.returncounter.gui.MethodDescriber;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
@@ -16,6 +18,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ReturnCounter {
@@ -37,19 +41,6 @@ public class ReturnCounter {
         writeMapToExcel(all, out);
     }
 
-
-    public Map<Object, Object> countReturnStatements(File src) throws IOException {
-        Map<Object, Object> all = new HashMap<>();
-        if (src.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(src, new String[]{"java"}, true);
-            for (File file : files) {
-                all.putAll(countReturnStmtByMethod(file));
-            }
-        } else {
-            all.putAll(countReturnStmtByMethod(src));
-        }
-        return all;
-    }
 
     public Set<MethodDescriber> countReturnStatementsM(File src) throws IOException {
         Set<MethodDescriber> all = new HashSet<>();
@@ -85,17 +76,28 @@ public class ReturnCounter {
     private Map<String, Integer> countReturnStmtByMethod(File src) throws IOException {
         Map<String, Integer> counter = new HashMap<>();
         CompilationUnit compilationUnit = JavaParser.parse(src);
-        compilationUnit.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
+        compilationUnit.findAll(MethodDeclaration.class).stream()
+                .filter(methodDeclaration -> methodDeclaration.getParentNode().isPresent()
+                        && !(methodDeclaration.getParentNode().get() instanceof MethodDeclaration))
+                .filter(method -> method.getBody()
+                        .isPresent()).forEach(methodDeclaration -> {
             Optional<BlockStmt> body = methodDeclaration.getBody();
             if (body.isPresent()) {
                 BlockStmt blockStmt = body.get();
-                int y = 0;
-                for (Statement statement : blockStmt.getStatements()) {
-                    if (statement.isReturnStmt()) {
-                        y++;
-                    }
-                }
-                counter.put(src.getAbsolutePath() + " @@ " + methodDeclaration.getBegin().get().line + "@@" + getSignature(methodDeclaration), y);
+
+                Integer y = blockStmt.getStatements().stream().reduce(0,
+                        (integer, statement) -> {
+                            int currentCount = integer;
+                            if (statement.isReturnStmt()) {
+                                currentCount++;
+                            }
+
+                            return currentCount;
+                        }, (oldCount, newCount) -> oldCount + newCount);
+
+                counter.put(src.getAbsolutePath() + " @@ "
+                        + methodDeclaration.getBegin().get().line
+                        + "@@" + getSignature(methodDeclaration), y);
             }
         });
         return counter;
@@ -104,30 +106,45 @@ public class ReturnCounter {
     private Set<MethodDescriber> countReturnStmtByMethodM(File src) throws IOException {
         final Set<MethodDescriber> counter = new LinkedHashSet<>();
         CompilationUnit compilationUnit = JavaParser.parse(src);
-        compilationUnit.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
-            Optional<BlockStmt> body = methodDeclaration.getBody();
-            if (body.isPresent()) {
+        compilationUnit.findAll(MethodDeclaration.class, methodDeclaration ->
+                methodDeclaration.getParentNode().isPresent()
+                        && !(methodDeclaration.getParentNode().get() instanceof ObjectCreationExpr))
+                .forEach(methodDeclaration -> {
+                    Optional<BlockStmt> body = methodDeclaration.getBody();
+                    if (body.isPresent()) {
 
-                BlockStmt blockStmt = body.get();
-                int y = 0;
-                for (Statement statement : blockStmt.getStatements()) {
-                    if (statement.isReturnStmt()) {
-                        y++;
+                        BlockStmt blockStmt = body.get();
+                        int y = countInDepth(blockStmt);
+                        MethodDescriber methodDescriber = new MethodDescriber();
+                        methodDescriber.setEmplacement(src.getAbsolutePath());
+                        methodDescriber.setLigne(methodDeclaration.getBegin().get().line);
+                        methodDescriber.setName(getSignature(methodDeclaration));
+                        methodDescriber.setNbReturns(y);
+                        counter.add(methodDescriber);
                     }
-                }
-                MethodDescriber methodDescriber = new MethodDescriber();
-
-                methodDescriber.setEmplacement(src.getAbsolutePath());
-                methodDescriber.setLigne(methodDeclaration.getBegin().get().line);
-                methodDescriber.setName(getSignature(methodDeclaration));
-                methodDescriber.setNbReturns(y);
-
-                counter.add(methodDescriber);
-
-            }
-        });
+                });
         return counter;
     }
+
+    private int countInDepth(Node blockStmt) {
+        int count = 0;
+        if (blockStmt instanceof ReturnStmt) {
+            count++;
+        }
+       /* if (blockStmt instanceof MethodDeclaration
+                && !(blockStmt.getParentNode().get() instanceof MethodDeclaration))*/
+        {
+            List<Node> childNodes = blockStmt.getChildNodes();
+            if (childNodes != null) {
+                for (Node node : childNodes) {
+                    count += countInDepth(node);
+                }
+            }
+        }
+
+        return count;
+    }
+
 
     /**
      * TODO: provide a description for this method
@@ -188,4 +205,5 @@ public class ReturnCounter {
                 .append(')');
         return stringBuilder.toString();
     }
+
 }
