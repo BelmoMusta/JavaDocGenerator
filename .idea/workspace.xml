@@ -2,47 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0399cb8-6419-4af2-b43f-73e955c5bc39" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javacodeutils.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javadocgenerator/javadocgenerator.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/javadocgenerator/pom.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/logger/Level.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/logger/MustaLogger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/logger/Level.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/logger/MustaLogger.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/pom.xml" afterPath="$PROJECT_DIR$/javamethodreturncounter/pom.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/beans/MethodDescriber.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/beans/MethodDescriber.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/gui/excel/GUIController.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/gui/excel/GUIController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/gui/excel/ReturnCounterGUI.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/gui/excel/ReturnCounterGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/gui/table/MustaTableColumn.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/gui/table/MustaTableColumn.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/gui/table/TableController.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/gui/table/TableController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/gui/table/TableCounterGUI.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/gui/table/TableCounterGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/java/musta/belmo/returncounter/service/ReturnCounter.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/java/musta/belmo/returncounter/service/ReturnCounter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/catchverifier/src/main/resources/application.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/catchverifier/src/main/resources/logback.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/resources/returnCounterGui-fx.fxml" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/resources/returnCounterGui-fx.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/main/resources/returnCounterTable-fx.fxml" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/resources/returnCounterTable-fx.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/test/java/musta/belmo/returncounter/ReturnCounterTest.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/test/java/musta/belmo/returncounter/ReturnCounterTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/test/java/musta/belmo/returncounter/ReturnCounterTestWriteToExcel.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/test/java/musta/belmo/returncounter/ReturnCounterTestWriteToExcel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/JavaMethodReturnCounter/src/test/resources/CompilationUnit.java" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/test/resources/CompilationUnit.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/pom.xml" afterPath="$PROJECT_DIR$/catchverifier/pom.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/CatchVerifier.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/service/CatchVerifier.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/CatchVerifierGUI.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/gui/excel/CatchVerifierGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/CatchVerifierTableGui.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/gui/table/CatchVerifierTableGui.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/GUIController.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/gui/excel/GUIController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/MustaTableColumn.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/gui/table/MustaTableColumn.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/TableController.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/gui/table/TableController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/java/musta/belmo/catchverifier/gui/TryCatchDescriber.java" afterPath="$PROJECT_DIR$/catchverifier/src/main/java/musta/belmo/catchverifier/beans/TryCatchDescriber.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/resources/application.properties" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/resources/catchVerifierGui-fx.fxml" afterPath="$PROJECT_DIR$/catchverifier/src/main/resources/catchVerifierGui-fx.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/resources/catchVerifierTable-fx.fxml" afterPath="$PROJECT_DIR$/catchverifier/src/main/resources/catchVerifierTable-fx.fxml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/catchVerifier/src/main/resources/logback.xml" afterPath="$PROJECT_DIR$/javamethodreturncounter/src/main/resources/logback.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/musta/belmo/javadocgenerator/FormattedJavadocBlockTag.java" afterPath="$PROJECT_DIR$/javadocgenerator/src/main/java/javadocgenerator/FormattedJavadocBlockTag.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/musta/belmo/javadocgenerator/JavaDocGenerator.java" afterPath="$PROJECT_DIR$/javadocgenerator/src/main/java/javadocgenerator/JavaDocGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/musta/belmo/javadocgenerator/gui/GUIController.java" afterPath="$PROJECT_DIR$/javadocgenerator/src/main/java/javadocgenerator/gui/GUIController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/musta/belmo/javadocgenerator/gui/GeneratorGUI.java" afterPath="$PROJECT_DIR$/javadocgenerator/src/main/java/javadocgenerator/gui/GeneratorGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/window-fx.fxml" afterPath="$PROJECT_DIR$/javadocgenerator/src/main/resources/window-fx.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/JavaMethodReturnCounter/target/" />
@@ -259,7 +219,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="44" />
     <option name="width" value="1400" />
     <option name="height" value="990" />
@@ -532,7 +492,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -542,12 +502,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5785797" sideWeight="0.50431037" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15086207" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18975553" sideWeight="0.49568966" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18975553" sideWeight="0.49568966" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24676724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24676724" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945284" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25754312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
