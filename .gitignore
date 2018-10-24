@@ -1,4 +1,5 @@
-*.iml
-.idea
-target
 frames
+*.iml 
+.idea 
+target 
+output
