@@ -7,12 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.URL;
 
 /**
  * TODO : Compléter la description de cette classe
+ *
+ * @since lot 1.2
  */
 public class ReturnCounterGUI extends Application {
 

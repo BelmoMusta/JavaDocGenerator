@@ -1,18 +1,13 @@
 package musta.belmo.catchverifier.gui.table;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.URL;
 
 
-public class CatchVerifierTableGui extends Application {
+public class CatchVerifierTableGui extends AbstractJavaFXApplication {
 
 
     private static final Logger LOG = LoggerFactory.getLogger(CatchVerifierTableGui.class);
@@ -22,17 +17,10 @@ public class CatchVerifierTableGui extends Application {
         launch(args);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        LOG.info("start ");
-        URL resourceAsStream = CatchVerifierTableGui.class.getClassLoader().getResource("catchVerifierTable-fx.fxml");
-        LOG.info("root set ");
-        Parent root = FXMLLoader.load(resourceAsStream);
-        primaryStage.setTitle("Return counter table");
-        primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.show();
+    public URL loadFXMLFile() {
+        return CatchVerifierTableGui.class.getClassLoader().getResource("catchVerifierTable-fx.fxml");
     }
+
+
 }

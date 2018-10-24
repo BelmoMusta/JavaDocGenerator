@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="3.0" prefHeight="457.0" prefWidth="648.0" vgap="1.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musta.belmo.javadocgenerator.gui.GUIController">
+<GridPane alignment="center" hgap="3.0" prefHeight="457.0" prefWidth="648.0" vgap="1.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musta.belmo.javacodeutils.gui.GUIController">
     <padding>
         <Insets bottom="40" left="40" right="40" top="40" />
     </padding>

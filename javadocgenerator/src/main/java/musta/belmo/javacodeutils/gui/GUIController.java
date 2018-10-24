@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui.excel;
+package musta.belmo.javacodeutils.gui;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import musta.belmo.returncounter.service.ReturnCounter;
-import org.kordamp.ikonli.fontawesome.FontAwesome;
-import org.kordamp.ikonli.javafx.FontIcon;
+import musta.belmo.javacodeutils.service.JavaDocGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
@@ -26,22 +24,22 @@ public class GUIController {
     private static final Logger LOG = LoggerFactory.getLogger(GUIController.class);
 
     /**
+     * L'attribut {@link #toZip}.
+     */
+    @FXML
+    public CheckBox toZip;
+
+    /**
      * L'attribut {@link #progressBar}.
      */
     @FXML
     public ProgressIndicator progressBar;
 
     /**
-     * L'attribut {@link #chooseDest}.
+     * L'attribut {@link #deleteOldJavadoc}.
      */
     @FXML
-    public Button chooseDest;
-
-    /**
-     * L'attribut {@link #chooseDire}.
-     */
-    @FXML
-    public Button chooseDire;
+    public CheckBox deleteOldJavadoc;
 
     /**
      * L'attribut {@link #src}.
@@ -69,15 +67,13 @@ public class GUIController {
      */
     @FXML
     public void initialize() {
-        chooseDest.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-save")));
-        chooseDire.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-folder-open")));
         progressBar.setVisible(false);
     }
 
     /**
-     * L'attribut {@link #returnCounter}.
+     * L'attribut {@link #mJavaDocGenerator}.
      */
-    ReturnCounter returnCounter;
+    JavaDocGenerator mJavaDocGenerator;
 
     /**
      * Choose source directory
@@ -85,7 +81,7 @@ public class GUIController {
      * @param actionEvent {@link ActionEvent}
      */
     public void chooseSourceDirectory(ActionEvent actionEvent) {
-        LOG.info("create a file to save ");
+        LOG.info("chooseSourceDirectory ");
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select sources folder ");
         src = directoryChooser.showDialog(null);
@@ -103,12 +99,9 @@ public class GUIController {
      */
     public void chooseDestinationDirectory(ActionEvent actionEvent) {
         LOG.info("chooseDestinationDirectory ");
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Excel files(*.xls, *.xlsx)", "*.xls", "*.xslx");
-        fileChooser.getExtensionFilters().add(filter);
-        fileChooser.setTitle("Save as ...");
-        fileChooser.setInitialFileName("ReturnCount.xls");
-        dest = fileChooser.showSaveDialog(null);
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select destination folder ");
+        dest = directoryChooser.showDialog(null);
         if (dest != null) {
             destText.setText(dest.getAbsolutePath());
         }
@@ -120,10 +113,12 @@ public class GUIController {
      * Generate doc
      *
      * @param actionEvent {@link ActionEvent}
+     * @throws IOException Exception levée si erreur.
+     * @throws InterruptedException Exception levée si erreur.
      */
-    public void countReturns(ActionEvent actionEvent) throws IOException, InterruptedException {
-        LOG.info("countReturns");
-        returnCounter = new ReturnCounter();
+    public void generateDoc(ActionEvent actionEvent) throws IOException, InterruptedException {
+        LOG.info("generateDoc");
+        mJavaDocGenerator = new JavaDocGenerator();
         Task<Void> task = new Task<Void>() {
 
             /**
@@ -134,9 +129,9 @@ public class GUIController {
                 try {
                     progressBar.setVisible(true);
                     if (src == null || dest == null) {
-                        returnCounter.countReturnStatements(sourceText.getText(), destText.getText());
+                        mJavaDocGenerator.generateJavaDocForAllClasses(sourceText.getText(), destText.getText(), toZip.isSelected(), deleteOldJavadoc.isSelected());
                     } else {
-                        returnCounter.countReturnStatements(src, dest);
+                        mJavaDocGenerator.generateJavaDocForAllClasses(src, dest, toZip.isSelected(), deleteOldJavadoc.isSelected());
                     }
                 } catch (Exception e) {
                     LOG.error("exception {}", e);
@@ -144,7 +139,7 @@ public class GUIController {
                         // since JavaFX 8u40
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error");
-                        alert.setHeaderText("an error occurred while counting returns ");
+                        alert.setHeaderText("an error occured while generating javadoc");
                         alert.setContentText(String.format("Details :%n%s", e));
                         alert.showAndWait();
                     });
@@ -155,7 +150,7 @@ public class GUIController {
                     // since JavaFX 8u40
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
-                    alert.setHeaderText("Counts generated successfully");
+                    alert.setHeaderText("Javadoc generated successfully");
                     alert.setContentText("");
                     alert.showAndWait();
                 });
@@ -163,5 +158,21 @@ public class GUIController {
             }
         };
         new Thread(task).start();
+    }
+
+    /**
+     * Load properties
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void loadProperties(ActionEvent actionEvent) {
+        LOG.info("loadProperties");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(mJavaDocGenerator.getPropertiesPath());
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            mJavaDocGenerator.loadProperties(file.getAbsolutePath());
+        }
+        LOG.info("file {}", file);
     }
 }

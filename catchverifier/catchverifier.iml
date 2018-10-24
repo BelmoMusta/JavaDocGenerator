@@ -28,5 +28,6 @@
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-dashicons-pack:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-fontawesome-pack:2.3.0" level="project" />
+    <orderEntry type="module" module-name="javacodeutils" />
   </component>
 </module>

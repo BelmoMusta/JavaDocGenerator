@@ -1,4 +1,4 @@
-package musta.belmo.catchverifier.gui.excel;
+package musta.belmo.javacodeutils.gui;
 
 import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
 
@@ -7,7 +7,7 @@ import java.net.URL;
 /**
  * TODO : Compléter la description de cette classe
  */
-public class CatchVerifierGUI extends AbstractJavaFXApplication {
+public class GeneratorGUI extends AbstractJavaFXApplication {
     /**
      * TODO: Compléter la description de cette méthode
      *
@@ -19,8 +19,6 @@ public class CatchVerifierGUI extends AbstractJavaFXApplication {
 
     @Override
     public URL loadFXMLFile() {
-        return CatchVerifierGUI.class.getClassLoader().getResource("catchVerifierGui-fx.fxml");
+        return GeneratorGUI.class.getClassLoader().getResource("window-fx.fxml");
     }
-
-
 }

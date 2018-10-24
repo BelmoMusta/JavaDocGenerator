@@ -1,38 +1,26 @@
 package musta.belmo.returncounter.gui.table;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
 
-import java.io.IOException;
 import java.net.URL;
 
-
-public class TableCounterGUI extends Application {
-
-
-    private static final Logger LOG = LoggerFactory.getLogger(TableCounterGUI.class);
-
-
+/**
+ * Table counter graphical user interface.
+ */
+public class TableCounterGUI extends AbstractJavaFXApplication {
+    /**
+     * main method
+     *
+     * @param args {@link String}
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        LOG.info("start ");
-        URL resourceAsStream = TableCounterGUI.class.getClassLoader().getResource("returnCounterTable-fx.fxml");
-        LOG.info("root set ");
-        Parent root = FXMLLoader.load(resourceAsStream);
-        primaryStage.setTitle("Return counter table");
-        primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.show();
+    public URL loadFXMLFile() {
+        return TableCounterGUI.class.getClassLoader()
+                .getResource("returnCounterTable-fx.fxml");
     }
+
 }

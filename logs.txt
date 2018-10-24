@@ -141,9 +141,9 @@
 09:32:01.156 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 09:32:01.157 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
 00:18:53.571 [main] DEBUG m.b.j.JavaDocGenerator - main
-00:20:09.686 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
-00:33:32.142 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
-01:10:07.172 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
+00:20:09.686 [main] DEBUG musta.belmo.javacodeutils.Utils - main
+00:33:32.142 [main] DEBUG musta.belmo.javacodeutils.Utils - main
+01:10:07.172 [main] DEBUG musta.belmo.javacodeutils.Utils - main
 01:22:22.435 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - start 
 01:22:22.440 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - root set 
 01:22:41.336 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
@@ -167,17 +167,17 @@
 01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 01:23:00.808 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
-01:26:23.203 [main] DEBUG musta.belmo.javadocgenerator.Utils - main
-01:30:53.660 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
-01:32:38.435 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
-01:33:05.024 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
-01:34:21.594 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
-01:35:21.175 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
-01:36:01.724 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 3
-01:41:09.689 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 34LOL
-01:41:22.677 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with objects 3,4,LOL
-01:43:28.776 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main with values 
-01:45:55.818 [main] DEBUG musta.belmo.javadocgenerator.Utils - Method : main
+01:26:23.203 [main] DEBUG musta.belmo.javacodeutils.Utils - main
+01:30:53.660 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:32:38.435 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:33:05.024 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:34:21.594 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:35:21.175 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:36:01.724 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 3
+01:41:09.689 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 34LOL
+01:41:22.677 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 3,4,LOL
+01:43:28.776 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with values
+01:45:55.818 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
 18:01:25.040 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
 18:01:25.043 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
 18:07:27.515 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
@@ -294,3 +294,154 @@
 19:02:57.718 [JavaFX Application Thread] INFO  m.b.returncounter.gui.GUIController - Success
 18:57:13.152 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
 18:57:13.183 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - root set 
+15:41:43.312 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - start 
+15:41:43.323 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - root set 
+15:42:00.815 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+15:42:03.007 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :null 
+15:42:03.007 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+15:42:11.393 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+15:42:11.402 [JavaFX Application Thread] INFO  m.b.j.JavaDocGenerator - static
+15:42:11.436 [JavaFX Application Thread] DEBUG m.b.j.JavaDocGenerator - Method : loadProperties with values null
+15:42:11.440 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter
+ destination C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\nn
+15:42:11.440 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter,C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\nn
+15:42:11.440 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter
+ destination C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\nn
+15:42:12.436 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:12.438 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:12.438 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:12.438 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:12.439 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.625 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:12.632 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.633 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values SETTER_COMMENT
+15:42:12.634 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.634 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:12.634 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.635 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values SETTER_COMMENT
+15:42:12.635 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.636 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:12.636 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.636 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values SETTER_COMMENT
+15:42:12.636 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.637 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:12.637 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:12.637 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values SETTER_COMMENT
+15:42:12.808 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\beans\MethodDescriber.java
+15:42:13.016 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:42:13.016 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:42:13.018 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.018 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.019 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.019 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.019 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.020 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.020 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.020 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.021 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.028 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.031 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.032 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.033 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.094 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\gui\excel\GUIController.java
+15:42:13.138 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:42:13.139 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:42:13.139 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:42:13.140 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.140 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.152 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\gui\excel\ReturnCounterGUI.java
+15:42:13.165 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values DEFAULT_CONSTR_COMMENT
+15:42:13.166 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+15:42:13.166 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+15:42:13.340 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\gui\table\MustaTableColumn.java
+15:42:13.419 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.419 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.419 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.420 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.420 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.420 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:42:13.421 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.422 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.423 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.477 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\gui\table\TableController.java
+15:42:13.507 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:42:13.507 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:42:13.514 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.514 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:42:13.515 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.567 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\gui\table\TableCounterGUI.java
+15:42:13.661 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.663 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.663 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.664 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.664 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.666 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.667 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:13.667 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.668 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.668 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.669 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.671 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.671 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:13.731 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\main\java\musta\belmo\returncounter\service\ReturnCounter.java
+15:42:13.814 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:13.815 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.815 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:42:13.815 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.816 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.816 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:13.816 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.817 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.817 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:13.818 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.818 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.819 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.819 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.821 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.822 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.822 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.823 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.823 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.824 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.824 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.825 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.825 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.826 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:13.826 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:13.827 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:14.088 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\test\java\musta\belmo\returncounter\ReturnCounterTest.java
+15:42:14.210 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:42:14.210 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.210 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:42:14.211 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:14.211 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.211 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:42:14.212 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:14.212 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.213 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:42:14.255 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\test\java\musta\belmo\returncounter\ReturnCounterTestWriteToExcel.java
+15:42:14.312 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.312 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.313 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.313 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.314 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.314 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.315 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.315 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.315 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.371 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\src\test\resources\CompilationUnit.java
+15:42:14.377 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.378 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.379 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.379 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.380 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.380 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.381 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.382 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.383 [Thread-4] DEBUG m.b.j.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:42:14.399 [Thread-4] INFO  m.b.j.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\javaProjects\JavaDocGenerator\javamethodreturncounter\target\test-classes\CompilationUnit.java
+15:42:14.399 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+15:42:14.399 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
+15:42:14.406 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+17:00:14.160 [JavaFX Application Thread] INFO  m.b.j.app.AbstractJavaFXApplication - start 
+17:00:15.502 [JavaFX Application Thread] INFO  m.b.j.app.AbstractJavaFXApplication - root set 
