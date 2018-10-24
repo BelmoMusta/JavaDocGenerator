@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>javamethodreturncounter</module>
-        <module>catchVerifier</module>
-        <module> javadocgenerator</module>
+        <module>catchverifier</module>
+        <module>javadocgenerator</module>
     </modules>
     <build>
         <plugins>

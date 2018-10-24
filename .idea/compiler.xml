@@ -6,21 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="catchverifier" />
         <module name="catchVerifier" />
         <module name="javadocgenerator" />
-        <module name="javamethodreturncounter" />
+        <module name="javadocgenerator (1)" />
         <module name="JavaMethodReturnCounter" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="catchverifier" target="1.8" />
       <module name="catchVerifier" target="1.8" />
       <module name="javacodeutils" target="1.8" />
       <module name="javadocgenerator" target="1.8" />
+      <module name="javadocgenerator (1)" target="1.8" />
       <module name="JavaMethodReturnCounter" target="1.8" />
-      <module name="javamethodreturncounter" target="1.8" />
-      <module name="JavaMethodReturnCounter (1)" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
