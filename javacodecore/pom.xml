@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>javadocgenerator</artifactId>
+    <artifactId>javacodecore</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <build>
@@ -29,7 +29,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>musta.belmo.javacodegenerator.gui.GeneratorGUI</mainClass>
+                            <mainClass>musta.belmo.catchverifier.gui.CatchVerifierGUI</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -94,10 +94,5 @@
             <artifactId>ikonli-fontawesome-pack</artifactId>
             <version>2.3.0</version>
         </dependency>
-            <dependency>
-                <groupId>musta.belmo</groupId>
-                <artifactId>javacodecore</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.logger;
+package musta.belmo.javacodecore.logger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

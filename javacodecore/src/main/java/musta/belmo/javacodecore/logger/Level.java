@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.logger;
+package musta.belmo.javacodecore.logger;
 
 /**
  * Created by DELL on 03/10/2018.

@@ -1,6 +1,6 @@
-package musta.belmo.javacodeutils.gui;
+package musta.belmo.javacodegenerator.gui;
 
-import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
+import musta.belmo.javacodecore.gui.app.AbstractJavaFXApplication;
 
 import java.net.URL;
 

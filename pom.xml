@@ -11,6 +11,7 @@
         <module>javamethodreturncounter</module>
         <module>catchverifier</module>
         <module>javadocgenerator</module>
+        <module>javacodecore</module>
     </modules>
     <build>
         <plugins>
@@ -28,7 +29,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>musta.belmo.musta.belmo.javacodeutils.gui.GeneratorGUI</mainClass>
+                            <mainClass>musta.belmo.musta.belmo.javacodegenerator.gui.GeneratorGUI</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

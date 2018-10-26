@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import musta.belmo.catchverifier.beans.TryCatchDescriber;
 import musta.belmo.catchverifier.service.CatchVerifier;
-import musta.belmo.javacodeutils.gui.table.MustaTableColumn;
+import musta.belmo.javacodecore.gui.table.MustaTableColumn;
 
 
 import java.io.File;

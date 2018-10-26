@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.gui.table;
+package musta.belmo.javacodecore.gui.table;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;

@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils;
+package musta.belmo.javacodegenerator;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 
 /**

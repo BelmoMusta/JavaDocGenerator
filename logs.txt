@@ -141,9 +141,9 @@
 09:32:01.156 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 09:32:01.157 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
 00:18:53.571 [main] DEBUG m.b.j.JavaDocGenerator - main
-00:20:09.686 [main] DEBUG musta.belmo.javacodeutils.Utils - main
-00:33:32.142 [main] DEBUG musta.belmo.javacodeutils.Utils - main
-01:10:07.172 [main] DEBUG musta.belmo.javacodeutils.Utils - main
+00:20:09.686 [main] DEBUG Utils - main
+00:33:32.142 [main] DEBUG Utils - main
+01:10:07.172 [main] DEBUG Utils - main
 01:22:22.435 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - start 
 01:22:22.440 [JavaFX Application Thread] INFO  m.b.j.gui.GeneratorGUI - root set 
 01:22:41.336 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
@@ -167,17 +167,17 @@
 01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 01:23:00.790 [Thread-4] INFO  m.b.j.JavaDocGenerator - generateJavaDocForAllClasses : done
 01:23:00.808 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
-01:26:23.203 [main] DEBUG musta.belmo.javacodeutils.Utils - main
-01:30:53.660 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
-01:32:38.435 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
-01:33:05.024 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
-01:34:21.594 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
-01:35:21.175 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
-01:36:01.724 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 3
-01:41:09.689 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 34LOL
-01:41:22.677 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with objects 3,4,LOL
-01:43:28.776 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main with values
-01:45:55.818 [main] DEBUG musta.belmo.javacodeutils.Utils - Method : main
+01:26:23.203 [main] DEBUG Utils - main
+01:30:53.660 [main] DEBUG Utils - Method : main
+01:32:38.435 [main] DEBUG Utils - Method : main
+01:33:05.024 [main] DEBUG Utils - Method : main
+01:34:21.594 [main] DEBUG Utils - Method : main
+01:35:21.175 [main] DEBUG Utils - Method : main
+01:36:01.724 [main] DEBUG Utils - Method : main with objects 3
+01:41:09.689 [main] DEBUG Utils - Method : main with objects 34LOL
+01:41:22.677 [main] DEBUG Utils - Method : main with objects 3,4,LOL
+01:43:28.776 [main] DEBUG Utils - Method : main with values
+01:45:55.818 [main] DEBUG Utils - Method : main
 18:01:25.040 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - start 
 18:01:25.043 [JavaFX Application Thread] INFO  m.b.r.gui.ReturnCounterGUI - root set 
 18:07:27.515 [JavaFX Application Thread] INFO  m.b.r.gui.TableCounterGUI - start 
@@ -445,3 +445,130 @@
 15:42:14.406 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
 17:00:14.160 [JavaFX Application Thread] INFO  m.b.j.app.AbstractJavaFXApplication - start 
 17:00:15.502 [JavaFX Application Thread] INFO  m.b.j.app.AbstractJavaFXApplication - root set 
+18:17:33.574 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+18:17:35.014 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+18:17:35.019 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+18:17:35.020 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+18:17:44.662 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseSourceDirectory 
+18:18:05.815 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - src :C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller 
+18:18:05.816 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - sourceText :TextField[id=sourceText, styleClass=text-input text-field] 
+18:18:08.907 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+18:18:15.703 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :C:\Users\mustapha\Desktop\TMP 
+18:18:15.703 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+18:18:17.784 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:18:17.789 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP
+18:18:17.789 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP
+18:18:18.669 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:18:18.677 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:18:18.678 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:18:18.681 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:18:18.692 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:18:18.694 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:18:18.695 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:18:18.786 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:18:18.786 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:18:18.786 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:22:35.778 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+18:22:36.158 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+18:22:36.190 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+18:22:36.194 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+18:22:38.767 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseSourceDirectory 
+18:22:47.552 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - src :C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller 
+18:22:47.552 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - sourceText :TextField[id=sourceText, styleClass=text-input text-field] 
+18:22:48.778 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - chooseDestinationDirectory 
+18:23:17.869 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - dest :C:\Users\mustapha\Desktop\TMP\NN 
+18:23:17.870 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - destText :TextField[id=destText, styleClass=text-input text-field] 
+18:23:20.689 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:23:20.709 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP\NN
+18:23:20.710 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP\NN
+18:23:21.130 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:23:21.133 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+18:23:21.133 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+18:23:21.137 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:23:21.138 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:23:21.140 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:23:21.142 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:23:21.142 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:23:21.142 [Thread-4] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:23:21.194 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:23:21.195 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:23:21.195 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:25:51.743 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - loadProperties
+18:25:59.018 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties
+18:25:59.045 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - file C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties
+18:26:03.537 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:26:03.540 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP\NN
+18:26:03.540 [Thread-5] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP\NN
+18:26:03.568 [Thread-5] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:26:03.569 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+18:26:03.569 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+18:26:03.570 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:26:03.570 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:26:03.571 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:26:03.571 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:26:03.571 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:26:03.571 [Thread-5] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:26:03.581 [Thread-5] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:26:03.581 [Thread-5] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:26:03.585 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:26:24.538 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:26:24.539 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP\NN
+18:26:24.539 [Thread-6] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP\NN
+18:26:24.563 [Thread-6] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:26:24.564 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+18:26:24.564 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+18:26:24.565 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:26:24.565 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:26:24.566 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:26:24.567 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:26:24.567 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:26:24.567 [Thread-6] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:26:24.580 [Thread-6] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:26:24.580 [Thread-6] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:26:24.587 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:27:05.545 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:27:05.546 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP\NN
+18:27:05.546 [Thread-7] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP\NN
+18:27:05.564 [Thread-7] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:27:05.572 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+18:27:05.573 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+18:27:05.574 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:27:05.574 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:27:05.575 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:27:05.575 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:27:05.575 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:27:05.575 [Thread-7] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:27:05.594 [Thread-7] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:27:05.594 [Thread-7] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:27:05.605 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:28:13.170 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - loadProperties
+18:28:21.269 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties
+18:28:21.271 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - file C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties
+18:28:58.254 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - generateDoc
+18:28:58.255 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : generateJavaDocForAllClasses with values C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller,C:\Users\mustapha\Desktop\TMP\NN
+18:28:58.255 [Thread-8] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : directory C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller
+ destination C:\Users\mustapha\Desktop\TMP\NN
+18:28:58.274 [Thread-8] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:28:58.274 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+18:28:58.276 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+18:28:58.277 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:28:58.277 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+18:28:58.278 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:28:58.278 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+18:28:58.278 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+18:28:58.278 [Thread-8] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+18:28:58.314 [Thread-8] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
+18:28:58.315 [Thread-8] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
+18:28:58.315 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+18:29:44.631 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+18:29:45.218 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+18:29:52.340 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+18:29:52.346 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+18:29:58.738 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - loadProperties
+18:30:24.278 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties
+18:31:00.291 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - file C:\Users\mustapha\Desktop\javaCodeGenerator_V0.2\application.properties

@@ -1,6 +1,6 @@
 package musta.belmo.catchverifier.gui.table;
 
-import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
+import musta.belmo.javacodecore.gui.app.AbstractJavaFXApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

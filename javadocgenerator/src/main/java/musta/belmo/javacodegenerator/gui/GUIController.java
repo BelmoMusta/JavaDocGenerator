@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.gui;
+package musta.belmo.javacodegenerator.gui;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import musta.belmo.javacodeutils.service.JavaDocGenerator;
+import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
@@ -67,6 +67,7 @@ public class GUIController {
      */
     @FXML
     public void initialize() {
+        mJavaDocGenerator = new JavaDocGenerator();
         progressBar.setVisible(false);
     }
 
@@ -118,7 +119,6 @@ public class GUIController {
      */
     public void generateDoc(ActionEvent actionEvent) throws IOException, InterruptedException {
         LOG.info("generateDoc");
-        mJavaDocGenerator = new JavaDocGenerator();
         Task<Void> task = new Task<Void>() {
 
             /**

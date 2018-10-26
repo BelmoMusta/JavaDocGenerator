@@ -1,6 +1,6 @@
 package musta.belmo.catchverifier.gui.excel;
 
-import musta.belmo.javacodeutils.gui.app.AbstractJavaFXApplication;
+import musta.belmo.javacodecore.gui.app.AbstractJavaFXApplication;
 
 import java.net.URL;
 

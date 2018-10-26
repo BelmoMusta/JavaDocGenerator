@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils;
+package musta.belmo.javacodecore;
 
 import java.io.*;
 import java.net.URI;

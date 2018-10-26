@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.gui.app;
+package musta.belmo.javacodecore.gui.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

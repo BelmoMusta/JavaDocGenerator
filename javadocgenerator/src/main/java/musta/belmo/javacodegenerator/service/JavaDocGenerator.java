@@ -1,4 +1,4 @@
-package musta.belmo.javacodeutils.service;
+package musta.belmo.javacodegenerator.service;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -16,17 +16,18 @@ import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
-import musta.belmo.javacodeutils.FormattedJavadocBlockTag;
-import musta.belmo.javacodeutils.Utils;
-import musta.belmo.javacodeutils.ZipUtils;
-import musta.belmo.javacodeutils.logger.Level;
-import musta.belmo.javacodeutils.logger.MustaLogger;
+import musta.belmo.javacodecore.logger.Level;
+import musta.belmo.javacodecore.logger.MustaLogger;
+import musta.belmo.javacodegenerator.FormattedJavadocBlockTag;
+import musta.belmo.javacodecore.Utils;
+import musta.belmo.javacodecore.ZipUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -124,6 +125,11 @@ public class JavaDocGenerator {
      * La constante {@link #SINCE_VERSION} de type {@link String} ayant la valeur {@value #SINCE_VERSION}.
      */
     private static final String SINCE_VERSION = "SINCE_VERSION";
+    /**
+     * La constante {@link #AUTHOR} de type {@link String} ayant la valeur {@value #AUTHOR}.
+     */
+    private static final String AUTHOR = "AUTHOR";
+    private static final String APPLICATION_PROPERTIES = "application.properties";
 
     /**
      * L'attribut {@link #propertiesPath}.
@@ -166,13 +172,18 @@ public class JavaDocGenerator {
      */
     public void loadProperties(String propertiesPath) {
         logger.logCurrentMethod(Level.DEBUG, propertiesPath);
-        URL resource;
+        URL resource = null;
         if (propertiesPath == null) {
-            resource = JavaDocGenerator.class.getClassLoader().getResource("application.properties");
+            resource = JavaDocGenerator.class.getClassLoader().getResource(APPLICATION_PROPERTIES);
         } else {
-            resource = JavaDocGenerator.class.getClassLoader().getResource(propertiesPath);
+            File file = new File(propertiesPath);
+            try {
+                resource = file.toURI().toURL();
+            } catch (MalformedURLException e) {
+                logger.error(propertiesPath, e);
+            }
             if (resource == null) {
-                resource = JavaDocGenerator.class.getClassLoader().getResource("application.properties");
+                resource = JavaDocGenerator.class.getClassLoader().getResource(APPLICATION_PROPERTIES);
             }
         }
         if (resource != null) {
@@ -361,7 +372,7 @@ public class JavaDocGenerator {
      * @param destinationFile {@link String}
      * @param srcFile         {@link File}
      * @param compilationUnit {@link CompilationUnit}
-     * @return Attribut {@link #destination}
+     * @return File
      */
     private File getDestination(String destinationFile, File srcFile, CompilationUnit compilationUnit) {
         return compilationUnit.getPackageDeclaration().map(packageDeclaration -> new File(destinationFile, Utils.convertPackageDeclarationToPath(packageDeclaration.getName().asString()) + File.separator + srcFile.getName())).orElseGet(() -> new File(destinationFile));
@@ -369,7 +380,7 @@ public class JavaDocGenerator {
 
     /**
      * @param s {@link String}
-     * @return Attribut {@link #camelCase}
+     * @return boolean
      */
     private boolean isCamelCase(String s) {
         return s != null && s.matches("[a-z]+[A-Z\\d]+\\w+");
@@ -419,11 +430,20 @@ public class JavaDocGenerator {
             String text = "TODO : Compléter la description de cette classe ";
             JavadocSnippet element = new JavadocSnippet(text);
             javadocDescription.addElement(element);
+
+            String author = readFromProperties(AUTHOR);
+            String since = readFromProperties(SINCE_VERSION);
+
+            if (author != null) javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.AUTHOR, author));
+            if (since != null) javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.SINCE, since));
+
+
             classDef.setJavadocComment(javadoc);
         } else {
             classDef.getJavadoc().ifPresent(javadoc -> {
                 javadoc.getBlockTags().removeIf(blockTag -> JavadocBlockTag.Type.SINCE.equals(blockTag.getType()));
                 javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.SINCE, readFromProperties(SINCE_VERSION)));
+                javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.AUTHOR, readFromProperties(AUTHOR)));
                 classDef.setJavadocComment(javadoc);
             });
         }

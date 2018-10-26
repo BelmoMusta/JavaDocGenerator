@@ -1,6 +1,5 @@
-package musta.belmo.javacodeutils;
+package musta.belmo.javacodecore;
 
-import musta.belmo.javacodeutils.logger.MustaLogger;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -68,13 +67,5 @@ public class Utils {
         return retValue;
     }
 
-    /**
-     * TODO: Compléter la description de cette méthode
-     *
-     * @param args {@link String}
-     */
-    public static void main(String[] args) {
-        MustaLogger logger = new MustaLogger(Utils.class);
-        logger.logCurrentMethod(musta.belmo.javacodeutils.logger.Level.DEBUG);
-    }
+
 }
