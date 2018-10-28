@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musta.belmo.javacodegenerator.gui.TreeViewController">
+   <left>
+      <TreeView fx:id="tree" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+         </BorderPane.margin></TreeView>
+   </left>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Button fx:id="btnAddJavaDoc" mnemonicParsing="false" onAction="#addJavaDoc" text="add JavaDoc" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

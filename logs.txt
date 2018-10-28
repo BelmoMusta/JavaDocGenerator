@@ -601,3 +601,1389 @@
 18:34:40.715 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  file C:\Users\mustapha\Desktop\DocGen\musta\belmo\utils\fx\controller\FxController.java
 18:34:40.715 [Thread-4] INFO  m.b.j.service.JavaDocGenerator - generateJavaDocForAllClasses : done
 18:34:40.749 [JavaFX Application Thread] INFO  m.b.j.gui.GUIController - Success
+19:16:59.506 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:17:00.567 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:19:55.431 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:19:55.875 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:24:34.780 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:24:35.278 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:26:20.072 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:26:20.343 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:27:28.405 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:27:28.664 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:29:54.921 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:29:55.338 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:39:11.965 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:39:12.364 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:43:39.023 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:43:39.721 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:46:15.596 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:46:15.943 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:50:37.613 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:50:38.161 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:56:49.297 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:56:50.036 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:57:32.428 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:57:32.740 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+19:58:24.756 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+19:58:25.083 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+20:00:50.577 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+20:00:51.278 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+20:02:04.668 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+20:02:05.108 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+21:46:16.522 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+21:46:17.302 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+21:48:41.103 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+21:48:41.542 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+21:49:59.126 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+21:49:59.609 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+21:51:52.128 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+21:51:52.448 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+22:01:09.673 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+22:01:10.113 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+22:10:42.042 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+22:10:42.389 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+22:39:28.503 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+22:39:28.943 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:04:35.459 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:04:36.014 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:08:58.476 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:08:59.048 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:14:54.845 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:14:55.388 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:15:55.138 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:15:55.572 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:34:10.680 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:34:10.985 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:34:54.039 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:34:54.474 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:37:20.104 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:37:20.449 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:40:23.038 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:40:23.357 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:43:33.842 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:43:34.555 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:45:03.488 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:45:04.087 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:45:59.622 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:46:00.291 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:50:12.763 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:50:13.351 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:50:56.790 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:50:57.323 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:51:26.472 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:51:27.112 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:58:52.474 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:58:52.906 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:08:52.227 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:08:52.602 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:09:05.173 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+00:09:05.219 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:09:05.602 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+/**
+ * Created by DELL on 04/08/2018.
+ *
+ * @since lot 1.2
+ */
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+    /**
+     * L'attribut {@link #buttons}.
+     */
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try{
+             ActionButton button = new ActionButton();
+        }catch(Exception e){
+System.out.println("HELLO");
+
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+00:09:05.615 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+00:09:05.615 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+00:09:05.618 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+00:09:05.620 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+00:09:05.621 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+00:09:05.621 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+00:09:05.622 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+00:09:05.622 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+00:09:05.634 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+00:10:21.540 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+00:10:21.540 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:24:38.596 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+14:24:39.960 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+14:30:52.173 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+14:30:52.207 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:30:52.687 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+    /**
+     * L'attribut {@link #buttons}.
+     */
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try{
+             ActionButton button = new ActionButton();
+        }catch(Exception e){
+System.out.println("HELLO");
+
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+14:30:52.695 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+14:30:52.696 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+14:30:52.698 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:30:52.699 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:30:52.700 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+14:30:52.700 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+14:30:52.700 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+14:30:52.701 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+14:30:52.740 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+14:30:52.781 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+14:30:52.782 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:31:11.265 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+14:31:11.265 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:31:11.266 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+14:31:11.266 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+14:31:34.418 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+14:31:34.418 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:31:34.419 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+14:31:34.419 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+14:31:49.737 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+14:31:49.737 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:31:49.740 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.gui;
+
+import javafx.scene.control.Button;
+import musta.belmo.utils.textutils.commons.Actions;
+
+/**
+ * Created by DELL on 06/08/2018.
+ *
+ * @since lot 1.2
+ */
+public class ActionButton extends Button {
+
+    /**
+     * L'attribut {@link #actions}.
+     */
+    private Actions actions;
+
+    /**
+     * @param actions Valeur à affecter à l'attribut {@link #actions}
+     */
+    public void setActions(Actions actions) {
+        this.actions = actions;
+    }
+
+    /**
+     * @return Attribut {@link #actions}
+     */
+    public Actions getActions() {
+        return actions;
+    }
+}
+
+14:31:49.740 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+14:31:49.740 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+14:31:49.741 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:31:49.741 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+14:31:49.741 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SETTER_COMMENT
+14:31:49.741 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+14:31:49.742 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+14:31:49.743 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+14:58:34.624 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+14:58:34.937 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+14:59:44.788 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+14:59:45.203 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+15:00:10.713 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:00:10.715 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:00:10.956 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.gui;
+
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import musta.belmo.utils.textutils.commons.Actions;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by DELL on 06/08/2018.
+ *
+ * @since lot 1.2
+ */
+public class ActionButtonGroup extends HBox {
+
+    /**
+     * @return Attribut {@link #buttons}
+     */
+    public List<ActionButton> getButtons() {
+        ObservableList<Node> children = super.getChildren();
+        List<ActionButton> list = new ArrayList<>();
+        for (Node child : children) {
+            if (child.getClass() == ActionButton.class)
+                list.add((ActionButton) child);
+        }
+        return list;
+    }
+}
+
+15:00:10.958 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:00:10.958 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:00:10.961 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:00:10.961 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+15:00:10.967 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:01:20.075 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:01:20.076 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:01:20.077 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+15:01:20.077 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:01:21.099 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:01:21.099 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:01:21.113 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+15:01:21.113 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:01:21.317 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:01:21.318 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:01:21.319 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+15:01:21.319 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:01:21.525 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:01:21.526 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:01:21.527 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code 
+15:01:21.527 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:05:09.993 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+15:05:10.323 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+15:06:09.913 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+15:06:10.277 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+15:07:27.611 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:07:27.614 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:07:27.864 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+    /**
+     * L'attribut {@link #buttons}.
+     */
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try{
+             ActionButton button = new ActionButton();
+        }catch(Exception e){
+System.out.println("HELLO");
+
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+15:07:27.868 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:07:27.869 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:07:27.873 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:27.874 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:27.875 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:27.876 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:07:27.877 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:07:27.878 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:27.885 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:07:44.414 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:07:44.414 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:07:44.446 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+/**
+ * TODO : Compléter la description de cette classe
+ *
+ * @author toBeSpecified
+ * @since 1.0.0.SNAPSHOT
+ */
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+   
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try {
+            ActionButton button = new ActionButton();
+        } catch (Exception e) {
+            System.out.println("HELLO");
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+15:07:44.452 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:07:44.453 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:07:44.454 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:44.454 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:44.455 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:44.456 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:07:44.456 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:07:44.456 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:44.457 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:07:47.458 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:07:47.458 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:07:47.492 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+/**
+ * TODO : Compléter la description de cette classe
+ *
+ * @author toBeSpecified
+ * @since 1.0.0.SNAPSHOT
+ */
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+    /**
+     * L'attribut {@link #buttons}.
+     */
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try {
+            ActionButton button = new ActionButton();
+        } catch (Exception e) {
+            System.out.println("HELLO");
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+15:07:47.493 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:07:47.494 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:07:47.494 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:47.495 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:47.495 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:47.495 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:07:47.496 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:07:47.496 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:47.496 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:07:57.797 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - static
+15:07:57.798 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+15:07:57.832 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.utils.fx.controller;
+
+import com.sun.javafx.scene.control.behavior.TextAreaBehavior;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import musta.belmo.utils.fx.gui.ActionButton;
+import musta.belmo.utils.textutils.commons.Actions;
+import musta.belmo.utils.textutils.commons.Commons;
+import musta.belmo.utils.textutils.commons.Functions;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+import java.io.IOException;
+
+/**
+ * TODO : Compléter la description de cette classe
+ *
+ * @author toBeSpecified
+ * @since 1.0.0.SNAPSHOT
+ */
+public class FxController {
+
+    /**
+     * L'attribut {@link #inputText}.
+     */
+    @FXML
+    TextArea inputText;
+
+    /**
+     * L'attribut {@link #buttons}.
+     */
+    @FXML
+    HBox buttons;
+
+    /**
+     * TODO: Compléter la description de cette méthode
+     *
+     * @throws IOException Exception levée si erreur.
+     */
+    @FXML
+    public void initialize() throws IOException {
+        try {
+            ActionButton button = new ActionButton();
+        } catch (Exception e) {
+            System.out.println("HELLO");
+        }
+        TextAreaBehavior textAreaBehavior = new TextAreaBehavior(inputText);
+        textAreaBehavior.dispose();
+        VBox[] vBoxes = new VBox[(Actions.values().length / 4) + 1];
+        for (int i = 0; i < vBoxes.length; i++) {
+            vBoxes[i] = new VBox();
+            buttons.getChildren().addAll(vBoxes[i]);
+        }
+        int y = 0;
+        int idx = 0;
+        for (Actions actions : Actions.values()) {
+            ActionButton button = new ActionButton();
+            String iconDescription = Commons.readFromProperties(actions.name());
+            button.setGraphic(FontIcon.of(FontAwesome.findByDescription(iconDescription)));
+            button.setActions(actions);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setText(actions.getLabel());
+            button.setTooltip(tooltip);
+            button.setOnAction(this::editText);
+            if (y != 0 && y % 4 == 0) {
+                idx++;
+            }
+            vBoxes[idx].getChildren().add(button);
+            y++;
+        }
+    }
+
+    /**
+     * Edit text
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    public void editText(ActionEvent actionEvent) {
+        Actions actions = ((ActionButton) actionEvent.getSource()).getActions();
+        if (actions != null) {
+            switch(actions) {
+                case DELETE_EMPTY_LINES:
+                    inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+                    break;
+                case CAPITALIZE:
+                    inputText.setText(Functions.capitalize(inputText.getText()));
+                    break;
+                case CAMELCASE:
+                    inputText.setText(Functions.camelCase(inputText.getText()));
+                    break;
+                case TO_UPPER_CASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), true));
+                    break;
+                case TO_LOWERCASE:
+                    inputText.setText(Functions.changeCase(inputText.getText(), false));
+                    break;
+                case TEST_REGEX:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to highlight:", "");
+                        List<HighlightPosition> highlights = Functions.getHighlights(inputText.getText(),
+                                inputDialog);
+                        inputText.addHighlisghts(highlights);
+                   */
+                    break;
+                case CAPITALIZE_EACH_WORDS:
+                    inputText.setText(Functions.capitalizeEachWord(inputText.getText()));
+                    break;
+                case DELETE:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Enter REGEX pattern to delete:", "");
+                        String result = Functions.delete(inputText.getText(), inputDialog);
+                        inputText.setText(result);
+                     */
+                    break;
+                case REDUCE_WHITE_SPACE:
+                    inputText.setText(Functions.reduceWhiteSpaces(inputText.getText()));
+                    break;
+                case ENCODE_64:
+                    inputText.setText(Functions.encode64(inputText.getText()));
+                    break;
+                case DECODE_64:
+                    inputText.setText(Functions.decode64(inputText.getText()));
+                    break;
+                case INDENT:
+                    inputText.setText(Functions.indent(inputText.getText()));
+                    break;
+                case UNCAMELCASE:
+                    inputText.setText(Functions.uncamelcase(inputText.getText()));
+                    break;
+                case REPLACE_ACCENTED:
+                    inputText.setText(Functions.replaceAccentedLetters(inputText.getText()));
+                    break;
+                case DELETE_SYMBOLS:
+                    inputText.setText(Functions.deleteSymbols(inputText.getText()));
+                    break;
+                case RANDOM_STRING:
+                    /*
+                        int length = 0;
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "Random String length:", "0");
+                        if (StringUtils.isNumeric(inputDialog)) {
+                            length = Integer.parseInt(inputDialog);
+                            if (length < 0) {
+                                length = 0;
+                            }
+                        }
+                        inputText.setText(Functions.randomString(length));
+                     */
+                    break;
+                case DELETE_LINES:
+                    /*
+                        String inputDialog = JOptionPane.showInputDialog(this.mPanel, "lines to be deleted:\n(separated by space or ,)", "");
+                        String[] linesStr = inputDialog.split("[,\\s;]");
+                        Integer[] lines = new Integer[linesStr.length];
+                        for (int i = 0; i < linesStr.length; i++) {
+                            lines[i] = Integer.valueOf(linesStr[i]);
+                        }
+                        String deleteLines = Functions.deleteLines(inputText.getText(), lines);
+
+                        inputText.setText(deleteLines);
+                   */
+                    break;
+                case REDO:
+                    // inputText.redo();
+                    break;
+                case UNDO:
+                    // inputText.undo();
+                    break;
+                case ADD_LINE:
+                    /*
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.asOpenDialog()
+                                .showDialog(null, "Ouvrir");
+
+                        fileChooser.doWhenApproved(() -> {
+                            File chosenFile = fileChooser.getSelectedFile();
+                            String textWithAddedLines = Functions.addLinesAt(inputText.getText(), chosenFile);
+                            inputText.setText(textWithAddedLines);
+                        }).doWhenCanceled(() -> System.out.println("File Chooser Canceled"));
+                   */
+                    break;
+            }
+        }
+        inputText.setText(Functions.deleteEmptyLines(inputText.getText()));
+    }
+}
+
+15:07:57.835 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:07:57.836 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:07:57.836 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:57.837 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:07:57.837 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:57.838 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+15:07:57.838 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+15:07:57.839 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+15:07:57.839 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:15:53.974 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+15:15:54.265 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+15:18:31.156 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+15:18:31.512 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 

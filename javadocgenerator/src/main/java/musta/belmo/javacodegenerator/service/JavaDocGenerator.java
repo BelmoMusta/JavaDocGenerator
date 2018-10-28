@@ -299,6 +299,21 @@ public class JavaDocGenerator {
         logger.info("generated javadoc for  file {}", srcPath);
     }
 
+    public String generateJavaDocAsString(String src, boolean deleteOldJavaDoc) throws IOException {
+
+        CompilationUnit compilationUnit = JavaParser.parse(src);
+        if (deleteOldJavaDoc) {
+            deleteOldJavaDoc(compilationUnit);
+            logger.info("deleted javadoc for  source code {}", src);
+        }
+        compilationUnit.findAll(ClassOrInterfaceDeclaration.class).forEach(this::generateClassJavaDoc);
+        compilationUnit.findAll(ConstructorDeclaration.class).forEach(this::generateConstructorJavaDoc);
+        compilationUnit.findAll(FieldDeclaration.class).forEach(this::generateFieldJavaDoc);
+        compilationUnit.findAll(MethodDeclaration.class).forEach(this::generateMethodJavaDoc);
+        logger.info("generated javadoc for  source code");
+        return compilationUnit.toString();
+    }
+
     /**
      * Delete setters for lists
      *
