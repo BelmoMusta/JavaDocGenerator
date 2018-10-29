@@ -1,11 +1,14 @@
 package musta.belmo.javacodecore;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.type.Type;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 /**
  * TODO : Compléter la description de cette classe
@@ -95,5 +98,40 @@ public class Utils {
 
     public static void saveToFile(byte[] bytes, String dest) throws IOException {
         saveToFile(bytes, new java.io.File(dest));
+    }
+
+    private static boolean isMethodStartsWith(MethodDeclaration methodDeclaration, String prefix) {
+        return methodDeclaration != null && methodDeclaration.getName().asString().startsWith(prefix);
+    }
+
+    public static boolean isSetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "set");
+    }
+
+    public static boolean isGetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "get");
+    }
+
+    public static boolean isIs(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "is") && methodDeclaration.getType()
+                .toString()
+                .equalsIgnoreCase("boolean");
+    }
+
+    public static boolean isImutable(Type type) {
+        return type.isPrimitiveType() || isBoxedType(type);
+    }
+
+    public static boolean isBoxedType(Type type) {
+        return type != null &&
+                Arrays.asList("String", "Integer", "Boolean", "Double", "Float", "Short", "Character", "Long", "Byte").contains(type.asString());
+    }
+
+    public static String getSimpleClassName(String fullClassName) {
+        String lRet = fullClassName;
+        if (fullClassName != null && fullClassName.contains(".")) {
+            lRet = fullClassName.substring(fullClassName.lastIndexOf('.') + 1);
+        }
+        return lRet;
     }
 }
