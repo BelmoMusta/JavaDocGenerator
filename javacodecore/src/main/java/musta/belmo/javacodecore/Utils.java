@@ -1,6 +1,11 @@
 package musta.belmo.javacodecore;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * TODO : Compléter la description de cette classe
@@ -45,7 +50,7 @@ public class Utils {
     /**
      * Un camel case
      *
-     * @param input {@link String}
+     * @param input     {@link String}
      * @param delimeter {@link String}
      * @return String
      */
@@ -74,5 +79,21 @@ public class Utils {
      */
     public static boolean isCamelCase(String s) {
         return s != null && s.matches("[a-z]+[A-Z\\d]+\\w+");
+    }
+
+    public static void saveFile(java.io.File src, java.io.File dest) throws IOException {
+        FileUtils.copyFile(src, dest);
+    }
+
+    public static void saveFile(String src, String dest) throws IOException {
+        FileUtils.copyFile(new java.io.File(src), new java.io.File(dest));
+    }
+
+    public static void saveToFile(byte[] bytes, java.io.File dest) throws IOException {
+        FileUtils.writeByteArrayToFile(dest, bytes, false);
+    }
+
+    public static void saveToFile(byte[] bytes, String dest) throws IOException {
+        saveToFile(bytes, new java.io.File(dest));
     }
 }

@@ -7,7 +7,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musta.belmo.javacodegenerator.gui.TreeViewController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="musta.belmo.javacodegenerator.gui.TreeViewController"
+            fx:id="root">
    <left>
       <TreeView fx:id="tree" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>

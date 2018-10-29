@@ -26,7 +26,7 @@ public abstract class AbstractJavaFXApplication extends Application {
         LOG.info("start ");
         Parent root = FXMLLoader.load(loadFXMLFile());
         LOG.info("root set ");
-        primaryStage.setTitle("Return counter table");
+   //     primaryStage.setTitle("Return counter table");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
