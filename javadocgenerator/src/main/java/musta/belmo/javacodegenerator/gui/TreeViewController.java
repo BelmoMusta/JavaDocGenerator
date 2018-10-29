@@ -84,20 +84,6 @@ public class TreeViewController {
             }
         });
 
-/*
-        tree.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<File>>() {
-            @Override
-            public void changed(ObservableValue<? extends TreeItem<File>>
-                                        observable, TreeItem<File> oldValue,
-                                TreeItem<File> newValue) {
-                try {
-                    loadFile(observable.getValue().getValue(), textArea);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-*/
         tree.setCellFactory((e) -> new TreeCell<File>() {
             @Override
             protected void updateItem(File item, boolean empty) {
@@ -111,8 +97,6 @@ public class TreeViewController {
                 }
             }
         });
-
-
     }
 
     private void loadFileFromTreeView() {
@@ -208,7 +192,13 @@ public class TreeViewController {
         String text = content.getText();
         String s = generator.generateJavaDocAsString(text, true);
         content.replaceText(s);
-        // content.replaceText(0, 0, s);
+    }
 
+    public void deleteJavaDoc(ActionEvent actionEvent) throws IOException {
+        JavaDocGenerator generator = new JavaDocGenerator();
+        CodeArea content = (CodeArea) tabPane.getSelectionModel().getSelectedItem().getContent();
+        String text = content.getText();
+        String s = generator.deleteJavaDoc(text);
+        content.replaceText(s);
     }
 }

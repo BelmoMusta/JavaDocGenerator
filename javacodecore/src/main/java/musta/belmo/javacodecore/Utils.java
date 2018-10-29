@@ -68,4 +68,11 @@ public class Utils {
     }
 
 
+    /**
+     * @param s {@link String}
+     * @return boolean
+     */
+    public static boolean isCamelCase(String s) {
+        return s != null && s.matches("[a-z]+[A-Z\\d]+\\w+");
+    }
 }
