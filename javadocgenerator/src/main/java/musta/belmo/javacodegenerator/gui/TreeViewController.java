@@ -366,8 +366,6 @@ public class TreeViewController implements ControllerConstants {
                     Optional<ButtonType> buttonType = dialogPane.showAndWait();
                     if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                         CodeArea codeArea1 = Utils.castTo(CodeArea.class, tab.getContent());
-
-                        //CodeArea codeArea1 = (CodeArea) tab.getContent();
                         try {
                             String path = tab.getId();
                             if (path == null) {
