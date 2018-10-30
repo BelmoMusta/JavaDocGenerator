@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import musta.belmo.javacodecore.Utils;
@@ -21,80 +23,84 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import org.fxmisc.richtext.model.StyleSpans;
-import org.fxmisc.richtext.model.StyleSpansBuilder;
-import org.reactfx.Subscription;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.time.Duration;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import static javafx.scene.input.KeyCode.ENTER;
 
-public class TreeViewController {
+/**
+ * TODO: Compléter la description de cette classe
+ *
+ * @author toBeSpecified
+ * @since 1.0.0.SNAPSHOT
+ */
+public class TreeViewController implements ControllerConstants {
 
-    JavaDocGenerator generator;
+    /**
+     * L'attribut {@link #generator}.
+     */
+    private JavaDocGenerator generator;
+
+    /**
+     * L'attribut {@link #root}.
+     */
     public BorderPane root;
+
+    /**
+     * L'attribut {@link #markedFiles}.
+     */
     private Map<String, Boolean> markedFiles = new LinkedHashMap<>();
-    private static final String[] KEYWORDS = new String[]{
-            "abstract", "assert", "boolean", "break", "byte",
-            "case", "catch", "char", "class", "const",
-            "continue", "default", "do", "double", "else",
-            "enum", "extends", "final", "finally", "float",
-            "for", "goto", "if", "implements", "import",
-            "instanceof", "int", "interface", "long", "native",
-            "new", "package", "private", "protected", "public",
-            "return", "short", "static", "strictfp", "super",
-            "switch", "synchronized", "this", "throw", "throws",
-            "transient", "try", "void", "volatile", "while"
-    };
 
-    private static final String KEYWORD_PATTERN = "\\b(" + String.join("|", KEYWORDS) + ")\\b";
-    private static final String PAREN_PATTERN = "[()]";
-    private static final String BRACE_PATTERN = "[{}]";
-    private static final String BRACKET_PATTERN = "[\\[]]";
-    private static final String SEMICOLON_PATTERN = "\\;";
-    private static final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
-    private static final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
-
-    private static final Pattern PATTERN = Pattern.compile(
-            "(?<KEYWORD>" + KEYWORD_PATTERN + ")"
-                    + "|(?<PAREN>" + PAREN_PATTERN + ")"
-                    + "|(?<BRACE>" + BRACE_PATTERN + ")"
-                    + "|(?<BRACKET>" + BRACKET_PATTERN + ")"
-                    + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")"
-                    + "|(?<STRING>" + STRING_PATTERN + ")"
-                    + "|(?<COMMENT>" + COMMENT_PATTERN + ")"
-    );
-
-
+    /**
+     * L'attribut {@link #tree}.
+     */
     public TreeView<File> tree;
+
+    /**
+     * L'attribut {@link #tabPane}.
+     */
     public TabPane tabPane;
+
+    /**
+     * L'attribut {@link #untitledCounter}.
+     */
     private int untitledCounter = 0;
 
-
+    /**
+     * TODO: Compléter la description de cette méthode
+     */
     @FXML
     public void initialize() {
+        setupTop();
         generator = new JavaDocGenerator();
+
         tree.setVisible(false);
         setupMenuBar();
+        setUpIconsBar();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
         tree.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
                 loadFile(tree.getSelectionModel().getSelectedItem().getValue(), null);
             }
         });
-
         tree.setOnKeyPressed(e -> {
             if (ENTER.equals(e.getCode())) {
                 loadFile(tree.getSelectionModel().getSelectedItem().getValue(), null);
             }
         });
-
         tree.setCellFactory((e) -> new TreeCell<File>() {
+
+            /**
+             * {@inheritDoc}
+             */
             @Override
             protected void updateItem(File item, boolean empty) {
                 super.updateItem(item, empty);
@@ -109,31 +115,77 @@ public class TreeViewController {
         });
     }
 
+    private void setUpIconsBar() {
+        HBox box = new HBox();
+        Button generateJavaDoc = new Button();
+        Button deleteJavaDoc = new Button();
+        deleteJavaDoc.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        generateJavaDoc.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        generateJavaDoc.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-comments")));
+        generateJavaDoc.setOnAction(this::addJavaDoc);
+        generateJavaDoc.setTooltip(new Tooltip("Generate javadoc"));
+        deleteJavaDoc.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-remove")));
+        deleteJavaDoc.setTooltip(new Tooltip("Delete javadoc"));
+        deleteJavaDoc.setOnAction(this::deleteJavaDoc);
+        box.getChildren().addAll(generateJavaDoc, deleteJavaDoc);
+        VBox vBox = (VBox) root.getTop();
+        vBox.getChildren().add(box);
+    }
+
+    /**
+     * Add folder to tree view
+     *
+     * @param path {@link String}
+     */
     private void addFolderToTreeView(String path) {
         tree.setRoot(createTree(new File(path)));
     }
 
+    /**
+     */
+
+    private void setupTop() {
+        VBox vBox = new VBox();
+        root.setTop(vBox);
+    }
+
     private void setupMenuBar() {
+        VBox vBox = (VBox) root.getTop();
         MenuBar menuBar = new MenuBar();
         setupFileMenuItem(menuBar);
         setupToolsMenuItem(menuBar);
-        root.setTop(menuBar);
+        vBox.getChildren().add(menuBar);
     }
 
+    /**
+     * @param menuBar {@link MenuBar}
+     */
     private void setupFileMenuItem(MenuBar menuBar) {
         Menu menu = new Menu("File ");
-        MenuItem newFile = new MenuItem("New file");
 
-        MenuItem openFolder = new MenuItem("Open folder");
-        MenuItem saveAllFilesInFolder = new MenuItem("Save all files in folder");
-        MenuItem saveFolderFilesAs = new MenuItem("Save all files in folder as ...");
+        MenuItem newFile = new MenuItemWithIcon("New file", "fa-file");
+        MenuItem openFolder = new MenuItemWithIcon("Open folder", "fa-folder-open");
+        MenuItem saveAllFilesInFolder = new MenuItemWithIcon("Save all files in folder", "fa-save");
+        MenuItem saveFolderFilesAs = new MenuItemWithIcon("Save all files in folder as ...", "fa-save");
 
-        MenuItem openFile = new MenuItem("Open file");
-        MenuItem saveFile = new MenuItem("Save File");
-        MenuItem saveFileAs = new MenuItem("Save File As ...");
-        setupMenuItemAction(openFolder, 0);
-        setupMenuItemAction(newFile, 3);
-        setupMenuItemAction(openFile, 1);
+        MenuItem openFile = new MenuItemWithIcon("Open file", "fa-file");
+        MenuItem saveFile = new MenuItemWithIcon("Save File", "fa-save");
+        MenuItem saveFileAs = new MenuItemWithIcon("Save File As ...", "fa-save");
+
+        setupMenuItemAction(openFolder, MenuAction.OPEN_FILE);
+        setupMenuItemAction(saveFile, MenuAction.SAVE_FILE);
+        setupMenuItemAction(saveFileAs, MenuAction.SAVE_FILE_AS);
+        setupMenuItemAction(newFile, MenuAction.NEW_FILE);
+        setupMenuItemAction(openFile, MenuAction.OPEN_FILE);
+
+
+        saveFile.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        saveFileAs.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+
+        saveFolderFilesAs.disableProperty().bind(Bindings.not(tree.visibleProperty()));
+        saveAllFilesInFolder.disableProperty().bind(Bindings.not(tree.visibleProperty()));
+        //bind(Bindings.equal(tree.isVisible()?1:0,1));
+
         menu.getItems().add(newFile);
         menu.getItems().add(new SeparatorMenuItem());
         menu.getItems().add(openFolder);
@@ -146,121 +198,178 @@ public class TreeViewController {
         menuBar.getMenus().add(menu);
     }
 
+    /**
+     * @param menuBar {@link MenuBar}
+     */
     private void setupToolsMenuItem(MenuBar menuBar) {
         Menu menu = new Menu("Tools ");
-        MenuItem setupProperties = new MenuItem("setup properties");
-        setupMenuItemAction(setupProperties, 4);
+        MenuItem setupProperties = new MenuItemWithIcon("setup properties", "fa-th-list");
+        setupMenuItemAction(setupProperties, MenuAction.LOAD_PROPERTIES);
         menu.getItems().add(setupProperties);
         menu.getItems().add(new SeparatorMenuItem());
         menuBar.getMenus().add(menu);
     }
 
-    private void setupMenuItemAction(MenuItem menuItem, int action) {
+    /**
+     * @param menuItem   {@link MenuItem}
+     * @param menuAction {@link MenuAction}
+     */
+    private void setupMenuItemAction(MenuItem menuItem, MenuAction menuAction) {
         menuItem.setOnAction(event -> {
-            File file;
-            FileChooser fileChooser;
-            switch (action) {
-                case 0: // open  folder
-                    tree.setVisible(true);
-                    DirectoryChooser directoryChooser = new DirectoryChooser();
-                    file = directoryChooser.showDialog(null);
-                    addFolderToTreeView(file.getAbsolutePath());
+            switch (menuAction) {
+                case OPEN_FOLDER:
+                    openFolder();
                     break;
-                case 1:// open file
-                    fileChooser = new FileChooser();
-                    file = fileChooser.showOpenDialog(null);
-                    loadFile(file, null);
+                case OPEN_FILE:
+                    openFile();
                     break;
-                case 2: // save file as
-                    Node content = tabPane.getSelectionModel().getSelectedItem().getContent();
-
-                    if (content != null) {
-                        CodeArea codeArea = (CodeArea) content;
-                        String text = codeArea.getText();
-                        fileChooser = new FileChooser();
-                        File destFile = fileChooser.showOpenDialog(null);
-                        try {
-                            Utils.saveToFile(text.getBytes(), destFile);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
+                case SAVE_FILE_AS:
+                    saveFileAs();
                     break;
-
-                case 3: // new file
-                    TextInputDialog textInputDialog = new TextInputDialog();
-                    textInputDialog.setTitle("New file");
-                    textInputDialog.setHeaderText("Enter file name");
-
-                    Optional<String> name = textInputDialog.showAndWait();
-
-                    if (!name.isPresent()) {
-                        untitledCounter++;
-                    }
-
-                    loadFile(null,
-                            name.orElse(String.format("Untitled_%d",
-                                    untitledCounter)));
+                case NEW_FILE:
+                    newFile();
                     break;
-                case 4:
-                    FileChooser propertiesFileChooser = new FileChooser();
-                    propertiesFileChooser.setInitialFileName(generator.getPropertiesPath());
-                    File propertiesFile = propertiesFileChooser.showOpenDialog(null);
-                    if (propertiesFile != null) {
-                        generator.loadProperties(propertiesFile.getAbsolutePath());
-                    }
+                case LOAD_PROPERTIES:
+                    loadProperties();
+                    break;
+                case SAVE_FILE:
+                    saveFile();
                     break;
             }
         });
     }
 
+    /**
+     * Open folder
+     */
+    private void openFolder() {
+        tree.setVisible(true);
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File file = directoryChooser.showDialog(null);
+        if (file != null) {
+            addFolderToTreeView(file.getAbsolutePath());
+        }
+    }
 
+    /**
+     * Open file
+     */
+    private void openFile() {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        loadFile(file, null);
+    }
+
+    /**
+     * New file
+     */
+    private void newFile() {
+        TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.setTitle("New file");
+        textInputDialog.setHeaderText("Enter file name");
+        Optional<String> name = textInputDialog.showAndWait();
+        if (!name.isPresent()) {
+            untitledCounter++;
+        }
+        loadFile(null, name.orElse(String.format("Untitled_%d", untitledCounter)));
+    }
+
+    /**
+     * Load properties
+     */
+    private void loadProperties() {
+        FileChooser propertiesFileChooser = new FileChooser();
+        propertiesFileChooser.setInitialFileName(generator.getPropertiesPath());
+        File propertiesFile = propertiesFileChooser.showOpenDialog(null);
+        if (propertiesFile != null) {
+            generator.loadProperties(propertiesFile.getAbsolutePath());
+        }
+    }
+
+    /**
+     * Save file
+     */
+    private void saveFile() {
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        String path = selectedItem.getId();
+        CodeArea codeArea = (CodeArea) selectedItem.getContent();
+        try {
+            Utils.saveToFile(codeArea.getText().getBytes(), path);
+            markedFiles.put(path, false);
+            selectedItem.setStyle("-fx-background-color: green;");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Save file as
+     */
+    private void saveFileAs() {
+        FileChooser fileChooser;
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        Node content = selectedItem.getContent();
+        if (content != null) {
+            CodeArea codeArea = (CodeArea) content;
+            String text = codeArea.getText();
+            fileChooser = new FileChooser();
+            fileChooser.setInitialFileName(selectedItem.getText());
+            File destFile = fileChooser.showSaveDialog(null);
+            try {
+                Utils.saveToFile(text.getBytes(), destFile);
+                selectedItem.setId(destFile.getAbsolutePath());
+                selectedItem.setStyle("-fx-background-color: green;");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Load file
+     *
+     * @param file        {@link File}
+     * @param newFileName {@link String}
+     */
     private void loadFile(File file, String newFileName) {
         try {
             CodeArea codeArea = new CodeArea();
             codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-            Subscription cleanupWhenNoLongerNeedIt = codeArea
-
-                    // plain changes = ignore style changes that are emitted when syntax highlighting is reapplied
-                    // multi plain changes = save computation by not rerunning the code multiple times
-                    //   when making multiple changes (e.g. renaming a method at multiple parts in file)
-                    .multiPlainChanges()
-
-                    // do not emit an event until 500 ms have passed since the last emission of previous stream
-                    .successionEnds(Duration.ofMillis(500))
-
-                    // run the following code block when previous stream emits an event
-                    .subscribe(ignore ->
-                            codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+            // Subscription cleanupWhenNoLongerNeedIt =
+            codeArea.multiPlainChanges().successionEnds(Duration.ofMillis(500)).subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
             Tab tab = new Tab();
-            codeArea.getStylesheets().add(getClass().getClassLoader().getResource("java-style.css").toExternalForm());
+            URL resource = getClass().getClassLoader().getResource("java-style.css");
+            Optional.ofNullable(resource).ifPresent(url -> codeArea.getStylesheets().add(url.toExternalForm()));
             DoubleProperty fontSize = new SimpleDoubleProperty(18);
             codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
             codeArea.setPadding(new Insets(0, 0, 0, 10));
             codeArea.textProperty().addListener(new ChangeListener<String>() {
+
+                /**
+                 * {@inheritDoc}
+                 */
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    if (!StringUtils.equals(oldValue, newValue)
-                            && markedFiles.get(tab.getId()) != null) {
+                    if (!StringUtils.equals(oldValue, newValue) && markedFiles.get(tab.getId()) != null) {
                         markedFiles.replace(tab.getId(), true);
-                    } else
+                        tab.setStyle("-fx-background-color: red;");
+                    } else {
+                        tab.setStyle("-fx-background-color: green;");
                         markedFiles.put(tab.getId(), false);
+                    }
                 }
             });
             tab.setOnCloseRequest(event -> {
-
                 Boolean isEdited = markedFiles.get(tab.getId());
                 if (BooleanUtils.isTrue(isEdited)) {
-                    Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "save this shit before you close ? ");
+                    Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save this file before you close ? ");
                     Optional<ButtonType> buttonType = dialogPane.showAndWait();
                     if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
-                        CodeArea codeArea1 = (CodeArea) tab.getContent();
+                        CodeArea codeArea1 = Utils.castTo(CodeArea.class, tab.getContent());
+
+                        //CodeArea codeArea1 = (CodeArea) tab.getContent();
                         try {
-
-
                             String path = tab.getId();
-
                             if (path == null) {
                                 FileChooser fileChooser = new FileChooser();
                                 File saved = fileChooser.showSaveDialog(null);
@@ -268,23 +377,24 @@ public class TreeViewController {
                                     path = saved.getAbsolutePath();
                                 }
                             }
-                            Utils.saveToFile(codeArea1.getText().getBytes(), path);
+                            if (path != null) {
+                                Utils.saveToFile(codeArea1.getText().getBytes(), path);
+                            } else
+                                event.consume();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                 }
-
             });
-            tab.setOnClosed(event -> {
 
+            tab.setOnClosed(event -> {
                 String id = tab.getId();
                 // remove from the marked files so that it can be reopened
                 markedFiles.remove(id);
             });
 
             tabPane.getSelectionModel().select(tab);
-
             if (file != null && file.isFile() && markedFiles.get(file.getAbsolutePath()) == null) {
                 String fileToString = FileUtils.readFileToString(file, "UTF-8");
                 codeArea.replaceText(0, 0, fileToString);
@@ -293,7 +403,6 @@ public class TreeViewController {
                 tabPane.getTabs().add(tab);
                 tab.setContent(codeArea);
                 markedFiles.put(file.getAbsolutePath(), false);
-
             } else if (file == null) {
                 tabPane.getTabs().add(tab);
                 tab.setText(newFileName);
@@ -304,66 +413,60 @@ public class TreeViewController {
         }
     }
 
+    /**
+     * Create tree
+     *
+     * @param file {@link File}
+     * @return TreeItem
+     */
     private TreeItem<File> createTree(File file) {
         TreeItem<File> item = new TreeItem<>(file);
-        File[] childs = file.listFiles();
+        Optional<File[]> files = Optional.ofNullable(file.listFiles());
+        String iconName;
 
-        String iconeName;
-        if (childs != null) {
-            for (File child : childs) {
+        if (files.isPresent()) {
+            for (File child : files.get()) {
                 item.getChildren().add(createTree(child));
             }
-            iconeName = "folder.png";
-
+            iconName = "folder.png";
         } else {
-            iconeName = "text-x-generic.png";
+            iconName = "text-x-generic.png";
         }
-        item.setGraphic(new ImageView(getClass()
-                .getClassLoader()
-                .getResource(iconeName)
-                .toExternalForm()));
+        URL resource = getClass().getClassLoader().getResource(iconName);
+        Optional.ofNullable(resource).ifPresent(url -> item.setGraphic(new ImageView(url.toExternalForm())));
         return item;
     }
 
-
-    private static StyleSpans<Collection<String>> computeHighlighting(String text) {
-        Matcher matcher = PATTERN.matcher(text);
-        int lastKwEnd = 0;
-        StyleSpansBuilder<Collection<String>> spansBuilder
-                = new StyleSpansBuilder<>();
-        while (matcher.find()) {
-            String styleClass =
-                    matcher.group("KEYWORD") != null ? "keyword" :
-                            matcher.group("PAREN") != null ? "paren" :
-                                    matcher.group("BRACE") != null ? "brace" :
-                                            matcher.group("BRACKET") != null ? "bracket" :
-                                                    matcher.group("SEMICOLON") != null ? "semicolon" :
-                                                            matcher.group("STRING") != null ? "string" :
-                                                                    matcher.group("COMMENT") != null ? "comment" :
-                                                                            null; /* never happens */
-            assert styleClass != null;
-            spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
-            spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
-            lastKwEnd = matcher.end();
+    /**
+     * Add java doc
+     *
+     * @param actionEvent {@link ActionEvent}
+     */
+    private void addJavaDoc(ActionEvent actionEvent) {
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            CodeArea content = (CodeArea) selectedItem.getContent();
+            String text = content.getText();
+            try {
+                content.replaceText(generator.generateJavaDocAsString(text, true));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
-        return spansBuilder.create();
     }
 
-    public void addJavaDoc(ActionEvent actionEvent) throws IOException {
-
-
-        CodeArea content = (CodeArea) tabPane.getSelectionModel().getSelectedItem().getContent();
-        String text = content.getText();
-        String s = generator.generateJavaDocAsString(text, true);
-        content.replaceText(s);
-    }
-
-    public void deleteJavaDoc(ActionEvent actionEvent) throws IOException {
-
-        CodeArea content = (CodeArea) tabPane.getSelectionModel().getSelectedItem().getContent();
-        String text = content.getText();
-        String s = generator.deleteJavaDoc(text);
-        content.replaceText(s);
+    /**
+     * Delete java doc
+     *
+     * @param actionEvent {@link ActionEvent}
+     * @throws IOException Exception levée si erreur.
+     */
+    private void deleteJavaDoc(ActionEvent actionEvent) {
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            CodeArea content = (CodeArea) selectedItem.getContent();
+            String text = content.getText();
+            content.replaceText(generator.deleteJavaDoc(text));
+        }
     }
 }

@@ -5,9 +5,7 @@ import com.github.javaparser.ast.type.Type;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Arrays;
 
 /**
@@ -133,5 +131,10 @@ public class Utils {
             lRet = fullClassName.substring(fullClassName.lastIndexOf('.') + 1);
         }
         return lRet;
+    }
+
+    public static <T> T castTo(Class<? extends T> cls, Object a) {
+
+        return (T) a;
     }
 }
