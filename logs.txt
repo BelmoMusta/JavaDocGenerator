@@ -9178,3 +9178,37 @@ public class ActionButtonGroup extends HBox {
 18:22:51.085 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
 18:22:51.086 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
 18:22:51.086 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+22:34:26.937 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+22:34:28.161 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+22:34:29.407 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+22:34:57.824 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+}
+
+22:34:57.826 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+22:34:57.827 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+22:34:57.827 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+22:34:57.832 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+22:35:46.688 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    private void addFolderToTreeView(String path) {
+        tree.setRoot(createTree(new File(path)));
+    }
+}
+
+22:35:46.689 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+22:35:46.689 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+22:35:46.690 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+22:35:46.690 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+22:35:46.694 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+22:35:54.745 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    private void addFolderToTreeView(String path) {
+        tree.setRoot(createTree(new File(path)));
+    }
+}
+
+22:35:54.745 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+22:35:54.746 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+22:35:54.746 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+22:35:54.747 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+22:35:54.747 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
