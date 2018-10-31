@@ -133,8 +133,13 @@ public class Utils {
         return lRet;
     }
 
-    public static <T> T castTo(Class<? extends T> cls, Object a) {
-
+    public static <T> T castTo(Object a) {
         return (T) a;
+    }
+
+    public static void main(String[] args) {
+        Number integer = castTo(2L);
+
+        System.out.println(integer);
     }
 }

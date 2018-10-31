@@ -81,7 +81,6 @@ public class TreeViewController implements ControllerConstants {
     public void initialize() {
         setupTop();
         generator = new JavaDocGenerator();
-
         tree.setVisible(false);
         setupMenuBar();
         setUpIconsBar();
@@ -91,26 +90,25 @@ public class TreeViewController implements ControllerConstants {
                 loadFile(tree.getSelectionModel().getSelectedItem().getValue(), null);
             }
         });
-        tree.setOnKeyPressed(e -> {
-            if (ENTER.equals(e.getCode())) {
-                loadFile(tree.getSelectionModel().getSelectedItem().getValue(), null);
+        tree.setOnKeyPressed(eventHandler -> {
+            if (ENTER.equals(eventHandler.getCode())) {
+                loadFile(tree.getSelectionModel().getSelectedItem().getValue(),
+                        null);
             }
         });
-        tree.setCellFactory((e) -> new TreeCell<File>() {
-
+        tree.setCellFactory((callback) -> new TreeCell<File>() {
             /**
              * {@inheritDoc}
              */
             @Override
             protected void updateItem(File item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item != null) {
+                setText("");
+                setGraphic(null);
+                Optional.ofNullable(item).ifPresent(it -> {
                     setText(item.getName());
                     setGraphic(getTreeItem().getGraphic());
-                } else {
-                    setText("");
-                    setGraphic(null);
-                }
+                });
             }
         });
     }
@@ -128,7 +126,7 @@ public class TreeViewController implements ControllerConstants {
         deleteJavaDoc.setTooltip(new Tooltip("Delete javadoc"));
         deleteJavaDoc.setOnAction(this::deleteJavaDoc);
         box.getChildren().addAll(generateJavaDoc, deleteJavaDoc);
-        VBox vBox = (VBox) root.getTop();
+        VBox vBox = Utils.castTo(root.getTop());
         vBox.getChildren().add(box);
     }
 
@@ -172,7 +170,7 @@ public class TreeViewController implements ControllerConstants {
         MenuItem saveFile = new MenuItemWithIcon("Save File", "fa-save");
         MenuItem saveFileAs = new MenuItemWithIcon("Save File As ...", "fa-save");
 
-        setupMenuItemAction(openFolder, MenuAction.OPEN_FILE);
+        setupMenuItemAction(openFolder, MenuAction.OPEN_FOLDER);
         setupMenuItemAction(saveFile, MenuAction.SAVE_FILE);
         setupMenuItemAction(saveFileAs, MenuAction.SAVE_FILE_AS);
         setupMenuItemAction(newFile, MenuAction.NEW_FILE);
@@ -184,7 +182,6 @@ public class TreeViewController implements ControllerConstants {
 
         saveFolderFilesAs.disableProperty().bind(Bindings.not(tree.visibleProperty()));
         saveAllFilesInFolder.disableProperty().bind(Bindings.not(tree.visibleProperty()));
-        //bind(Bindings.equal(tree.isVisible()?1:0,1));
 
         menu.getItems().add(newFile);
         menu.getItems().add(new SeparatorMenuItem());
@@ -203,7 +200,8 @@ public class TreeViewController implements ControllerConstants {
      */
     private void setupToolsMenuItem(MenuBar menuBar) {
         Menu menu = new Menu("Tools ");
-        MenuItem setupProperties = new MenuItemWithIcon("setup properties", "fa-th-list");
+        MenuItem setupProperties = new MenuItemWithIcon("setup properties",
+                "fa-th-list");
         setupMenuItemAction(setupProperties, MenuAction.LOAD_PROPERTIES);
         menu.getItems().add(setupProperties);
         menu.getItems().add(new SeparatorMenuItem());
@@ -245,10 +243,9 @@ public class TreeViewController implements ControllerConstants {
     private void openFolder() {
         tree.setVisible(true);
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        File file = directoryChooser.showDialog(null);
-        if (file != null) {
-            addFolderToTreeView(file.getAbsolutePath());
-        }
+        Optional<File> file = Optional.ofNullable(directoryChooser
+                .showDialog(null));
+        file.ifPresent(f -> addFolderToTreeView(f.getAbsolutePath()));
     }
 
     /**
@@ -280,10 +277,10 @@ public class TreeViewController implements ControllerConstants {
     private void loadProperties() {
         FileChooser propertiesFileChooser = new FileChooser();
         propertiesFileChooser.setInitialFileName(generator.getPropertiesPath());
-        File propertiesFile = propertiesFileChooser.showOpenDialog(null);
-        if (propertiesFile != null) {
-            generator.loadProperties(propertiesFile.getAbsolutePath());
-        }
+        Optional<File> propertiesFile = Optional.ofNullable(propertiesFileChooser
+                .showOpenDialog(null));
+        propertiesFile.ifPresent(properties ->
+                generator.loadProperties(properties.getAbsolutePath()));
     }
 
     /**
@@ -309,6 +306,7 @@ public class TreeViewController implements ControllerConstants {
         FileChooser fileChooser;
         Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
         Node content = selectedItem.getContent();
+
         if (content != null) {
             CodeArea codeArea = (CodeArea) content;
             String text = codeArea.getText();
@@ -365,7 +363,7 @@ public class TreeViewController implements ControllerConstants {
                     Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save this file before you close ? ");
                     Optional<ButtonType> buttonType = dialogPane.showAndWait();
                     if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
-                        CodeArea codeArea1 = Utils.castTo(CodeArea.class, tab.getContent());
+                        CodeArea codeArea1 = Utils.castTo(tab.getContent());
                         try {
                             String path = tab.getId();
                             if (path == null) {
