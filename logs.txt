@@ -1,0 +1,436 @@
+09:09:48.581 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:09:49.465 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:09:50.326 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:10:47.472 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.javacodegenerator.gui;
+
+import javafx.scene.control.MenuItem;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class MenuItemWithIcon extends MenuItem {
+
+    public MenuItemWithIcon(String text, String icon) {
+        super(text, FontIcon.of(FontAwesome.findByDescription(icon)));
+    }
+}
+
+09:10:47.474 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:10:47.475 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:10:47.476 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:10:47.478 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:10:47.480 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:15:04.981 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.javacodegenerator.gui;
+
+import javafx.scene.control.MenuItem;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class MenuItemWithIcon extends MenuItem {
+
+    public void todo(String text, String icon) {
+    }
+}
+
+09:15:04.981 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:15:04.981 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:15:04.982 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:15:04.982 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:15:04.983 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+09:15:04.985 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:15:36.060 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.javacodegenerator.gui;
+
+import javafx.scene.control.MenuItem;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class MenuItemWithIcon extends MenuItem {
+
+    public void todo(String text, String icon) {
+    }
+}
+
+09:15:36.060 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:15:36.060 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:15:36.061 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:15:36.062 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:15:36.062 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+09:15:36.062 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:15:52.381 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:15:53.477 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:15:54.134 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:16:21.948 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.javacodegenerator.gui;
+
+import javafx.scene.control.MenuItem;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class MenuItemWithIcon extends MenuItem {
+
+    public void todo(String text, String icon) {
+    }
+}
+
+09:16:21.951 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:16:21.954 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:16:21.954 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:16:50.159 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:22:59.024 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+09:22:59.033 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:24:18.088 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code package musta.belmo.javacodegenerator.gui;
+
+import javafx.scene.control.MenuItem;
+import org.kordamp.ikonli.fontawesome.FontAwesome;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+public class MenuItemWithIcon extends MenuItem {
+
+    public void todo(String text, String icon) {
+    }
+}
+
+09:24:18.171 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:24:18.172 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:24:18.172 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:24:18.173 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:24:18.174 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+09:24:18.174 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:24:33.058 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:24:34.570 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:24:35.371 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:25:01.810 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:25:01.812 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:25:09.961 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:26:50.497 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:28:14.381 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:28:14.980 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:28:15.547 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:29:24.891 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:29:24.892 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:29:24.892 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:29:24.895 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:29:24.897 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:30:14.872 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:30:14.873 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:30:14.873 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:30:14.873 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:37:54.262 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:37:55.130 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:37:55.675 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:38:25.036 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:38:25.038 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:38:25.039 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:38:25.042 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:38:25.044 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:38:37.338 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:38:37.338 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:38:37.339 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:38:37.339 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:38:46.777 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:38:46.777 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:38:46.777 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:38:46.778 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:39:01.921 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:39:01.922 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:39:01.922 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:39:01.922 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:39:13.036 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:39:13.038 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:39:13.038 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:39:13.039 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:39:27.607 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:39:27.607 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:39:27.608 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:39:27.608 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:40:06.218 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:40:06.219 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:40:06.219 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:40:06.219 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:40:27.375 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:40:27.375 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:40:27.375 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:40:27.376 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:40:58.462 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:40:58.462 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:40:58.462 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:40:58.462 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:40:58.462 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:18.661 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:18.661 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:18.663 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:18.665 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:41.751 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:41.751 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:41.751 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:41.752 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:42.609 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:42.609 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:42.610 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:42.610 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:42.834 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:42.834 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:42.835 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:42.835 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:43.039 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:43.039 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:43.040 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:43.040 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:43.209 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:43.209 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:43.209 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:43.210 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:43.518 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:43.518 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:43.518 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:43.520 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:43.719 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:43.719 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:43.719 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:43.719 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:45.295 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:45.297 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:45.297 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:45.298 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:41:45.735 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:41:45.736 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:41:45.737 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:41:45.737 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:42:48.522 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+09:42:49.082 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+09:42:49.820 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+09:43:10.104 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:43:10.106 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:43:10.106 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:43:10.109 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:43:10.112 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:45:12.357 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:45:12.358 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:45:12.358 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:45:12.359 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:45:39.381 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:45:39.381 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:45:39.757 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:46:02.439 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:46:16.167 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:46:16.168 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:46:16.301 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+09:49:00.303 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:49:41.618 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+09:49:41.619 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:49:41.619 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:49:41.620 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:51:05.791 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:54:52.669 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:54:52.670 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:54:52.671 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:56:25.803 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:56:52.380 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:56:52.381 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:56:52.382 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+09:58:17.397 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+09:59:32.776 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+09:59:32.776 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+09:59:32.777 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:02:29.472 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:02:58.592 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+10:02:59.445 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+10:03:00.691 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+10:03:37.697 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:03:37.698 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:03:37.700 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:03:40.362 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:03:52.471 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:03:52.472 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:03:52.473 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:03:55.146 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:05:43.178 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+10:05:44.036 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+10:05:44.740 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+10:05:57.709 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:05:57.709 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:05:57.712 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:06:02.246 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:06:12.871 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:06:12.871 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:06:12.872 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:06:15.866 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:09:29.837 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:09:29.840 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:10:01.762 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:10:01.764 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:11:21.731 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:11:21.732 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:11:30.015 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:11:30.016 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:11:41.568 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:11:41.569 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:11:41.570 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:11:41.571 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:17:01.705 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+10:17:01.706 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+10:17:01.707 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:17:01.709 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:30:41.118 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+10:30:44.938 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+10:30:45.810 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+10:31:50.207 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:31:50.212 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:34:30.485 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:34:30.485 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:35:01.442 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:35:01.443 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+10:35:03.559 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+10:35:03.560 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:01:05.390 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:01:06.399 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:01:07.019 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:01:30.792 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTR_COMMENT
+11:01:30.793 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+11:01:30.794 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+11:01:30.795 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+11:01:30.797 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.801 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.802 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.805 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.806 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.807 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.809 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.809 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.810 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.812 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+11:01:30.812 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+11:01:30.813 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values ATTRIBUT_COMMENT_FORMAT
+11:01:30.814 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.815 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.816 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.817 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.818 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.819 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.821 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.822 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.822 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.823 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:01:30.824 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:08:10.118 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:08:10.785 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:08:11.526 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:08:27.611 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:08:27.612 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:08:27.616 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:08:27.620 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:11:18.853 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:11:19.713 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:11:20.375 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:11:32.947 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:11:32.948 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:11:32.951 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:11:32.956 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:12:38.659 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:12:39.039 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:12:39.841 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:13:34.849 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:13:34.849 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:13:34.852 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:13:34.856 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:13:41.180 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:13:41.181 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:13:53.803 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+11:13:53.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+11:13:53.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:13:53.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:13:53.804 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:13:53.805 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_METHOD_TEXT
+11:13:53.805 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:14:56.892 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:17:39.472 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:17:55.875 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:18:59.381 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:22:27.896 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:22:28.367 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:22:29.374 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:22:41.617 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:22:41.617 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:22:41.620 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:22:43.215 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:23:01.343 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:23:02.753 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:25:18.513 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:25:19.157 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:25:19.527 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:26:35.106 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:26:35.106 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:26:35.109 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:26:35.115 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:26:39.850 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:26:39.851 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:30:37.606 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:30:38.279 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:30:38.923 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:31:55.199 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:31:55.199 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+11:31:55.201 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:32:06.539 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:32:17.092 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:32:23.258 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:33:07.263 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:33:08.489 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:35:04.270 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:35:06.031 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:40:52.385 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:40:53.958 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:40:53.959 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:42:13.386 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:42:13.387 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:46:33.975 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:46:34.728 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:46:35.408 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:46:53.590 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:46:53.594 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:47:06.379 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:51:18.604 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:51:40.077 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:51:40.544 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:51:41.699 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:51:50.039 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:51:50.042 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:52:32.935 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:52:32.937 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:53:25.608 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:53:25.991 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:53:26.954 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:55:26.917 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:55:26.920 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:55:26.924 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:55:26.926 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:55:42.571 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:56:12.209 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:56:30.873 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:57:34.332 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:57:42.310 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:57:55.089 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:58:00.602 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:58:00.969 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:58:01.701 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+11:58:14.716 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+11:58:14.718 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:58:21.518 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:58:21.519 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:58:26.613 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:58:26.614 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:58:26.615 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:58:52.424 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+11:59:07.871 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+11:59:07.871 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:59:26.597 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+12:04:11.859 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+12:04:11.860 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+12:04:25.034 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+12:04:25.850 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+12:04:26.303 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+12:04:46.787 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+12:04:46.789 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+12:04:46.793 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
+12:04:46.795 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+12:04:50.338 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
+12:04:50.339 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code

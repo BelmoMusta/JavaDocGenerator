@@ -2,14 +2,11 @@ package musta.belmo.javacodegenerator.service;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.comments.LineComment;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.SimpleName;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.javadoc.Javadoc;
@@ -29,15 +26,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * TODO: Compléter la description de cette classe
  *
  * @author toBeSpecified
+ * @version 1.0
  * @since 1.0.0.SNAPSHOT
  */
 public class JavaDocGenerator implements GeneratorConstantes {
@@ -69,7 +65,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Read from properties
      *
-     * @param key {@link String}
+     * @param key @link String}
      * @return String
      */
     private String readFromProperties(String key) {
@@ -80,7 +76,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Load properties
      *
-     * @param propertiesPath {@link String}
+     * @param propertiesPath @link String}
      */
     public void loadProperties(String propertiesPath) {
         logger.logCurrentMethod(Level.DEBUG, propertiesPath);
@@ -113,8 +109,8 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc for all classes
      *
-     * @param directory        {@link File}
-     * @param dest             {@link File}
+     * @param directory        @link File}
+     * @param dest             @link File}
      * @param toZip            boolean
      * @param deleteOldJavadoc boolean
      * @throws IOException Exception levée si erreur.
@@ -133,8 +129,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
             generateJavaDoc(directory.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
         }
         if (toZip) {
-            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(),
-                    destinationZip.getName().concat(".zip")));
+            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
             logger.info("file add to zip file {}", destinationZip.getAbsolutePath());
         }
         logger.info("generateJavaDocForAllClasses : done");
@@ -143,16 +138,13 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc for all classes
      *
-     * @param directory        {@link String}
-     * @param dest             {@link String}
+     * @param directory        @link String}
+     * @param dest             @link String}
      * @param toZip            boolean
      * @param deleteOldJavadoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDocForAllClasses(String directory,
-                                             String dest,
-                                             boolean toZip,
-                                             boolean deleteOldJavadoc) throws IOException {
+    public void generateJavaDocForAllClasses(String directory, String dest, boolean toZip, boolean deleteOldJavadoc) throws IOException {
         logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File dir = new File(directory);
         File destinationZip = new File(dest);
@@ -163,14 +155,12 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Delete java doc for all classes
      *
-     * @param directory {@link String}
-     * @param dest      {@link String}
+     * @param directory @link String}
+     * @param dest      @link String}
      * @param toZip     boolean
      * @throws Exception Exception levée si erreur.
      */
-    public void deleteJavaDocForAllClasses(String directory,
-                                           String dest,
-                                           boolean toZip) throws Exception {
+    public void deleteJavaDocForAllClasses(String directory, String dest, boolean toZip) throws Exception {
         File dir = new File(directory);
         if (dir.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(dir, new String[]{JAVA_EXTENSION}, toZip);
@@ -182,16 +172,15 @@ public class JavaDocGenerator implements GeneratorConstantes {
         }
         if (toZip) {
             File destinationZip = new File(dest);
-            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(),
-                    destinationZip.getName().concat(ZIP_EXTENSION)));
+            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(ZIP_EXTENSION)));
         }
     }
 
     /**
      * Generate java doc
      *
-     * @param srcPath          {@link String}
-     * @param destinationFile  {@link String}
+     * @param srcPath          @link String}
+     * @param destinationFile  @link String}
      * @param deleteOldJavaDoc boolean
      * @throws IOException Exception levée si erreur.
      */
@@ -207,44 +196,67 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc for type declaration
      *
-     * @param enumDeclaration {@link TypeDeclaration}
+     * @param typeDeclaration @link TypeDeclaration}
      */
     @SuppressWarnings("unchecked")
-    private void generateJavaDocForTypeDeclaration(TypeDeclaration enumDeclaration) {
-        if (!enumDeclaration.hasJavaDocComment()) {
+    private void generateJavaDocForTypeDeclaration(TypeDeclaration typeDeclaration) {
+        if (typeDeclaration.hasJavaDocComment()) {
+            Optional<Javadoc> optionalJavaDoc = typeDeclaration.getJavadoc();
+            optionalJavaDoc.ifPresent(javadoc -> {
+                List<JavadocBlockTag.Type> blockTypes = javadoc.getBlockTags()
+                        .stream().map(JavadocBlockTag::getType)
+                        .collect(Collectors.toList());
+
+                if (!blockTypes.contains(JavadocBlockTag.Type.SINCE)) {
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc,
+                            readFromProperties(SINCE_VERSION));
+                }
+                if (!blockTypes.contains(JavadocBlockTag.Type.AUTHOR)) {
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc,
+                            readFromProperties(AUTHOR));
+                }
+                if (!blockTypes.contains(JavadocBlockTag.Type.VERSION)) {
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc,
+                            readFromProperties(VERSION));
+                }
+                typeDeclaration.setJavadocComment(javadoc);
+            });
+        } else {
             JavadocDescription javadocDescription = new JavadocDescription();
             Javadoc javadoc = new Javadoc(javadocDescription);
             String text = readFromProperties(TODO_CLASS_TEXT);
-            if (enumDeclaration.isEnumDeclaration()) {
+            if (typeDeclaration.isEnumDeclaration()) {
                 text = readFromProperties(TODO_ENUM_TEXT);
             }
             JavadocSnippet element = new JavadocSnippet(text);
             javadocDescription.addElement(element);
-            String author = readFromProperties(AUTHOR);
-            String since = readFromProperties(SINCE_VERSION);
-            if (author != null)
-                javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.AUTHOR, author));
-            if (since != null)
-                javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.SINCE, since));
-            enumDeclaration.setJavadocComment(javadoc);
-        } else {
-            Optional<Javadoc> optionalJavaDoc = enumDeclaration.getJavadoc();
-            optionalJavaDoc.ifPresent(javadoc -> {
-                javadoc.getBlockTags().removeIf(blockTag ->
-                        JavadocBlockTag.Type.SINCE.equals(blockTag.getType()));
-                javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.SINCE,
-                        readFromProperties(SINCE_VERSION)));
-                javadoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.AUTHOR,
-                        readFromProperties(AUTHOR)));
-                enumDeclaration.setJavadocComment(javadoc);
-            });
+            final String author = readFromProperties(AUTHOR);
+            final String version = readFromProperties(VERSION);
+            final String since = readFromProperties(SINCE_VERSION);
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc, author);
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc, since);
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, version);
+            typeDeclaration.setJavadocComment(javadoc);
+        }
+    }
+
+    /**
+     * Add block tag to class javadoc
+     *
+     * @param type    {@link JavadocBlockTag.Type}
+     * @param javadoc {@link Javadoc}
+     * @param value   {@link String}
+     */
+    private void addBlockTagToClassJavaDoc(JavadocBlockTag.Type type, Javadoc javadoc, String value) {
+        if (value != null) {
+            javadoc.addBlockTag(new FormattedJavadocBlockTag(type, value));
         }
     }
 
     /**
      * Generate java doc as string
      *
-     * @param src              {@link String}
+     * @param src              @link String}
      * @param deleteOldJavaDoc boolean
      * @return String
      * @throws IOException Exception levée si erreur.
@@ -256,7 +268,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc as string
      *
-     * @param compilationUnit  {@link CompilationUnit}
+     * @param compilationUnit  @link CompilationUnit}
      * @param deleteOldJavaDoc boolean
      * @return String
      * @throws IOException Exception levée si erreur.
@@ -275,24 +287,25 @@ public class JavaDocGenerator implements GeneratorConstantes {
     }
 
     /**
-     * @param destinationFile {@link String}
-     * @param srcFile         {@link File}
-     * @param compilationUnit {@link CompilationUnit}
+     * @param destinationFile @link String}
+     * @param srcFile         @link File}
+     * @param compilationUnit @link CompilationUnit}
      * @return File
      */
     private File getDestination(String destinationFile, File srcFile, CompilationUnit compilationUnit) {
-        return compilationUnit.getPackageDeclaration().map(packageDeclaration ->
-                new File(destinationFile,
+        return compilationUnit.getPackageDeclaration()
+                .map(packageDeclaration -> new File(destinationFile,
                         Utils.convertPackageDeclarationToPath(packageDeclaration.getName()
-                                .asString()) + File.separator + srcFile.getName())).orElseGet(()
-                -> new File(destinationFile));
+                                .asString()) + File.separator + srcFile.getName()))
+                .orElseGet(() ->
+                        new File(destinationFile));
     }
 
     /**
      * Delete java doc
      *
-     * @param srcPath         {@link String}
-     * @param destinationFile {@link String}
+     * @param srcPath         @link String}
+     * @param destinationFile @link String}
      * @throws IOException Exception levée si erreur.
      */
     public void deleteJavaDoc(String srcPath, String destinationFile) throws IOException {
@@ -307,7 +320,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Delete old java doc
      *
-     * @param compilationUnit {@link CompilationUnit}
+     * @param compilationUnit @link CompilationUnit}
      */
     private void deleteOldJavaDoc(CompilationUnit compilationUnit) {
         compilationUnit.findAll(TypeDeclaration.class).forEach(TypeDeclaration::removeJavaDocComment);
@@ -319,7 +332,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Delete java doc
      *
-     * @param src {@link String}
+     * @param src @link String}
      * @return String
      */
     public String deleteJavaDoc(String src) {
@@ -331,7 +344,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate constructor java doc
      *
-     * @param constructorDeclaration {@link ConstructorDeclaration}
+     * @param constructorDeclaration @link ConstructorDeclaration}
      */
     private void generateConstructorJavaDoc(ConstructorDeclaration constructorDeclaration) {
         JavadocDescription javadocDescription = new JavadocDescription();
@@ -340,11 +353,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
         String leadingComment;
         if (constructParams.isEmpty() && (constructorDeclaration.getBody().getStatements().isEmpty())) {
             leadingComment = readFromProperties(DEFAULT_CONSTR_COMMENT);
-            constructorDeclaration.getBody()
-                    .addOrphanComment(new LineComment(leadingComment));
+            constructorDeclaration.getBody().addOrphanComment(new LineComment(leadingComment));
         } else {
-            leadingComment = String.format(readFromProperties(CONSTR_COMMENT),
-                    constructorDeclaration.getName().asString());
+            leadingComment = String.format(readFromProperties(CONSTR_COMMENT), constructorDeclaration.getName().asString());
         }
         JavadocSnippet element = new JavadocSnippet(leadingComment);
         javadocDescription.addElement(element);
@@ -362,25 +373,40 @@ public class JavaDocGenerator implements GeneratorConstantes {
     private void addParamsToJavaDoc(NodeList<Parameter> constructParams, Javadoc javadoc) {
         for (Parameter parameter : constructParams) {
             FormattedJavadocBlockTag javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                    String.format("%s{@link %s}", parameter.getName().asString(),
-                            parameter.getType().asString()));
+                    String.format("%s{@link %s}", parameter.getName().asString(), parameter.getType().asString()));
             javadoc.addBlockTag(javadocBlockTag);
         }
     }
 
+    /**
+     * Add exceptions to java doc
+     *
+     * @param thrownExceptions {@link NodeList}
+     * @param javadoc          {@link Javadoc}
+     */
     private void addExceptionsToJavaDoc(NodeList<ReferenceType> thrownExceptions, Javadoc javadoc) {
+
         for (ReferenceType thrownException : thrownExceptions) {
-            FormattedJavadocBlockTag javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.THROWS,
-                    String.format(readFromProperties(EXCEPTION_COMMENT),
-                            thrownException.asReferenceType()));
-            javadoc.addBlockTag(javadocBlockTag);
+            boolean throwsExist = javadoc.getBlockTags().stream()
+                    .anyMatch(block -> block.getType().equals(JavadocBlockTag.Type.THROWS) &&
+                            block.getContent().getElements()
+                                    .get(0)
+                                    .toText()
+                                    .startsWith(thrownException.toString()));
+            if (!throwsExist) {
+                FormattedJavadocBlockTag javadocBlockTag =
+                        new FormattedJavadocBlockTag(JavadocBlockTag.Type.THROWS,
+                                String.format(readFromProperties(EXCEPTION_COMMENT),
+                                        thrownException.asReferenceType()));
+                javadoc.addBlockTag(javadocBlockTag);
+            }
         }
     }
 
     /**
      * Generate field java doc
      *
-     * @param fieldDeclaration {@link FieldDeclaration}
+     * @param fieldDeclaration @link FieldDeclaration}
      */
     private void generateFieldJavaDoc(FieldDeclaration fieldDeclaration) {
         if (fieldDeclaration.getVariables().isNonEmpty()) {
@@ -391,7 +417,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
             VariableDeclarator variableDeclarator = fieldDeclaration.getVariables().get(0);
             SimpleName fieldName = variableDeclarator.getName();
             VariableDeclarator variable = fieldDeclaration.getVariable(0);
-         //   Utils.concatenationToAppend(variable.getInitializer().get());
+            // Utils.concatenationToAppend(variable.getInitializer().get());
             Type type = variable.getType();
             String valueText;
             Object assignedValue;
@@ -425,23 +451,20 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate method java doc
      *
-     * @param methodDeclaration {@link MethodDeclaration}
+     * @param methodDeclaration @link MethodDeclaration}
      */
     private void generateMethodJavaDoc(MethodDeclaration methodDeclaration) {
         JavadocDescription javadocDescription = new JavadocDescription();
         Javadoc javadoc = new Javadoc(javadocDescription);
         JavadocSnippet element;
         String methodName = methodDeclaration.getName().asString();
-
         boolean isSetter = Utils.isSetter(methodDeclaration);
         boolean isGetter = Utils.isGetter(methodDeclaration);
         boolean isIs = Utils.isIs(methodDeclaration);
-
         String paramFormat = "%s {@link %s}";
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
         String methodReturnType = methodDeclaration.getType().asString();
         NodeList<Parameter> parameters = methodDeclaration.getParameters();
-
         if (!methodDeclaration.hasJavaDocComment()) {
             if (methodDeclaration.isAnnotationPresent(Override.class)) {
                 javadocDescription.addElement(inheritDocSnippet);
@@ -450,13 +473,11 @@ public class JavaDocGenerator implements GeneratorConstantes {
                 if (isSetter || isGetter || isIs) {
                     element = new JavadocSnippet("");
                 } else if (Utils.isCamelCase(methodName)) {
-                    element = new JavadocSnippet(StringUtils.capitalize(StringUtils.lowerCase(
-                            Utils.unCamelCase(methodName, " "))));
+                    element = new JavadocSnippet(StringUtils.capitalize(StringUtils.lowerCase(Utils.unCamelCase(methodName, " "))));
                 } else {
                     element = new JavadocSnippet(readFromProperties(TODO_METHOD_TEXT));
                 }
                 javadocDescription.addElement(element);
-
                 for (Parameter parameter : parameters) {
                     JavadocBlockTag blockTag;
                     if (parameter.getType().isPrimitiveType()) {
@@ -465,13 +486,11 @@ public class JavaDocGenerator implements GeneratorConstantes {
                     String paramName = parameter.getName().asString();
                     if (isSetter) {
                         blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                                String.format(readFromProperties(SETTER_COMMENT),
-                                        paramName,
+                                String.format(readFromProperties(SETTER_COMMENT), paramName,
                                         Utils.toLowerCaseFirstLetter(methodName.substring(3))));
                     } else {
                         blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                                String.format(paramFormat, paramName,
-                                        parameter.getType().asString()));
+                                String.format(paramFormat, paramName, parameter.getType().asString()));
                     }
                     javadoc.addBlockTag(blockTag);
                 }
@@ -503,35 +522,55 @@ public class JavaDocGenerator implements GeneratorConstantes {
             if (methodDeclaration.getJavadoc().isPresent()) {
                 oldJavaDoc = methodDeclaration.getJavadoc().get();
             }
-            oldJavaDoc.getBlockTags().clear();
+            List<String> collect = oldJavaDoc.getBlockTags().stream().filter(block -> block.getType()
+                    .equals(JavadocBlockTag.Type.PARAM)).
+                    filter(block -> block.getName().isPresent())
+                    .map(block -> block.getName().get())
+                    .collect(Collectors.toList());
+
             for (Parameter parameter : parameters) {
-                if (parameter.getType().isPrimitiveType()) {
-                    paramFormat = "%s %s ";
-                }
-                if (isSetter) {
-                    oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                            String.format(readFromProperties(SETTER_COMMENT),
-                                    parameter.getName().asString(),
-                                    Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
-                } else {
-                    JavadocBlockTag blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM, String.format(paramFormat, parameter.getName().asString(), parameter.getType().asString()));
-                    oldJavaDoc.addBlockTag(blockTag);
+                if (!collect.contains(parameter.getNameAsString())) {
+                    if (parameter.getType().isPrimitiveType()) {
+                        paramFormat = "%s %s ";
+                    }
+                    if (isSetter) {
+                        oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
+                                String.format(readFromProperties(SETTER_COMMENT), parameter.getName().asString(),
+                                        Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
+                    } else {
+                        JavadocBlockTag blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
+                                String.format(paramFormat, parameter.getName().asString(),
+                                        parameter.getType().asString()));
+                        oldJavaDoc.addBlockTag(blockTag);
+                    }
                 }
             }
-            if (!methodDeclaration.getType().isVoidType()) {
-                if (isGetter) {
-                    oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
-                            String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
-                                    Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
-                } else if (isIs) {
-                    oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
-                            String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
-                                    Utils.toLowerCaseFirstLetter(methodName.substring(2)))));
-                } else
-                    oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
-                            methodReturnType));
-            }
+            addExceptionsToJavaDoc(methodDeclaration.getThrownExceptions(), oldJavaDoc);
+            addReturnTagToJavadoc(methodDeclaration,
+                    methodName,
+                    isGetter, isIs,
+                    methodReturnType,
+                    oldJavaDoc);
+
             methodDeclaration.setJavadocComment(oldJavaDoc);
+        }
+    }
+
+    private void addReturnTagToJavadoc(MethodDeclaration methodDeclaration, String methodName, boolean isGetter, boolean isIs, String methodReturnType, Javadoc oldJavaDoc) {
+        boolean returnExists = oldJavaDoc.getBlockTags().stream()
+                .anyMatch(block -> block.getType().equals(JavadocBlockTag.Type.RETURN));
+        if (!methodDeclaration.getType().isVoidType() && !returnExists) {
+            if (isGetter) {
+                oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
+                        String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
+                                Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
+            } else if (isIs) {
+                oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
+                        String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
+                                Utils.toLowerCaseFirstLetter(methodName.substring(2)))));
+            } else
+                oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
+                        methodReturnType));
         }
     }
 

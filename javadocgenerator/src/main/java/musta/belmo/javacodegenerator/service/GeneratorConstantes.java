@@ -69,6 +69,10 @@ public interface GeneratorConstantes {
      * La constante {@link #SINCE_VERSION} de type {@link String} ayant la valeur {@value #SINCE_VERSION}.
      */
     String SINCE_VERSION = "SINCE_VERSION";
+
+    String VERSION = "VERSION";
+
+
     /**
      * La constante {@link #AUTHOR} de type {@link String} ayant la valeur {@value #AUTHOR}.
      */

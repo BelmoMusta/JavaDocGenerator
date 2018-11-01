@@ -444,7 +444,7 @@ public class TreeViewController implements ControllerConstants {
             CodeArea content = (CodeArea) selectedItem.getContent();
             String text = content.getText();
             try {
-                content.replaceText(generator.generateJavaDocAsString(text, true));
+                content.replaceText(generator.generateJavaDocAsString(text, false));
             } catch (IOException e) {
                 e.printStackTrace();
             }
