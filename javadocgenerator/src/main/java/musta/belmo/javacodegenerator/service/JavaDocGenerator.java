@@ -169,8 +169,8 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @throws Exception Exception levée si erreur.
      */
     public void deleteJavaDocForAllClasses(String directory,
-                                            String dest,
-                                            boolean toZip) throws Exception {
+                                           String dest,
+                                           boolean toZip) throws Exception {
         File dir = new File(directory);
         if (dir.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(dir, new String[]{JAVA_EXTENSION}, toZip);
@@ -356,7 +356,6 @@ public class JavaDocGenerator implements GeneratorConstantes {
     }
 
     /**
-     *
      * @param constructParams
      * @param javadoc
      */
@@ -392,6 +391,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
             VariableDeclarator variableDeclarator = fieldDeclaration.getVariables().get(0);
             SimpleName fieldName = variableDeclarator.getName();
             VariableDeclarator variable = fieldDeclaration.getVariable(0);
+         //   Utils.concatenationToAppend(variable.getInitializer().get());
             Type type = variable.getType();
             String valueText;
             Object assignedValue;
@@ -432,14 +432,16 @@ public class JavaDocGenerator implements GeneratorConstantes {
         Javadoc javadoc = new Javadoc(javadocDescription);
         JavadocSnippet element;
         String methodName = methodDeclaration.getName().asString();
-        boolean isSetter = methodName.startsWith("set");
-        boolean isGetter = methodName.startsWith("get");
-        boolean isIs = methodName.startsWith("is");
 
-        NodeList<Parameter> parameters = methodDeclaration.getParameters();
+        boolean isSetter = Utils.isSetter(methodDeclaration);
+        boolean isGetter = Utils.isGetter(methodDeclaration);
+        boolean isIs = Utils.isIs(methodDeclaration);
+
         String paramFormat = "%s {@link %s}";
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
         String methodReturnType = methodDeclaration.getType().asString();
+        NodeList<Parameter> parameters = methodDeclaration.getParameters();
+
         if (!methodDeclaration.hasJavaDocComment()) {
             if (methodDeclaration.isAnnotationPresent(Override.class)) {
                 javadocDescription.addElement(inheritDocSnippet);
@@ -454,6 +456,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
                     element = new JavadocSnippet(readFromProperties(TODO_METHOD_TEXT));
                 }
                 javadocDescription.addElement(element);
+
                 for (Parameter parameter : parameters) {
                     JavadocBlockTag blockTag;
                     if (parameter.getType().isPrimitiveType()) {
@@ -493,7 +496,6 @@ public class JavaDocGenerator implements GeneratorConstantes {
             }
         } else if (methodDeclaration.isAnnotationPresent(Override.class)) {
             methodDeclaration.removeJavaDocComment();
-            // if the method has an old javadoc, replace it by this one :
             javadocDescription.addElement(inheritDocSnippet);
             methodDeclaration.setJavadocComment(javadoc);
         } else {

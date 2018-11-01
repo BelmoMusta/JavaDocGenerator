@@ -1,12 +1,18 @@
 package musta.belmo.javacodecore;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.type.Type;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.beans.Statement;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * TODO : Compléter la description de cette classe
@@ -135,6 +141,49 @@ public class Utils {
 
     public static <T> T castTo(Object a) {
         return (T) a;
+    }
+
+    private static MethodCallExpr createCallStmt(LinkedList<Expression> literals) {
+        MethodCallExpr call = new MethodCallExpr(new NameExpr("StringBuilder"), "append");
+        call.addArgument(literals.get(0));
+
+        for (int i = 1; i < literals.size(); i++) {
+            call = new MethodCallExpr(call, "append");
+            call.addArgument(literals.get(i));
+        }
+        return call;
+    }
+
+    public static void concatenationToAppend(Expression expression) {
+        Expression temp = expression;
+        LinkedList<Expression> literals = new LinkedList<>();
+
+        while (temp.isBinaryExpr()) {
+            BinaryExpr binaryExpr = temp.asBinaryExpr();
+            temp = binaryExpr.getLeft();
+            if (binaryExpr.getOperator() == BinaryExpr.Operator.PLUS) {
+                literals.addFirst(binaryExpr.getRight());
+            }
+            if (temp.isLiteralExpr()) {
+                literals.addFirst(temp);
+            }
+        }
+
+        ObjectCreationExpr creationExpr = new ObjectCreationExpr();
+        creationExpr.setType("StringBuilder");
+        VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
+        VariableDeclarator variableDeclarator = new VariableDeclarator();
+        variableDeclarationExpr.addVariable(variableDeclarator);
+        variableDeclarator.setName("lStringBuilder");
+        variableDeclarator.setType("StringBuilder");
+
+
+        AssignExpr objectCreationStmt = new AssignExpr(variableDeclarationExpr,
+                creationExpr, AssignExpr.Operator.ASSIGN);
+        System.out.println(objectCreationStmt);
+        MethodCallExpr callStmt = createCallStmt(literals);
+        System.out.println(callStmt);
+
     }
 
     public static void main(String[] args) {
