@@ -138,6 +138,28 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc for all classes
      *
+     * @param directory @link File}
+     * @throws IOException Exception levée si erreur.
+     */
+    public void generateJavaDocForAllClasses(File directory) throws IOException {
+        logger.logCurrentMethod(Level.DEBUG, directory, directory);
+        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
+        boolean isDirectory = directory.isDirectory();
+        if (isDirectory) {
+            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
+            for (File file : files) {
+                generateJavaDocInPlace(file.getAbsolutePath(), false);
+            }
+        } else {
+            generateJavaDocInPlace(directory.getAbsolutePath(), false);
+        }
+
+        logger.info("generateJavaDocForAllClasses : done");
+    }
+
+    /**
+     * Generate java doc for all classes
+     *
      * @param directory        @link String}
      * @param dest             @link String}
      * @param toZip            boolean
@@ -190,6 +212,14 @@ public class JavaDocGenerator implements GeneratorConstantes {
         String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
         File destFile = getDestination(destinationFile, srcFile, compilationUnit);
         FileUtils.write(destFile, javaDocAsString, UTF_8);
+        logger.info("generated javadoc for  file {}", srcPath);
+    }
+
+    public void generateJavaDocInPlace(String srcPath, boolean deleteOldJavaDoc) throws IOException {
+        File srcFile = new File(srcPath);
+        CompilationUnit compilationUnit = JavaParser.parse(srcFile);
+        String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
+        FileUtils.write(srcFile, javaDocAsString, UTF_8);
         logger.info("generated javadoc for  file {}", srcPath);
     }
 
@@ -465,6 +495,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
         String methodReturnType = methodDeclaration.getType().asString();
         NodeList<Parameter> parameters = methodDeclaration.getParameters();
+
         if (!methodDeclaration.hasJavaDocComment()) {
             if (methodDeclaration.isAnnotationPresent(Override.class)) {
                 javadocDescription.addElement(inheritDocSnippet);

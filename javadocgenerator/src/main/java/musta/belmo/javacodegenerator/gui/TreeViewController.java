@@ -6,11 +6,14 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -73,6 +76,8 @@ public class TreeViewController implements ControllerConstants {
      * L'attribut {@link #untitledCounter}.
      */
     private int untitledCounter = 0;
+    private File folder;
+    private String treePath;
 
     /**
      * TODO: Compléter la description de cette méthode
@@ -82,6 +87,7 @@ public class TreeViewController implements ControllerConstants {
         setupTop();
         generator = new JavaDocGenerator();
         tree.setVisible(false);
+
         setupMenuBar();
         setUpIconsBar();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
@@ -111,6 +117,44 @@ public class TreeViewController implements ControllerConstants {
                 });
             }
         });
+
+        setupContextualMenu();
+    }
+
+    private void setupContextualMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem addJavadocMenuItem = new MenuItem("add javadoc for all java classes");
+        MenuItem deleteJavadocMenuItem = new MenuItem("delete javadoc for all classes");
+
+
+        addJavadocMenuItem.setOnAction(event -> {
+            File folder = tree.getSelectionModel().getSelectedItem().getValue();
+            try {
+                generator.generateJavaDocForAllClasses(folder);
+                // tree.getSelectionModel().getSelectedItem().setValue(folder);
+                addFolderToTreeView(treePath);
+                tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        contextMenu.getItems().add(addJavadocMenuItem);
+        contextMenu.getItems().add(deleteJavadocMenuItem);
+
+        tree.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+
+                TreeItem<File> selectedItem = tree.getSelectionModel().getSelectedItem();
+                if (!selectedItem.isLeaf()) {
+                    contextMenu.show(tree, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+                } else if (contextMenu.isShowing()) {
+                    contextMenu.hide();
+                }
+            }
+        });
     }
 
     private void setUpIconsBar() {
@@ -136,6 +180,7 @@ public class TreeViewController implements ControllerConstants {
      * @param path {@link String}
      */
     private void addFolderToTreeView(String path) {
+        treePath = path;
         tree.setRoot(createTree(new File(path)));
     }
 
@@ -175,6 +220,7 @@ public class TreeViewController implements ControllerConstants {
         setupMenuItemAction(saveFileAs, MenuAction.SAVE_FILE_AS);
         setupMenuItemAction(newFile, MenuAction.NEW_FILE);
         setupMenuItemAction(openFile, MenuAction.OPEN_FILE);
+        setupMenuItemAction(saveAllFilesInFolder, MenuAction.SAVE_ALL_FILES);
 
 
         saveFile.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
@@ -233,8 +279,25 @@ public class TreeViewController implements ControllerConstants {
                 case SAVE_FILE:
                     saveFile();
                     break;
+                case SAVE_ALL_FILES:
+                    saveAllFiles();
+                    break;
             }
         });
+    }
+
+    private void saveAllFiles() {
+        for (Tab tab : tabPane.getTabs()) {
+            String path = tab.getId();
+            CodeArea codeArea = (CodeArea) tab.getContent();
+            try {
+                Utils.saveToFile(codeArea.getText().getBytes(), path);
+                markedFiles.put(path, false);
+                tab.setStyle("-fx-background-color: green;");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

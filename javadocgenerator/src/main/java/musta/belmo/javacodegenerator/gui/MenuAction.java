@@ -6,6 +6,7 @@ public enum MenuAction {
     OPEN_FILE,
     SAVE_FILE_AS,
     LOAD_PROPERTIES,
-    SAVE_FILE
+    SAVE_FILE,
+    SAVE_ALL_FILES,
 
 }
