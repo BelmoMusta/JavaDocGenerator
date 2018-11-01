@@ -221,6 +221,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
                 }
                 typeDeclaration.setJavadocComment(javadoc);
             });
+
         } else {
             JavadocDescription javadocDescription = new JavadocDescription();
             Javadoc javadoc = new Javadoc(javadocDescription);
@@ -230,12 +231,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
             }
             JavadocSnippet element = new JavadocSnippet(text);
             javadocDescription.addElement(element);
-            final String author = readFromProperties(AUTHOR);
-            final String version = readFromProperties(VERSION);
-            final String since = readFromProperties(SINCE_VERSION);
-            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc, author);
-            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc, since);
-            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, version);
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc, readFromProperties(AUTHOR));
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc, readFromProperties(SINCE_VERSION));
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, readFromProperties(VERSION));
             typeDeclaration.setJavadocComment(javadoc);
         }
     }
@@ -355,7 +353,8 @@ public class JavaDocGenerator implements GeneratorConstantes {
             leadingComment = readFromProperties(DEFAULT_CONSTR_COMMENT);
             constructorDeclaration.getBody().addOrphanComment(new LineComment(leadingComment));
         } else {
-            leadingComment = String.format(readFromProperties(CONSTR_COMMENT), constructorDeclaration.getName().asString());
+            leadingComment = String.format(readFromProperties(CONSTR_COMMENT),
+                    constructorDeclaration.getName().asString());
         }
         JavadocSnippet element = new JavadocSnippet(leadingComment);
         javadocDescription.addElement(element);
@@ -373,7 +372,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
     private void addParamsToJavaDoc(NodeList<Parameter> constructParams, Javadoc javadoc) {
         for (Parameter parameter : constructParams) {
             FormattedJavadocBlockTag javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                    String.format("%s{@link %s}", parameter.getName().asString(), parameter.getType().asString()));
+                    String.format("%s{@link %s}",
+                            parameter.getName().asString(),
+                            parameter.getType().asString()));
             javadoc.addBlockTag(javadocBlockTag);
         }
     }
@@ -417,7 +418,6 @@ public class JavaDocGenerator implements GeneratorConstantes {
             VariableDeclarator variableDeclarator = fieldDeclaration.getVariables().get(0);
             SimpleName fieldName = variableDeclarator.getName();
             VariableDeclarator variable = fieldDeclaration.getVariable(0);
-            // Utils.concatenationToAppend(variable.getInitializer().get());
             Type type = variable.getType();
             String valueText;
             Object assignedValue;
@@ -522,14 +522,14 @@ public class JavaDocGenerator implements GeneratorConstantes {
             if (methodDeclaration.getJavadoc().isPresent()) {
                 oldJavaDoc = methodDeclaration.getJavadoc().get();
             }
-            List<String> collect = oldJavaDoc.getBlockTags().stream().filter(block -> block.getType()
+            List<String> paramTypes = oldJavaDoc.getBlockTags().stream().filter(block -> block.getType()
                     .equals(JavadocBlockTag.Type.PARAM)).
                     filter(block -> block.getName().isPresent())
                     .map(block -> block.getName().get())
                     .collect(Collectors.toList());
 
             for (Parameter parameter : parameters) {
-                if (!collect.contains(parameter.getNameAsString())) {
+                if (!paramTypes.contains(parameter.getNameAsString())) {
                     if (parameter.getType().isPrimitiveType()) {
                         paramFormat = "%s %s ";
                     }
