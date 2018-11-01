@@ -9212,3 +9212,159 @@ public class ActionButtonGroup extends HBox {
 22:35:54.746 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
 22:35:54.747 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
 22:35:54.747 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+00:28:30.310 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:28:32.336 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:28:33.995 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:29:39.681 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    private String a = "A" + 1 + "B";
+}
+
+00:29:39.684 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+00:29:39.685 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+00:29:39.685 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+00:29:39.689 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+00:29:39.690 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+00:30:33.272 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    private String a = "A" + 1 + "B";
+}
+
+00:30:33.272 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+00:30:33.273 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+00:30:33.273 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+00:35:08.110 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:35:08.872 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:35:09.525 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:35:44.039 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 6 + "B";
+}
+
+00:35:44.042 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+00:35:44.043 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+00:35:44.043 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+00:45:30.195 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:45:30.798 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:45:32.008 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:46:09.690 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "ff" + "bb" + 1;
+}
+
+00:46:09.692 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+00:46:09.693 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+00:46:09.694 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:01:59.002 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:01:59.004 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:02:05.540 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:02:06.833 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:02:07.635 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:02:25.052 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "ff" + "bb" + 1;
+}
+
+01:02:25.055 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:02:25.056 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:02:25.056 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:03:57.879 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:03:57.880 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:04:42.718 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    static String getE() {
+        return "E";
+    }
+
+    String a = "ff" + "bb" + getE();
+}
+
+01:04:42.719 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:04:42.719 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:04:42.720 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:15:51.963 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:15:54.151 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:15:55.144 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:16:46.564 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B";
+}
+
+01:16:46.567 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:16:46.568 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:16:46.568 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:23:07.986 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:23:07.988 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:23:19.834 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:23:20.367 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:23:21.330 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:23:47.017 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B";
+}
+
+01:23:47.026 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:23:47.027 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:23:47.027 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:25:09.734 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:25:09.736 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:25:51.340 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:25:51.852 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:25:52.744 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:26:02.467 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B";
+}
+
+01:26:02.470 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:26:02.471 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:26:02.471 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:26:41.337 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:26:41.338 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:27:01.970 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B" + C.getE();
+}
+
+01:27:01.971 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:27:01.971 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:27:01.971 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:33:28.276 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:33:28.277 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:33:37.880 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:33:38.601 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:33:39.364 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:33:52.742 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B" + C.getE();
+}
+
+01:33:52.745 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:33:52.746 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:33:52.746 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:34:29.472 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:34:29.473 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:35:18.517 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:35:19.027 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:35:20.191 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:35:35.891 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B" + C.getE();
+}
+
+01:35:35.893 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:35:35.894 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:35:35.894 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+01:38:26.491 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+01:38:26.492 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+01:38:40.895 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:38:41.407 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:38:42.449 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:38:52.055 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - deleted javadoc for  source code class A {
+
+    String a = "A" + 3 + "B" + C.getE();
+}
+
+01:38:52.057 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+01:38:52.058 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+01:38:52.059 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION

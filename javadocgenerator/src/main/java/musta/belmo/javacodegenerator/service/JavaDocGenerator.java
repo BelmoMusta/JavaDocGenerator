@@ -391,6 +391,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
             VariableDeclarator variableDeclarator = fieldDeclaration.getVariables().get(0);
             SimpleName fieldName = variableDeclarator.getName();
             VariableDeclarator variable = fieldDeclaration.getVariable(0);
+         //   Utils.concatenationToAppend(variable.getInitializer().get());
             Type type = variable.getType();
             String valueText;
             Object assignedValue;
