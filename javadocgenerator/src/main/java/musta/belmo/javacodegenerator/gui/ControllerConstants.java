@@ -1,5 +1,7 @@
 package musta.belmo.javacodegenerator.gui;
 
+import javafx.scene.input.KeyCharacterCombination;
+import javafx.scene.input.KeyCombination;
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
 
@@ -60,6 +62,42 @@ public interface ControllerConstants {
      * L'attribut {@link #PATTERN}.
      */
     Pattern PATTERN = Pattern.compile("(?<KEYWORD>" + KEYWORD_PATTERN + ")" + "|(?<PAREN>" + PAREN_PATTERN + ")" + "|(?<BRACE>" + BRACE_PATTERN + ")" + "|(?<BRACKET>" + BRACKET_PATTERN + ")" + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")" + "|(?<STRING>" + STRING_PATTERN + ")" + "|(?<COMMENT>" + COMMENT_PATTERN + ")");
+
+
+    KeyCombination CTRL_N = new KeyCharacterCombination("N",
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP);
+
+    KeyCombination CTRL_O = new KeyCharacterCombination("O",
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP);
+
+    KeyCombination CTRL_S = new KeyCharacterCombination("S",
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP);
+
+    KeyCombination CTRL_SHIFT_S = new KeyCharacterCombination("S",
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP);
+
+    KeyCombination CTRL_SHIFT_O = new KeyCharacterCombination("O",
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.DOWN,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP,
+            KeyCombination.ModifierValue.UP);
 
     /**
      * Compute highlighting

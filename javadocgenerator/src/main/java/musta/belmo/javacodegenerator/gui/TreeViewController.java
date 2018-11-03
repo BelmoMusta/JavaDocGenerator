@@ -1,25 +1,25 @@
 package musta.belmo.javacodegenerator.gui;
 
+import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import musta.belmo.javacodecore.Utils;
+import musta.belmo.javacodegenerator.service.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -33,9 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static javafx.scene.input.KeyCode.ENTER;
 
@@ -90,7 +88,9 @@ public class TreeViewController implements ControllerConstants {
 
         setupMenuBar();
         setUpIconsBar();
+        setupKeys();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+
         tree.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2) {
                 loadFile(tree.getSelectionModel().getSelectedItem().getValue(), null);
@@ -121,6 +121,11 @@ public class TreeViewController implements ControllerConstants {
         setupContextualMenu();
     }
 
+    private void setupKeys() {
+        tabPane.setOnKeyPressed(this::handleKeyEvents);
+        tree.setOnKeyPressed(this::handleKeyEvents);
+    }
+
     private void setupContextualMenu() {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem addJavadocMenuItem = new MenuItem("add javadoc for all java classes");
@@ -130,7 +135,11 @@ public class TreeViewController implements ControllerConstants {
         addJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
-                generator.generateJavaDocForAllClasses(folder);
+                try {
+                    generator.generateJavaDocForAllClasses(folder);
+                } catch (CompilationException e) {
+                    showExceptionAlert(e);
+                }
                 // tree.getSelectionModel().getSelectedItem().setValue(folder);
                 addFolderToTreeView(treePath);
                 tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
@@ -138,6 +147,23 @@ public class TreeViewController implements ControllerConstants {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+
+
+        deleteJavadocMenuItem.setOnAction(event -> {
+            File folder = tree.getSelectionModel().getSelectedItem().getValue();
+            try {
+                generator.deleteJavaDocForAllClasses(folder);
+                addFolderToTreeView(treePath);
+                tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CompilationException e) {
+                showExceptionAlert(e);
+
             }
         });
         contextMenu.getItems().add(addJavadocMenuItem);
@@ -159,17 +185,21 @@ public class TreeViewController implements ControllerConstants {
 
     private void setUpIconsBar() {
         HBox box = new HBox();
-        Button generateJavaDoc = new Button();
-        Button deleteJavaDoc = new Button();
-        deleteJavaDoc.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
-        generateJavaDoc.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
-        generateJavaDoc.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-comments")));
-        generateJavaDoc.setOnAction(this::addJavaDoc);
-        generateJavaDoc.setTooltip(new Tooltip("Generate javadoc"));
-        deleteJavaDoc.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-remove")));
-        deleteJavaDoc.setTooltip(new Tooltip("Delete javadoc"));
-        deleteJavaDoc.setOnAction(this::deleteJavaDoc);
-        box.getChildren().addAll(generateJavaDoc, deleteJavaDoc);
+        Button generateJavaDocBtn = new Button();
+        Button deleteJavaDocBtn = new Button();
+        Button saveFileBtn = new Button();
+        saveFileBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        saveFileBtn.setOnAction(event -> saveFile());
+        deleteJavaDocBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        generateJavaDocBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        generateJavaDocBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-comments")));
+        saveFileBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-save")));
+        generateJavaDocBtn.setOnAction(this::addJavaDoc);
+        generateJavaDocBtn.setTooltip(new Tooltip("Generate javadoc"));
+        deleteJavaDocBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-remove")));
+        deleteJavaDocBtn.setTooltip(new Tooltip("Delete javadoc"));
+        deleteJavaDocBtn.setOnAction(this::deleteJavaDoc);
+        box.getChildren().addAll(generateJavaDocBtn, deleteJavaDocBtn, saveFileBtn);
         VBox vBox = Utils.castTo(root.getTop());
         vBox.getChildren().add(box);
     }
@@ -196,8 +226,27 @@ public class TreeViewController implements ControllerConstants {
         VBox vBox = (VBox) root.getTop();
         MenuBar menuBar = new MenuBar();
         setupFileMenuItem(menuBar);
+        setupJavadocMenuItem(menuBar);
         setupToolsMenuItem(menuBar);
         vBox.getChildren().add(menuBar);
+    }
+
+    private void setupJavadocMenuItem(MenuBar menuBar) {
+        Menu menu = new Menu("Javadoc ");
+        MenuItem addJavadoc = new MenuItemWithIcon("Add Javadoc",
+                "fa-comments");
+
+        MenuItem deleteJavadoc = new MenuItemWithIcon("Remove Javadoc",
+                "fa-remove");
+        setupMenuItemAction(addJavadoc, MenuAction.ADD_JAVADOC);
+        setupMenuItemAction(deleteJavadoc, MenuAction.DELETE_JAVADOC);
+
+        addJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        deleteJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        menu.getItems().add(addJavadoc);
+        menu.getItems().add(deleteJavadoc);
+        menu.getItems().add(new SeparatorMenuItem());
+        menuBar.getMenus().add(menu);
     }
 
     /**
@@ -228,7 +277,13 @@ public class TreeViewController implements ControllerConstants {
 
         saveFolderFilesAs.disableProperty().bind(Bindings.not(tree.visibleProperty()));
         saveAllFilesInFolder.disableProperty().bind(Bindings.not(tree.visibleProperty()));
+//
 
+        newFile.setAccelerator(CTRL_N);
+        openFile.setAccelerator(CTRL_O);
+        openFolder.setAccelerator(CTRL_SHIFT_O);
+        saveFile.setAccelerator(CTRL_S);
+        saveAllFilesInFolder.setAccelerator(CTRL_SHIFT_S);
         menu.getItems().add(newFile);
         menu.getItems().add(new SeparatorMenuItem());
         menu.getItems().add(openFolder);
@@ -282,6 +337,12 @@ public class TreeViewController implements ControllerConstants {
                 case SAVE_ALL_FILES:
                     saveAllFiles();
                     break;
+                case ADD_JAVADOC:
+                    addJavaDoc(null);
+                    break;
+                case DELETE_JAVADOC:
+                    deleteJavaDoc(null);
+                    break;
             }
         });
     }
@@ -304,11 +365,15 @@ public class TreeViewController implements ControllerConstants {
      * Open folder
      */
     private void openFolder() {
-        tree.setVisible(true);
+
         DirectoryChooser directoryChooser = new DirectoryChooser();
         Optional<File> file = Optional.ofNullable(directoryChooser
                 .showDialog(null));
-        file.ifPresent(f -> addFolderToTreeView(f.getAbsolutePath()));
+
+        file.ifPresent(f -> {
+            tree.setVisible(true);
+            addFolderToTreeView(f.getAbsolutePath());
+        });
     }
 
     /**
@@ -354,9 +419,14 @@ public class TreeViewController implements ControllerConstants {
         String path = selectedItem.getId();
         CodeArea codeArea = (CodeArea) selectedItem.getContent();
         try {
-            Utils.saveToFile(codeArea.getText().getBytes(), path);
-            markedFiles.put(path, false);
-            selectedItem.setStyle("-fx-background-color: green;");
+
+            if (path != null) {
+                Utils.saveToFile(codeArea.getText().getBytes(), path);
+                markedFiles.put(path, false);
+                selectedItem.setStyle("-fx-background-color: green;");
+            } else {
+                saveFileAs();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -375,15 +445,19 @@ public class TreeViewController implements ControllerConstants {
             String text = codeArea.getText();
             fileChooser = new FileChooser();
             fileChooser.setInitialFileName(selectedItem.getText());
+
             File destFile = fileChooser.showSaveDialog(null);
             try {
-                Utils.saveToFile(text.getBytes(), destFile);
-                selectedItem.setId(destFile.getAbsolutePath());
-                selectedItem.setStyle("-fx-background-color: green;");
+                if (destFile != null) {
+                    Utils.saveToFile(text.getBytes(), destFile);
+                    selectedItem.setId(destFile.getAbsolutePath());
+                    selectedItem.setStyle("-fx-background-color: green;");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
     }
 
     /**
@@ -399,8 +473,18 @@ public class TreeViewController implements ControllerConstants {
             // Subscription cleanupWhenNoLongerNeedIt =
             codeArea.multiPlainChanges().successionEnds(Duration.ofMillis(500)).subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
             Tab tab = new Tab();
+
+            Tooltip tooltip = new Tooltip();
+            if (file == null) {
+                tooltip.setText(newFileName);
+            } else {
+                tooltip.setText(file.getAbsolutePath());
+            }
+
+            tab.setTooltip(tooltip);
             URL resource = getClass().getClassLoader().getResource("java-style.css");
-            Optional.ofNullable(resource).ifPresent(url -> codeArea.getStylesheets().add(url.toExternalForm()));
+            Optional.ofNullable(resource)
+                    .ifPresent(url -> codeArea.getStylesheets().add(url.toExternalForm()));
             DoubleProperty fontSize = new SimpleDoubleProperty(18);
             codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
             codeArea.setPadding(new Insets(0, 0, 0, 10));
@@ -420,10 +504,16 @@ public class TreeViewController implements ControllerConstants {
                     }
                 }
             });
+
             tab.setOnCloseRequest(event -> {
                 Boolean isEdited = markedFiles.get(tab.getId());
                 if (BooleanUtils.isTrue(isEdited)) {
                     Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save this file before you close ? ");
+                    dialogPane.getButtonTypes().clear();
+                    dialogPane.getButtonTypes().add(ButtonType.OK);
+                    dialogPane.getButtonTypes().add(ButtonType.NO);
+                    dialogPane.getButtonTypes().add(ButtonType.CANCEL);
+
                     Optional<ButtonType> buttonType = dialogPane.showAndWait();
                     if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
                         CodeArea codeArea1 = Utils.castTo(tab.getContent());
@@ -443,6 +533,10 @@ public class TreeViewController implements ControllerConstants {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                    } else if (buttonType.isPresent() && buttonType
+                            .get()
+                            .equals(ButtonType.CANCEL)) {
+                        event.consume();
                     }
                 }
             });
@@ -510,6 +604,9 @@ public class TreeViewController implements ControllerConstants {
                 content.replaceText(generator.generateJavaDocAsString(text, false));
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (CompilationException e) {
+                showExceptionAlert(e);
+
             }
         }
     }
@@ -525,7 +622,36 @@ public class TreeViewController implements ControllerConstants {
         if (selectedItem != null) {
             CodeArea content = (CodeArea) selectedItem.getContent();
             String text = content.getText();
-            content.replaceText(generator.deleteJavaDoc(text));
+            try {
+                content.replaceText(generator.deleteJavaDoc(text));
+            } catch (CompilationException e) {
+                showExceptionAlert(e);
+            }
         }
+    }
+
+    private void handleKeyEvents(KeyEvent event) {
+        KeyCode eventCode = event.getCode();
+        if (event.isControlDown()) {
+            Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+            switch (eventCode) {
+                case W:
+                    if (selectedItem != null) {
+                        TabPaneBehavior behavior = new TabPaneBehavior(tabPane);
+                        if (behavior.canCloseTab(selectedItem)) {
+                            behavior.closeTab(selectedItem);
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void showExceptionAlert(CompilationException exception) {
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(exception.getMessage());
+        alert.setTitle("Error while processing");
+        alert.showAndWait();
     }
 }

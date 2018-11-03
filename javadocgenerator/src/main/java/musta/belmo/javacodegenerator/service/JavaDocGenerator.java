@@ -1,6 +1,7 @@
 package musta.belmo.javacodegenerator.service;
 
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
@@ -22,6 +23,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -109,27 +111,36 @@ public class JavaDocGenerator implements GeneratorConstantes {
     /**
      * Generate java doc for all classes
      *
-     * @param directory        @link File}
-     * @param dest             @link File}
+     * @param directory        {@link File}
+     * @param dest             {@link File}
      * @param toZip            boolean
      * @param deleteOldJavadoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDocForAllClasses(File directory, File dest, boolean toZip, boolean deleteOldJavadoc) throws IOException {
+    public void generateJavaDocForAllClasses(File directory,
+                                             File dest,
+                                             boolean toZip,
+                                             boolean deleteOldJavadoc) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, dest);
         logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File destinationZip = new File(dest.getAbsolutePath());
-        boolean isDirectory = directory.isDirectory();
-        if (isDirectory) {
-            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
+        if (directory.isDirectory()) {
+            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION},
+                    true);
             for (File file : files) {
-                generateJavaDoc(file.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
+                generateJavaDoc(file.getAbsolutePath(),
+                        dest.getAbsolutePath(),
+                        deleteOldJavadoc);
             }
         } else {
-            generateJavaDoc(directory.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
+            generateJavaDoc(directory.getAbsolutePath(),
+                    dest.getAbsolutePath(),
+                    deleteOldJavadoc);
         }
         if (toZip) {
-            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
+            ZipUtils.zip(destinationZip,
+                    new File(destinationZip.getParent(),
+                            destinationZip.getName().concat(".zip")));
             logger.info("file add to zip file {}", destinationZip.getAbsolutePath());
         }
         logger.info("generateJavaDocForAllClasses : done");
@@ -141,17 +152,32 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param directory @link File}
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDocForAllClasses(File directory) throws IOException {
+    public void generateJavaDocForAllClasses(File directory) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, directory);
         logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
-        boolean isDirectory = directory.isDirectory();
-        if (isDirectory) {
+        if (directory.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
                 generateJavaDocInPlace(file.getAbsolutePath(), false);
             }
         } else {
             generateJavaDocInPlace(directory.getAbsolutePath(), false);
+        }
+
+        logger.info("generateJavaDocForAllClasses : done");
+    }
+
+
+    public void deleteJavaDocForAllClasses(File directory) throws IOException, CompilationException {
+        logger.logCurrentMethod(Level.DEBUG, directory, directory);
+        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
+        if (directory.isDirectory()) {
+            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
+            for (File file : files) {
+                deleteJavaDocInPlace(file.getAbsolutePath());
+            }
+        } else {
+            deleteJavaDocInPlace(directory.getAbsolutePath());
         }
 
         logger.info("generateJavaDocForAllClasses : done");
@@ -166,7 +192,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param deleteOldJavadoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDocForAllClasses(String directory, String dest, boolean toZip, boolean deleteOldJavadoc) throws IOException {
+    public void generateJavaDocForAllClasses(String directory, String dest, boolean toZip, boolean deleteOldJavadoc) throws IOException, CompilationException {
         logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File dir = new File(directory);
         File destinationZip = new File(dest);
@@ -182,7 +208,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param toZip     boolean
      * @throws Exception Exception levée si erreur.
      */
-    public void deleteJavaDocForAllClasses(String directory, String dest, boolean toZip) throws Exception {
+    public void deleteJavaDocForAllClasses(String directory, String dest, boolean toZip) throws IOException, CompilationException {
         File dir = new File(directory);
         if (dir.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(dir, new String[]{JAVA_EXTENSION}, toZip);
@@ -206,19 +232,28 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param deleteOldJavaDoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDoc(String srcPath, String destinationFile, boolean deleteOldJavaDoc) throws IOException {
+    public void generateJavaDoc(String srcPath, String destinationFile, boolean deleteOldJavaDoc) throws IOException, CompilationException {
         File srcFile = new File(srcPath);
-        CompilationUnit compilationUnit = JavaParser.parse(srcFile);
+        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
         String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
         File destFile = getDestination(destinationFile, srcFile, compilationUnit);
         FileUtils.write(destFile, javaDocAsString, UTF_8);
         logger.info("generated javadoc for  file {}", srcPath);
     }
 
-    public void generateJavaDocInPlace(String srcPath, boolean deleteOldJavaDoc) throws IOException {
+    public void generateJavaDocInPlace(String srcPath, boolean deleteOldJavaDoc) throws IOException, CompilationException {
         File srcFile = new File(srcPath);
-        CompilationUnit compilationUnit = JavaParser.parse(srcFile);
+        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
         String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
+        FileUtils.write(srcFile, javaDocAsString, UTF_8);
+        logger.info("generated javadoc for  file {}", srcPath);
+    }
+
+    public void deleteJavaDocInPlace(String srcPath) throws IOException, CompilationException {
+        File srcFile = new File(srcPath);
+        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
+
+        String javaDocAsString = deleteJavaDoc(compilationUnit.toString());
         FileUtils.write(srcFile, javaDocAsString, UTF_8);
         logger.info("generated javadoc for  file {}", srcPath);
     }
@@ -289,8 +324,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @return String
      * @throws IOException Exception levée si erreur.
      */
-    public String generateJavaDocAsString(String src, boolean deleteOldJavaDoc) throws IOException {
-        return generateJavaDocAsString(JavaParser.parse(src), deleteOldJavaDoc);
+    public String generateJavaDocAsString(String src, boolean deleteOldJavaDoc) throws IOException, CompilationException {
+        final CompilationUnit compilationUnit = getCompilationUnit(src);
+        return generateJavaDocAsString(compilationUnit, deleteOldJavaDoc);
     }
 
     /**
@@ -320,7 +356,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param compilationUnit @link CompilationUnit}
      * @return File
      */
-    private File getDestination(String destinationFile, File srcFile, CompilationUnit compilationUnit) {
+    private File getDestination(String destinationFile,
+                                File srcFile,
+                                CompilationUnit compilationUnit) {
         return compilationUnit.getPackageDeclaration()
                 .map(packageDeclaration -> new File(destinationFile,
                         Utils.convertPackageDeclarationToPath(packageDeclaration.getName()
@@ -336,13 +374,24 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param destinationFile @link String}
      * @throws IOException Exception levée si erreur.
      */
-    public void deleteJavaDoc(String srcPath, String destinationFile) throws IOException {
+    public void deleteJavaDoc(String srcPath, String destinationFile) throws IOException, CompilationException {
         File srcFile = new File(srcPath);
-        CompilationUnit compilationUnit = JavaParser.parse(srcFile);
+
+        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
         File destFile = getDestination(destinationFile, srcFile, compilationUnit);
         deleteOldJavaDoc(compilationUnit);
         FileUtils.write(destFile, compilationUnit.toString(), UTF_8);
         logger.info("deleted javadoc for  file {}", srcPath);
+    }
+
+    private CompilationUnit getCompilationUnit(File srcFile) throws FileNotFoundException, CompilationException {
+        CompilationUnit compilationUnit;
+        try {
+            compilationUnit = JavaParser.parse(srcFile);
+        } catch (ParseProblemException parseProleme) {
+            throw new CompilationException(parseProleme);
+        }
+        return compilationUnit;
     }
 
     /**
@@ -363,10 +412,20 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param src @link String}
      * @return String
      */
-    public String deleteJavaDoc(String src) {
-        CompilationUnit compilationUnit = JavaParser.parse(src);
+    public String deleteJavaDoc(String src) throws CompilationException {
+        CompilationUnit compilationUnit = getCompilationUnit(src);
         deleteOldJavaDoc(compilationUnit);
         return compilationUnit.toString();
+    }
+
+    private CompilationUnit getCompilationUnit(String src) throws CompilationException {
+        CompilationUnit compilationUnit;
+        try {
+            compilationUnit = JavaParser.parse(src);
+        } catch (ParseProblemException parseException) {
+            throw new CompilationException(parseException);
+        }
+        return compilationUnit;
     }
 
     /**

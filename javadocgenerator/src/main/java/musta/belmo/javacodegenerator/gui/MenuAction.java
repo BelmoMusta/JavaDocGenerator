@@ -8,5 +8,6 @@ public enum MenuAction {
     LOAD_PROPERTIES,
     SAVE_FILE,
     SAVE_ALL_FILES,
+    ADD_JAVADOC, DELETE_JAVADOC,
 
 }
