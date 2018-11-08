@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui.table;
+package musta.belmo.enumhandler.gui.table;
 
 import musta.belmo.javacodecore.gui.app.AbstractJavaFXApplication;
 

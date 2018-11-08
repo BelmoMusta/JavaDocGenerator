@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.service;
+package musta.belmo.enumhandler.service;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -8,7 +8,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.*;
-import musta.belmo.returncounter.beans.MethodDescriber;
+import musta.belmo.enumhandler.beans.MethodDescriber;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.*;
 import java.io.File;

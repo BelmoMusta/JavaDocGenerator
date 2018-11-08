@@ -1608,3 +1608,14 @@ public class MenuItemWithIcon extends MenuItem {
 11:56:05.203 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
 11:56:07.502 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
 11:56:09.156 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+17:52:48.097 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+17:52:48.347 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+17:52:48.612 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+17:53:29.466 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+17:53:29.466 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_ENUM_TEXT
+17:53:29.467 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+17:53:29.467 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+17:53:29.468 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+17:53:29.469 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+17:54:05.777 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+17:54:06.117 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 

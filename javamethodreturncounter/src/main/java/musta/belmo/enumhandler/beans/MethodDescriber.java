@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.beans;
+package musta.belmo.enumhandler.beans;
 
 /**
  * TODO : Compléter la description de cette classe
