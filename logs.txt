@@ -1605,3 +1605,6 @@ public class MenuItemWithIcon extends MenuItem {
 19:53:12.427 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values EXCEPTION_COMMENT
 19:53:12.427 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values INHERIT_DOC
 19:53:12.428 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+11:56:05.203 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+11:56:07.502 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+11:56:09.156 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
