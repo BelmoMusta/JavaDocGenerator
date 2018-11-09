@@ -1,17 +1,19 @@
 package musta.belmo.enumhandler.service;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
-import com.github.javaparser.ast.body.EnumConstantDeclaration;
-import com.github.javaparser.ast.body.EnumDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
-import com.github.javaparser.ast.expr.LiteralExpr;
-import com.github.javaparser.ast.expr.StringLiteralExpr;
+import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import musta.belmo.enumhandler.beans.EnumDescriber;
+import musta.belmo.enumhandler.beans.EnumAttribute;
+import musta.belmo.enumhandler.beans.EnumValueHolder;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.Collection;
@@ -28,19 +30,59 @@ public class EnumHandler {
         CompilationUnit compilationUnit = new CompilationUnit();
 
         EnumDeclaration enumDeclaration = compilationUnit.addEnum(enumDescriber.getName());
-        Map<String, String> enumEntries = enumDescriber.get();
+        Map<String, List<EnumValueHolder>> enumEntries = enumDescriber.get();
         enumEntries.forEach((name, value) -> {
             EnumConstantDeclaration declaration = new EnumConstantDeclaration();
             declaration.setName(name);
-            if (enumDescriber.isString()) {
-                LiteralExpr expr = new StringLiteralExpr(value);
-                declaration.addArgument(expr);
-            } else {
-                declaration.addArgument(value);
+            for (EnumValueHolder enumValueHolder : value) {
+                if (EnumAttribute.STRING.equals(enumValueHolder.getType())) {
+                    LiteralExpr expr = new StringLiteralExpr(enumValueHolder.getName());
+                    declaration.addArgument(expr);
+                } else {
+                    declaration.addArgument(enumValueHolder.getName());
+                }
             }
             enumDeclaration.addEntry(declaration);
         });
+
+        List<EnumAttribute> enumAttributes = enumDescriber.getEnumAttributes();
+
+        ConstructorDeclaration constructorDeclaration = enumDeclaration.addConstructor();
+        constructorDeclaration.setName(enumDescriber.getName());
+
+        for (EnumAttribute enumAttribute : enumAttributes) {
+            constructorDeclaration.addParameter(enumAttribute.getConcreteType(), enumAttribute.getName());
+            enumDeclaration.addField(enumAttribute.getConcreteType(), enumAttribute.getName(),
+                    Modifier.PRIVATE);
+
+            Expression intialization = new ThisExpr();
+            Expression fs = new FieldAccessExpr(intialization, enumAttribute.getName());
+            Expression assign = new AssignExpr(fs, new NameExpr(enumAttribute.getName()),
+                    AssignExpr.Operator.ASSIGN);
+
+            BlockStmt blockStmt = new BlockStmt();
+            blockStmt.addStatement(assign);
+            constructorDeclaration.setBody(blockStmt);
+
+            MethodDeclaration getter = createGetter(enumAttribute);
+            enumDeclaration.addMember(getter);
+        }
         return compilationUnit;
+    }
+
+    public MethodDeclaration createGetter(EnumAttribute attribute) {
+
+        MethodDeclaration methodDeclaration = new MethodDeclaration();
+        methodDeclaration.setType(attribute.getConcreteType());
+        methodDeclaration.setName("get" + StringUtils.capitalize(attribute.getName()));
+        methodDeclaration.addModifier(Modifier.PUBLIC);
+        BlockStmt methodBody = new BlockStmt();
+        Expression intialization = new ThisExpr();
+        Expression fs = new FieldAccessExpr(intialization, attribute.getName());
+        Statement returnStatement = new ReturnStmt(fs);
+        methodBody.addStatement(returnStatement);
+        methodDeclaration.setBody(methodBody);
+        return methodDeclaration;
     }
 
     /**
