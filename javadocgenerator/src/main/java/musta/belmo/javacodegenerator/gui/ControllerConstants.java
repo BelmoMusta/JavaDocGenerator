@@ -64,42 +64,13 @@ public interface ControllerConstants {
     Pattern PATTERN = Pattern.compile("(?<KEYWORD>" + KEYWORD_PATTERN + ")" + "|(?<PAREN>" + PAREN_PATTERN + ")" + "|(?<BRACE>" + BRACE_PATTERN + ")" + "|(?<BRACKET>" + BRACKET_PATTERN + ")" + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")" + "|(?<STRING>" + STRING_PATTERN + ")" + "|(?<COMMENT>" + COMMENT_PATTERN + ")");
 
 
-    KeyCombination CTRL_N = new KeyCharacterCombination("N",
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP);
-
-    KeyCombination CTRL_O = new KeyCharacterCombination("O",
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP);
-
-
-
-    KeyCombination CTRL_S = new KeyCharacterCombination("S",
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP);
-
-    KeyCombination CTRL_SHIFT_S = new KeyCharacterCombination("S",
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP);
-
-    KeyCombination CTRL_SHIFT_O = new KeyCharacterCombination("O",
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.DOWN,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP,
-            KeyCombination.ModifierValue.UP);
+    KeyCombination CTRL_I = ctrl("I");
+    KeyCombination CTRL_J = ctrl("J");
+    KeyCombination CTRL_N = ctrl("N");
+    KeyCombination CTRL_O = ctrl("O");
+    KeyCombination CTRL_S = ctrl("S");
+    KeyCombination CTRL_SHIFT_S = ctrlShift("S");
+    KeyCombination CTRL_SHIFT_O = ctrlShift("O");
 
     /**
      * Compute highlighting
@@ -121,5 +92,56 @@ public interface ControllerConstants {
         }
         spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
         return spansBuilder.create();
+    }
+
+    static KeyCharacterCombination createFromString(String combination) {
+        String[] split = combination.split("[\\+\\- ]");
+
+        String character = split[split.length - 1];
+
+        KeyCombination.ModifierValue up = KeyCombination.ModifierValue.UP;
+        KeyCombination.ModifierValue down = KeyCombination.ModifierValue.DOWN;
+        KeyCombination.ModifierValue shift = up;
+        KeyCombination.ModifierValue control = up;
+        KeyCombination.ModifierValue alt = up;
+
+        for (int i = 0; i < split.length - 1; i++) {
+            String key = split[i].trim();
+
+            if ("CTRL".equalsIgnoreCase(key) || "CTR".equalsIgnoreCase(key)) {
+                control = down;
+            } else if ("SHIFT".equalsIgnoreCase(key)) {
+                shift = down;
+            } else if ("ALT".equalsIgnoreCase(key)) {
+                alt = down;
+            }
+        }
+        return new KeyCharacterCombination(character,
+                shift,
+                control,
+                alt,
+                up,
+                up);
+    }
+
+
+    static KeyCharacterCombination ctrlShift(String key) {
+        return createFromString("CTRL+SHIFT+" + key);
+    }
+
+    static KeyCharacterCombination ctrl(String key) {
+        return createFromString("CTRL+" + key);
+    }
+
+    static KeyCharacterCombination ctrlAlt(String key) {
+        return createFromString("CTRL+ALT" + key);
+    }
+
+    static KeyCharacterCombination altShift(String key) {
+        return createFromString("CTRL+SHIFT" + key);
+    }
+
+    static KeyCharacterCombination alt(String key) {
+        return createFromString("ALT+" + key);
     }
 }

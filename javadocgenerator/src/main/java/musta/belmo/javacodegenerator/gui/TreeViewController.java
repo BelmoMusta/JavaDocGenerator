@@ -28,11 +28,13 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.*;
+
 import static javafx.scene.input.KeyCode.ENTER;
 
 /**
@@ -220,15 +222,22 @@ public class TreeViewController implements ControllerConstants {
     }
 
     private void setupJavadocMenuItem(MenuBar menuBar) {
-        Menu menu = new Menu("Javadoc ");
+        Menu menu = new Menu("Code ");
         MenuItem addJavadoc = new MenuItemWithIcon("Add Javadoc", "fa-comments");
         MenuItem deleteJavadoc = new MenuItemWithIcon("Remove Javadoc", "fa-remove");
+        MenuItem indentCode = new MenuItemWithIcon("Indent Code", "fa-indent");
         setupMenuItemAction(addJavadoc, MenuAction.ADD_JAVADOC);
         setupMenuItemAction(deleteJavadoc, MenuAction.DELETE_JAVADOC);
+        setupMenuItemAction(indentCode, MenuAction.INDENT_CODE);
         addJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         deleteJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        indentCode.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        indentCode.setAccelerator(CTRL_I);
+        addJavadoc.setAccelerator(CTRL_J);
+
         menu.getItems().add(addJavadoc);
         menu.getItems().add(deleteJavadoc);
+        menu.getItems().add(indentCode);
         menu.getItems().add(new SeparatorMenuItem());
         menuBar.getMenus().add(menu);
     }
@@ -291,7 +300,7 @@ public class TreeViewController implements ControllerConstants {
      */
     private void setupMenuItemAction(MenuItem menuItem, MenuAction menuAction) {
         menuItem.setOnAction(event -> {
-            switch(menuAction) {
+            switch (menuAction) {
                 case OPEN_FOLDER:
                     openFolder();
                     break;
@@ -318,6 +327,9 @@ public class TreeViewController implements ControllerConstants {
                     break;
                 case DELETE_JAVADOC:
                     deleteJavaDoc(null);
+                    break;
+                case INDENT_CODE:
+                    indentCode(null);
                     break;
             }
         });
@@ -609,7 +621,7 @@ public class TreeViewController implements ControllerConstants {
         KeyCode eventCode = event.getCode();
         if (event.isControlDown()) {
             Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
-            switch(eventCode) {
+            switch (eventCode) {
                 case W:
                     if (selectedItem != null) {
                         TabPaneBehavior behavior = new TabPaneBehavior(tabPane);
