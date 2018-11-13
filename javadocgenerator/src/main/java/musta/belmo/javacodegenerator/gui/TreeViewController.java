@@ -234,6 +234,7 @@ public class TreeViewController implements ControllerConstants {
         indentCode.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         indentCode.setAccelerator(CTRL_I);
         addJavadoc.setAccelerator(CTRL_J);
+        deleteJavadoc.setAccelerator(CTRL_SHIFT_J);
 
         menu.getItems().add(addJavadoc);
         menu.getItems().add(deleteJavadoc);
@@ -464,6 +465,7 @@ public class TreeViewController implements ControllerConstants {
             DoubleProperty fontSize = new SimpleDoubleProperty(18);
             codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
             codeArea.setPadding(new Insets(0, 0, 0, 10));
+
             codeArea.textProperty().addListener(new ChangeListener<String>() {
 
                 /**
@@ -531,6 +533,8 @@ public class TreeViewController implements ControllerConstants {
                 tab.setText(newFileName);
                 tab.setContent(codeArea);
             }
+
+            codeArea.requestFocus();
         } catch (IOException e) {
             e.printStackTrace();
         }

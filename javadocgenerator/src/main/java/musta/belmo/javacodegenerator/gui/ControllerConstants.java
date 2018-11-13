@@ -66,6 +66,7 @@ public interface ControllerConstants {
 
     KeyCombination CTRL_I = ctrl("I");
     KeyCombination CTRL_J = ctrl("J");
+    KeyCombination CTRL_SHIFT_J = ctrlShift("J");
     KeyCombination CTRL_N = ctrl("N");
     KeyCombination CTRL_O = ctrl("O");
     KeyCombination CTRL_S = ctrl("S");
