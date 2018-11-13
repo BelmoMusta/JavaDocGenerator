@@ -55,6 +55,7 @@ public class EnumHandler {
             enumDeclaration.addField(enumAttribute.getConcreteType(), enumAttribute.getName(),
                     Modifier.PRIVATE);
 
+<<<<<<< HEAD
             Expression intialization = new ThisExpr();
             Expression fs = new FieldAccessExpr(intialization, enumAttribute.getName());
             Expression assign = new AssignExpr(fs, new NameExpr(enumAttribute.getName()),
@@ -64,6 +65,16 @@ public class EnumHandler {
             blockStmt.addStatement(assign);
             constructorDeclaration.setBody(blockStmt);
 
+=======
+            Expression thisExpr = new ThisExpr();
+            Expression fieldAccessExpr = new FieldAccessExpr(thisExpr, enumAttribute.getName());
+            Expression assignExpr = new AssignExpr(fieldAccessExpr, new NameExpr(enumAttribute.getName()),
+                    AssignExpr.Operator.ASSIGN);
+
+            BlockStmt blockStmt = new BlockStmt();
+            blockStmt.addStatement(assignExpr);
+            constructorDeclaration.setBody(blockStmt);
+>>>>>>> 563fe9be5a0b6517cae36798ba5b0c1aec8ca239
             MethodDeclaration getter = createGetter(enumAttribute);
             enumDeclaration.addMember(getter);
         }
