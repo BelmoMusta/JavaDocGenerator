@@ -664,9 +664,21 @@ public class JavaDocGenerator implements GeneratorConstantes {
         }
     }
 
-    public void indentCode(CompilationUnit compilationUnit) {
+    /**
+     * @param compilationUnit
+     * @return
+     */
+    public String indentCode(CompilationUnit compilationUnit) throws CompilationException {
+        return indentCode(compilationUnit.toString());
+    }
 
-
+    /**
+     * @param code
+     * @return
+     */
+    public String indentCode(String code) throws CompilationException {
+        CompilationUnit compilationUnit = getCompilationUnit(code);
+        return compilationUnit.toString();
     }
 
     /**
