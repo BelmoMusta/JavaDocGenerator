@@ -1,4 +1,4 @@
-package musta.belmo.returncounter.gui.table;
+package musta.belmo.enumhandler.gui.table;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,11 +8,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import musta.belmo.javacodecore.gui.table.MustaTableColumn;
-import musta.belmo.returncounter.service.ReturnCounter;
-import musta.belmo.returncounter.beans.MethodDescriber;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 
 /**
  * TODO : Compléter la description de cette classe
@@ -92,11 +90,6 @@ public class TableController {
      * @throws IOException Exception levée si erreur.
      */
     public void loadReturn(ActionEvent actionEvent) throws IOException {
-        tableView.getItems().clear();
-        ReturnCounter returnCounter = new ReturnCounter();
-        Set<MethodDescriber> methodDescribers = returnCounter.countReturnStatements(src);
-        for (MethodDescriber methodDescriber : methodDescribers) {
-            tableView.getItems().add(methodDescriber);
-        }
+
     }
 }
