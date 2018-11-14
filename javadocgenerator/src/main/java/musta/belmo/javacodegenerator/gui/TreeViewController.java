@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import musta.belmo.javacodecore.Utils;
 import musta.belmo.javacodegenerator.service.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
@@ -417,10 +418,20 @@ public class TreeViewController implements ControllerConstants {
      * Load properties
      */
     private void loadProperties() {
+
+        PropertiesGUI propertiesGUI = new PropertiesGUI();
+        try {
+            propertiesGUI.start(  new Stage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
         FileChooser propertiesFileChooser = new FileChooser();
         propertiesFileChooser.setInitialFileName(generator.getPropertiesPath());
         Optional<File> propertiesFile = Optional.ofNullable(propertiesFileChooser.showOpenDialog(null));
         propertiesFile.ifPresent(properties -> generator.loadProperties(properties.getAbsolutePath()));
+       */
+
     }
 
     /**

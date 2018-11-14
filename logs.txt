@@ -1965,3 +1965,6 @@ public class MenuItemWithIcon extends MenuItem {
 00:09:16.196 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
 00:09:16.424 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
 00:09:16.426 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:28:43.565 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:28:44.006 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:28:44.009 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
