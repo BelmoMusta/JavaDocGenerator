@@ -3,6 +3,7 @@ package musta.belmo.javacodegenerator.service;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.comments.LineComment;
@@ -30,6 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * TODO: Compléter la description de cette classe
@@ -679,6 +681,46 @@ public class JavaDocGenerator implements GeneratorConstantes {
     public String indentCode(String code) throws CompilationException {
         CompilationUnit compilationUnit = getCompilationUnit(code);
         return compilationUnit.toString();
+    }
+
+    /**
+     * @param code
+     * @return
+     */
+    public String reorganize(String code) throws CompilationException {
+        CompilationUnit compilationUnit = getCompilationUnit(code);
+        CompilationUnit retCompilationUnit = new CompilationUnit();
+        List<ClassOrInterfaceDeclaration> classContained = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
+
+        classContained.stream().forEach(cls -> {
+
+            ClassOrInterfaceDeclaration classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
+            //Stream<FieldDeclaration> stream = cls.findAll(FieldDeclaration.class).stream();
+
+            List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.isFinal() && field.isPublic()).collect(Collectors.toList());
+            List<FieldDeclaration> privateStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.isFinal() && field.isPrivate()).collect(Collectors.toList());
+            List<FieldDeclaration> defaultStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.getModifiers().size() == 1).collect(Collectors.toList());
+
+            for (FieldDeclaration fieldDeclaration : publicStaticFields) {
+                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
+                        fieldDeclaration.getVariables().get(0).getName().toString(),
+                        Modifier.PUBLIC, Modifier.STATIC);
+            }
+
+            for (FieldDeclaration fieldDeclaration : defaultStaticFields) {
+                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
+                        fieldDeclaration.getVariables().get(0).getName().toString(),
+                        Modifier.STATIC);
+            }
+
+
+            for (FieldDeclaration fieldDeclaration : privateStaticFields) {
+                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
+                        fieldDeclaration.getVariables().get(0).getName().toString(),
+                        Modifier.PRIVATE, Modifier.STATIC);
+            }
+        });
+        return retCompilationUnit.toString();
     }
 
     /**

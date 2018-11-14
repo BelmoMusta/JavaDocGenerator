@@ -2,6 +2,7 @@ package musta.belmo.javacodegenerator.gui;
 
 import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -172,27 +173,54 @@ public class TreeViewController implements ControllerConstants {
 
     private void setUpIconsBar() {
         HBox box = new HBox();
-        Button generateJavaDocBtn = new Button();
-        Button deleteJavaDocBtn = new Button();
-        Button saveFileBtn = new Button();
-        Button indentCodeBtn = new Button();
-        saveFileBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
-        indentCodeBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
+        CustomButton generateJavaDocBtn = new CustomButton();
+        CustomButton deleteJavaDocBtn = new CustomButton();
+        CustomButton saveFileBtn = new CustomButton();
+        CustomButton indentCodeBtn = new CustomButton();
+        CustomButton reorganizeBtn = new CustomButton();
+
+        BooleanBinding booleanBinding = Bindings.isEmpty(tabPane.getTabs());
+        saveFileBtn.disableWhen(booleanBinding);
+        saveFileBtn.disableWhen(booleanBinding);
+        indentCodeBtn.disableWhen(booleanBinding);
+        deleteJavaDocBtn.disableWhen(booleanBinding);
+        generateJavaDocBtn.disableWhen(booleanBinding);
+        reorganizeBtn.disableWhen(booleanBinding);
+
+
         saveFileBtn.setOnAction(event -> saveFile());
-        deleteJavaDocBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
-        generateJavaDocBtn.disableProperty().bind(Bindings.size(tabPane.getTabs()).isEqualTo(0));
-        generateJavaDocBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-comments")));
-        saveFileBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-save")));
         generateJavaDocBtn.setOnAction(this::addJavaDoc);
-        generateJavaDocBtn.setTooltip(new Tooltip("Generate javadoc"));
-        deleteJavaDocBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-remove")));
-        indentCodeBtn.setGraphic(FontIcon.of(FontAwesome.findByDescription("fa-indent")));
-        deleteJavaDocBtn.setTooltip(new Tooltip("Delete javadoc"));
-        deleteJavaDocBtn.setOnAction(this::deleteJavaDoc);
         indentCodeBtn.setOnAction(this::indentCode);
-        box.getChildren().addAll(generateJavaDocBtn, deleteJavaDocBtn, saveFileBtn, indentCodeBtn);
+        reorganizeBtn.setOnAction(this::reorganizeBtn);
+
+        generateJavaDocBtn.setGraphic("fa-comments");
+        saveFileBtn.setGraphic("fa-save");
+        deleteJavaDocBtn.setGraphic("fa-remove");
+        indentCodeBtn.setGraphic("fa-indent");
+        reorganizeBtn.setGraphic("fa-sitemap");
+
+        deleteJavaDocBtn.setTooltip("Delete javadoc");
+        generateJavaDocBtn.setTooltip("Generate javadoc");
+        deleteJavaDocBtn.setOnAction(this::deleteJavaDoc);
+        box.getChildren().addAll(generateJavaDocBtn, deleteJavaDocBtn);
+        box.getChildren().addAll(saveFileBtn, indentCodeBtn, reorganizeBtn);
+
         VBox vBox = Utils.castTo(root.getTop());
         vBox.getChildren().add(box);
+    }
+
+    private void reorganizeBtn(ActionEvent actionEvent) {
+
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            CodeArea content = (CodeArea) selectedItem.getContent();
+            String text = content.getText();
+            try {
+                content.replaceText(generator.reorganize(text));
+            } catch (CompilationException e) {
+                showExceptionAlert(e);
+            }
+        }
     }
 
     /**
