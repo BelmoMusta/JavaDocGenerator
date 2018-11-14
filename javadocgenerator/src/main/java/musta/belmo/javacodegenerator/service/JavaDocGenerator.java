@@ -108,6 +108,10 @@ public class JavaDocGenerator implements GeneratorConstantes {
             }
         }
         this.propertiesPath = propertiesPath;
+        if (resource != null) {
+            this.propertiesPath = resource.getPath();
+        }
+
     }
 
     /**
