@@ -3,7 +3,6 @@ package musta.belmo.javacodegenerator.service;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.comments.LineComment;
@@ -31,7 +30,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * TODO: Compléter la description de cette classe
@@ -699,30 +697,18 @@ public class JavaDocGenerator implements GeneratorConstantes {
         classContained.stream().forEach(cls -> {
 
             ClassOrInterfaceDeclaration classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
-            //Stream<FieldDeclaration> stream = cls.findAll(FieldDeclaration.class).stream();
 
-            List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.isFinal() && field.isPublic()).collect(Collectors.toList());
-            List<FieldDeclaration> privateStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.isFinal() && field.isPrivate()).collect(Collectors.toList());
-            List<FieldDeclaration> defaultStaticFields = cls.findAll(FieldDeclaration.class).stream().filter(field -> field.isStatic() && field.getModifiers().size() == 1).collect(Collectors.toList());
+            List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class);
+            publicStaticFields.sort(CodeUtils.FIELD_COMPARATOR);
 
             for (FieldDeclaration fieldDeclaration : publicStaticFields) {
-                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
-                        fieldDeclaration.getVariables().get(0).getName().toString(),
-                        Modifier.PUBLIC, Modifier.STATIC);
+                FieldDeclaration fieldDec = classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
+                        "temp");
+                CodeUtils.cloneFieldDeclaration(fieldDeclaration, fieldDec);
             }
-
-            for (FieldDeclaration fieldDeclaration : defaultStaticFields) {
-                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
-                        fieldDeclaration.getVariables().get(0).getName().toString(),
-                        Modifier.STATIC);
-            }
+// TODO : search for static block first
 
 
-            for (FieldDeclaration fieldDeclaration : privateStaticFields) {
-                classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
-                        fieldDeclaration.getVariables().get(0).getName().toString(),
-                        Modifier.PRIVATE, Modifier.STATIC);
-            }
         });
         return retCompilationUnit.toString();
     }

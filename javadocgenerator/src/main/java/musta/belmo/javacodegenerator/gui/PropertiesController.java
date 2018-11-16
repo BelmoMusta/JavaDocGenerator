@@ -3,6 +3,7 @@ package musta.belmo.javacodegenerator.gui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import musta.belmo.javacodecore.gui.table.MustaTableColumn;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 
@@ -13,10 +14,12 @@ import java.util.Properties;
 
 public class PropertiesController {
     public TableView tableView;
+    public HBox btnGroup;
 
     @FXML
     public void initialize() throws Exception {
-
+        CustomButton customButton = new CustomButton("Save","fa-save");
+        btnGroup.getChildren().add(customButton);
         ObservableList<MustaTableColumn> columns = tableView.getColumns();
         columns.clear();
         MustaTableColumn keyColumn = new MustaTableColumn("Key", "key");

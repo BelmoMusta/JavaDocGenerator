@@ -1968,3 +1968,51 @@ public class MenuItemWithIcon extends MenuItem {
 00:28:43.565 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
 00:28:44.006 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
 00:28:44.009 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:28:54.789 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:28:55.171 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:28:55.733 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:28:58.897 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:28:58.928 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:28:58.930 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:04:27.607 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:04:28.342 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:04:29.885 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:04:35.560 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:04:35.665 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:04:35.679 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:10:08.262 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:10:08.756 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:10:08.760 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:18:03.309 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:18:04.678 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:18:05.220 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:46:07.920 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:46:09.040 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:46:09.052 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:46:19.927 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:46:20.543 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:46:21.414 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:48:30.409 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:48:30.850 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:48:32.241 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:50:39.799 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:50:40.203 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:50:41.252 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:51:42.542 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:51:42.909 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:51:44.179 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+00:59:39.857 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+00:59:44.749 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+00:59:45.141 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:03:10.684 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:03:11.412 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:03:12.049 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:17:32.281 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:17:32.798 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:17:33.856 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:19:12.000 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:19:12.353 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:19:13.306 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+01:23:30.733 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+01:23:31.078 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+01:23:32.017 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 

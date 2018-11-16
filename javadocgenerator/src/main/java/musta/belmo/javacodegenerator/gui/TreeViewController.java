@@ -421,7 +421,7 @@ public class TreeViewController implements ControllerConstants {
 
         PropertiesGUI propertiesGUI = new PropertiesGUI();
         try {
-            propertiesGUI.start(  new Stage());
+            propertiesGUI.start(new Stage());
         } catch (IOException e) {
             e.printStackTrace();
         }
