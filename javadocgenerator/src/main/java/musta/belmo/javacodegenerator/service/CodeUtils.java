@@ -1,24 +1,35 @@
 package musta.belmo.javacodegenerator.service;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.printer.YamlPrinter;
 
 import java.util.Comparator;
 
 public class CodeUtils {
 
-    static final Comparator<FieldDeclaration> FIELD_COMPARATOR = new Comparator<FieldDeclaration>() {
-        @Override
-        public int compare(FieldDeclaration o1, FieldDeclaration o2) {
-            int compare = getFieldLevel(o2) -
-                    getFieldLevel(o1);
+    public static Comparator<FieldDeclaration> getFieldComparator() {
+        return new Comparator<FieldDeclaration>() {
+            @Override
+            public int compare(FieldDeclaration o1, FieldDeclaration o2) {
+                int compare = getFieldLevel(o2) -
+                        getFieldLevel(o1);
 
-            if (compare == 0)
-                compare = o1.getVariables().get(0).getName().asString().compareTo(
-                        o2.getVariables().get(0).getName().asString());
+                if (compare == 0)
+                    compare = o1.getVariables().get(0).getName().asString().compareTo(
+                            o2.getVariables().get(0).getName().asString());
+                return compare;
+            }
+        };
+    }
 
-            return compare;
-        }
-    };
+    static public String printAsYaml(String code) {
+        YamlPrinter yamlPrinter = new YamlPrinter(true);
+        CompilationUnit compilationUnit = JavaParser.parse(code);
+        String output = yamlPrinter.output(compilationUnit);
+        return output;
+    }
 
     public static void cloneFieldDeclaration(FieldDeclaration from, final FieldDeclaration to) {
         to.setModifiers(from.getModifiers());
@@ -33,8 +44,7 @@ public class CodeUtils {
 
         if (fieldDeclaration.isPublic() && fieldDeclaration.isStatic()) {
             level += 100000;
-        }
-        else if(fieldDeclaration.isPublic()){
+        } else if (fieldDeclaration.isPublic()) {
             level += 20;
         }
         if (fieldDeclaration.isStatic()) {

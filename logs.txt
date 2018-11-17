@@ -2016,3 +2016,66 @@ public class MenuItemWithIcon extends MenuItem {
 01:23:30.733 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
 01:23:31.078 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
 01:23:32.017 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+14:30:02.828 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+14:30:03.960 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:30:05.207 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+14:44:01.721 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+14:44:02.314 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+14:44:03.073 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+14:44:17.481 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+14:44:17.482 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+14:44:17.483 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+14:44:17.483 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+14:44:17.485 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:44:17.485 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:44:17.486 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:44:17.487 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:44:17.488 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:44:17.488 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:44:17.488 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:44:17.489 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:44:17.489 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:44:17.489 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:44:17.490 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:44:17.490 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:44:17.491 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:44:17.491 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:44:17.492 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+14:58:09.863 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+14:58:09.865 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+14:58:09.866 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+14:58:09.867 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+14:58:09.869 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:58:09.869 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:58:09.870 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:58:09.871 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:58:09.873 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:58:09.874 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:58:09.875 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+14:58:09.876 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+14:58:09.877 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+14:58:09.879 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:58:09.880 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:58:09.882 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:58:09.883 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:58:09.884 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+14:58:09.884 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code
+15:02:09.857 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values TODO_CLASS_TEXT
+15:02:09.857 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values AUTHOR
+15:02:09.858 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values SINCE_VERSION
+15:02:09.858 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values VERSION
+15:02:09.858 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:02:09.859 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:02:09.859 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+15:02:09.859 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:02:09.859 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:02:09.860 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+15:02:09.860 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values CONSTANT_COMMENT
+15:02:09.860 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values LINK_COMMENT
+15:02:09.861 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_VALUE_COMMENT
+15:02:09.861 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:02:09.862 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:02:09.862 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:02:09.862 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:02:09.862 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : readFromProperties with values FIELD_COMMENT
+15:02:09.862 [JavaFX Application Thread] INFO  m.b.j.service.JavaDocGenerator - generated javadoc for  source code

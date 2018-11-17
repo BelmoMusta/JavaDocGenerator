@@ -699,7 +699,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
             ClassOrInterfaceDeclaration classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
 
             List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class);
-            publicStaticFields.sort(CodeUtils.FIELD_COMPARATOR);
+            publicStaticFields.sort(CodeUtils.getFieldComparator());
 
             for (FieldDeclaration fieldDeclaration : publicStaticFields) {
                 FieldDeclaration fieldDec = classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
