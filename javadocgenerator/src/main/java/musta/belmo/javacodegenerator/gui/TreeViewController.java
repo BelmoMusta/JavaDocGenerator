@@ -202,7 +202,7 @@ public class TreeViewController implements ControllerConstants {
         saveFileBtn.setGraphic("fa-save");
         deleteJavaDocBtn.setGraphic("fa-remove");
         indentCodeBtn.setGraphic("fa-indent");
-        // printAsYMLBtn.setGraphic("fa-indent");
+        //printAsYMLBtn.setGraphic("fa-indent");
         reorganizeBtn.setGraphic("fa-sitemap");
 
         deleteJavaDocBtn.setTooltip("Delete javadoc");

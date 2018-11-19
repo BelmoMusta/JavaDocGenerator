@@ -3,6 +3,9 @@ package musta.belmo.javacodegenerator.service;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.expr.AssignExpr;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.printer.YamlPrinter;
 
 import java.util.Comparator;
@@ -22,6 +25,11 @@ public class CodeUtils {
                 return compare;
             }
         };
+    }
+
+    public static Expression creatAssignStement(String  left, String right, AssignExpr.Operator operator){
+        return new AssignExpr(new NameExpr(left), new NameExpr(right), operator);
+
     }
 
     static public String printAsYaml(String code) {
