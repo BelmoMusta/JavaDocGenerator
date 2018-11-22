@@ -1,4 +1,4 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.javacodegenerator.gui.controller;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
