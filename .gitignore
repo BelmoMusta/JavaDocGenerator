@@ -2,4 +2,4 @@ frames
 *.iml 
 .idea 
 target 
-output
+outputlogs.txt  
