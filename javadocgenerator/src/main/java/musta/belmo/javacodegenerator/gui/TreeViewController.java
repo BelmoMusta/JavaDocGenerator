@@ -21,6 +21,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import musta.belmo.javacodecore.Utils;
+import musta.belmo.javacodegenerator.service.CodeUtils;
 import musta.belmo.javacodegenerator.service.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.io.FileUtils;
@@ -178,12 +179,14 @@ public class TreeViewController implements ControllerConstants {
         CustomButton deleteJavaDocBtn = new CustomButton();
         CustomButton saveFileBtn = new CustomButton();
         CustomButton indentCodeBtn = new CustomButton();
+       // CustomButton printAsYMLBtn = new CustomButton();
         CustomButton reorganizeBtn = new CustomButton();
 
         BooleanBinding booleanBinding = Bindings.isEmpty(tabPane.getTabs());
         saveFileBtn.disableWhen(booleanBinding);
         saveFileBtn.disableWhen(booleanBinding);
         indentCodeBtn.disableWhen(booleanBinding);
+       // printAsYMLBtn.disableWhen(booleanBinding);
         deleteJavaDocBtn.disableWhen(booleanBinding);
         generateJavaDocBtn.disableWhen(booleanBinding);
         reorganizeBtn.disableWhen(booleanBinding);
@@ -192,12 +195,14 @@ public class TreeViewController implements ControllerConstants {
         saveFileBtn.setOnAction(event -> saveFile());
         generateJavaDocBtn.setOnAction(this::addJavaDoc);
         indentCodeBtn.setOnAction(this::indentCode);
+       // printAsYMLBtn.setOnAction(this::printAsYaml);
         reorganizeBtn.setOnAction(this::reorganizeBtn);
 
         generateJavaDocBtn.setGraphic("fa-comments");
         saveFileBtn.setGraphic("fa-save");
         deleteJavaDocBtn.setGraphic("fa-remove");
         indentCodeBtn.setGraphic("fa-indent");
+        //printAsYMLBtn.setGraphic("fa-indent");
         reorganizeBtn.setGraphic("fa-sitemap");
 
         deleteJavaDocBtn.setTooltip("Delete javadoc");
@@ -205,9 +210,23 @@ public class TreeViewController implements ControllerConstants {
         deleteJavaDocBtn.setOnAction(this::deleteJavaDoc);
         box.getChildren().addAll(generateJavaDocBtn, deleteJavaDocBtn);
         box.getChildren().addAll(saveFileBtn, indentCodeBtn, reorganizeBtn);
+       // box.getChildren().addAll(printAsYMLBtn  );
 
         VBox vBox = Utils.castTo(root.getTop());
         vBox.getChildren().add(box);
+    }
+
+    private void printAsYaml(ActionEvent actionEvent) {
+        Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            CodeArea content = (CodeArea) selectedItem.getContent();
+            String text = content.getText();
+            try {
+                content.replaceText(CodeUtils.printAsYaml(text));
+            } catch (Exception e) {
+               // showExceptionAlert(e);
+            }
+        }
     }
 
     private void reorganizeBtn(ActionEvent actionEvent) {
@@ -421,7 +440,7 @@ public class TreeViewController implements ControllerConstants {
 
         PropertiesGUI propertiesGUI = new PropertiesGUI();
         try {
-            propertiesGUI.start(  new Stage());
+            propertiesGUI.start(new Stage());
         } catch (IOException e) {
             e.printStackTrace();
         }
