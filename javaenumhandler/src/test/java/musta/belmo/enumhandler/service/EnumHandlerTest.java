@@ -1,8 +1,5 @@
 package musta.belmo.enumhandler.service;
 
-<<<<<<< HEAD
-import com.github.javaparser.ast.CompilationUnit;
-=======
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
@@ -11,19 +8,15 @@ import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.LiteralExpr;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
->>>>>>> 563fe9be5a0b6517cae36798ba5b0c1aec8ca239
-import musta.belmo.enumhandler.beans.EnumDescriber;
 import musta.belmo.enumhandler.beans.EnumAttribute;
+import musta.belmo.enumhandler.beans.EnumDescriber;
 import musta.belmo.enumhandler.beans.EnumValueHolder;
 import org.junit.Test;
 
-<<<<<<< HEAD
-=======
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
->>>>>>> 563fe9be5a0b6517cae36798ba5b0c1aec8ca239
 public class EnumHandlerTest {
 
     @Test
@@ -40,8 +33,7 @@ public class EnumHandlerTest {
         System.out.println(anEnum);
     }
 
-<<<<<<< HEAD
-=======
+
     @Test
     public void testReadEnum() throws Exception {
         CompilationUnit compilationUnit = JavaParser.parse(new File("D:\\platformsg2_R_64\\workspace\\movalnsa_2_1_DEFAUT\\movalnsa-metier\\src\\main\\java\\fr\\msa\\agora\\movalnsa\\constante\\TypeRevenu.java"));
@@ -63,5 +55,5 @@ public class EnumHandlerTest {
         System.out.println(compilationUnit);
     }
 
->>>>>>> 563fe9be5a0b6517cae36798ba5b0c1aec8ca239
+
 }
