@@ -1,9 +1,9 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.javacodegenerator.gui.beans;
 
 public class PropertiesHolder {
 
-    public Object key;
-    public Object value;
+    private Object key;
+    private Object value;
 
     public PropertiesHolder(Object key, Object value) {
         this.key = key;

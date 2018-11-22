@@ -1,14 +1,15 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.javacodegenerator.gui.controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import musta.belmo.javacodecore.gui.table.MustaTableColumn;
+import musta.belmo.javacodegenerator.gui.CustomButton;
+import musta.belmo.javacodegenerator.gui.beans.PropertiesHolder;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

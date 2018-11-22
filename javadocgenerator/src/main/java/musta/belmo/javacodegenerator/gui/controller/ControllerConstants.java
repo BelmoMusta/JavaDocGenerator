@@ -1,4 +1,4 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.javacodegenerator.gui.controller;
 
 import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCombination;

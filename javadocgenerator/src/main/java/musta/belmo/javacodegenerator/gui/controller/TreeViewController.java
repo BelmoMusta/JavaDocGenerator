@@ -1,4 +1,4 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.javacodegenerator.gui.controller;
 
 import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
 import javafx.beans.binding.Bindings;
@@ -21,16 +21,18 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import musta.belmo.javacodecore.Utils;
+import musta.belmo.javacodegenerator.gui.CustomButton;
+import musta.belmo.javacodegenerator.gui.MenuAction;
+import musta.belmo.javacodegenerator.gui.MenuItemWithIcon;
+import musta.belmo.javacodegenerator.gui.PropertiesGUI;
 import musta.belmo.javacodegenerator.service.CodeUtils;
-import musta.belmo.javacodegenerator.service.CompilationException;
+import musta.belmo.javacodegenerator.service.exception.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
-import org.kordamp.ikonli.fontawesome.FontAwesome;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
 import java.io.IOException;
