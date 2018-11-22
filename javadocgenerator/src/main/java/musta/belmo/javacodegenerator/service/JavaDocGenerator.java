@@ -658,9 +658,17 @@ public class JavaDocGenerator implements GeneratorConstantes {
         List<ClassOrInterfaceDeclaration> classContained = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
 
         classContained.stream().forEach(cls -> {
+            ClassOrInterfaceDeclaration classOrInterfaceDeclaration;
 
-            ClassOrInterfaceDeclaration classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
+            if (cls.isInterface()) {
+                classOrInterfaceDeclaration = retCompilationUnit.addInterface(cls.getName().asString());
+            }
+
+            else {
+                classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
+            }
             classOrInterfaceDeclaration.setModifiers(cls.getModifiers());
+            classOrInterfaceDeclaration.setJavadocComment(cls.getJavadoc().orElse(null));
             List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class);
             publicStaticFields.sort(CodeUtils.getFieldComparator());
 
