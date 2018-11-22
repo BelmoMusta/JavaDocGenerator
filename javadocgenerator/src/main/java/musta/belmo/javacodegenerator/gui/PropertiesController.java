@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import musta.belmo.javacodecore.gui.table.MustaTableColumn;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,7 @@ public class PropertiesController {
 
     @FXML
     public void initialize() throws Exception {
-        CustomButton customButton = new CustomButton("Save","fa-save");
+        CustomButton customButton = new CustomButton("Save", "fa-save");
         btnGroup.getChildren().add(customButton);
         ObservableList<MustaTableColumn> columns = tableView.getColumns();
         columns.clear();
@@ -28,12 +30,11 @@ public class PropertiesController {
 
         keyColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(0.3));
         valueColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(0.7));
-        columns.addAll(keyColumn,valueColumn);
+        columns.addAll(keyColumn, valueColumn);
 
         JavaDocGenerator javaDocGenerator = new JavaDocGenerator();
-        String propertiesPath = javaDocGenerator.getPropertiesPath();
+        String propertiesPath = URLDecoder.decode(javaDocGenerator.getPropertiesPath(), "UTF-8");
         java.io.File file = new java.io.File(propertiesPath);
-
         Properties properties = new Properties();
         properties.load(file.toURI().toURL().openStream());
         List<PropertiesHolder> listFromHolder = getListFromHolder(properties);
