@@ -45,3 +45,6 @@
 23:20:06.229 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
 23:20:06.513 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
 23:20:07.218 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
+23:21:16.435 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - start 
+23:21:16.753 [JavaFX Application Thread] DEBUG m.b.j.service.JavaDocGenerator - Method : loadProperties with values null
+23:21:17.448 [JavaFX Application Thread] INFO  m.b.j.g.a.AbstractJavaFXApplication - root set 
