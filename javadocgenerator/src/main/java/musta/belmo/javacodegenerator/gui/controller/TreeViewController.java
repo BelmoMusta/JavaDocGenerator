@@ -181,14 +181,14 @@ public class TreeViewController implements ControllerConstants {
         CustomButton deleteJavaDocBtn = new CustomButton();
         CustomButton saveFileBtn = new CustomButton();
         CustomButton indentCodeBtn = new CustomButton();
-       // CustomButton printAsYMLBtn = new CustomButton();
+        // CustomButton printAsYMLBtn = new CustomButton();
         CustomButton reorganizeBtn = new CustomButton();
 
         BooleanBinding booleanBinding = Bindings.isEmpty(tabPane.getTabs());
         saveFileBtn.disableWhen(booleanBinding);
         saveFileBtn.disableWhen(booleanBinding);
         indentCodeBtn.disableWhen(booleanBinding);
-       // printAsYMLBtn.disableWhen(booleanBinding);
+        // printAsYMLBtn.disableWhen(booleanBinding);
         deleteJavaDocBtn.disableWhen(booleanBinding);
         generateJavaDocBtn.disableWhen(booleanBinding);
         reorganizeBtn.disableWhen(booleanBinding);
@@ -197,7 +197,7 @@ public class TreeViewController implements ControllerConstants {
         saveFileBtn.setOnAction(event -> saveFile());
         generateJavaDocBtn.setOnAction(this::addJavaDoc);
         indentCodeBtn.setOnAction(this::indentCode);
-       // printAsYMLBtn.setOnAction(this::printAsYaml);
+        // printAsYMLBtn.setOnAction(this::printAsYaml);
         reorganizeBtn.setOnAction(this::reorganizeBtn);
 
         generateJavaDocBtn.setGraphic("fa-comments");
@@ -212,7 +212,7 @@ public class TreeViewController implements ControllerConstants {
         deleteJavaDocBtn.setOnAction(this::deleteJavaDoc);
         box.getChildren().addAll(generateJavaDocBtn, deleteJavaDocBtn);
         box.getChildren().addAll(saveFileBtn, indentCodeBtn, reorganizeBtn);
-       // box.getChildren().addAll(printAsYMLBtn  );
+        // box.getChildren().addAll(printAsYMLBtn  );
 
         VBox vBox = Utils.castTo(root.getTop());
         vBox.getChildren().add(box);
@@ -226,7 +226,7 @@ public class TreeViewController implements ControllerConstants {
             try {
                 content.replaceText(CodeUtils.printAsYaml(text));
             } catch (Exception e) {
-               // showExceptionAlert(e);
+                // showExceptionAlert(e);
             }
         }
     }
@@ -276,19 +276,24 @@ public class TreeViewController implements ControllerConstants {
         MenuItem addJavadoc = new MenuItemWithIcon("Add Javadoc", "fa-comments");
         MenuItem deleteJavadoc = new MenuItemWithIcon("Remove Javadoc", "fa-remove");
         MenuItem indentCode = new MenuItemWithIcon("Indent Code", "fa-indent");
+        MenuItem reorganizeCode = new MenuItemWithIcon("Reorganize code", "fa-sitemap");
         setupMenuItemAction(addJavadoc, MenuAction.ADD_JAVADOC);
         setupMenuItemAction(deleteJavadoc, MenuAction.DELETE_JAVADOC);
         setupMenuItemAction(indentCode, MenuAction.INDENT_CODE);
+        setupMenuItemAction(reorganizeCode, MenuAction.REORGANIZE_CODE);
         addJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         deleteJavadoc.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         indentCode.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
+        reorganizeCode.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         indentCode.setAccelerator(CTRL_I);
         addJavadoc.setAccelerator(CTRL_J);
+        reorganizeCode.setAccelerator(CTRL_R);
         deleteJavadoc.setAccelerator(CTRL_SHIFT_J);
 
         menu.getItems().add(addJavadoc);
         menu.getItems().add(deleteJavadoc);
         menu.getItems().add(indentCode);
+        menu.getItems().add(reorganizeCode);
         menu.getItems().add(new SeparatorMenuItem());
         menuBar.getMenus().add(menu);
     }
@@ -381,6 +386,9 @@ public class TreeViewController implements ControllerConstants {
                     break;
                 case INDENT_CODE:
                     indentCode(null);
+                    break;
+                case REORGANIZE_CODE:
+                    reorganizeBtn(null);
                     break;
             }
         });

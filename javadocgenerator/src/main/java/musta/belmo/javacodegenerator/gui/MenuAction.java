@@ -10,6 +10,6 @@ public enum MenuAction {
     SAVE_ALL_FILES,
     ADD_JAVADOC,
     DELETE_JAVADOC,
-    INDENT_CODE,
+    INDENT_CODE, REORGANIZE_CODE,
 
 }
