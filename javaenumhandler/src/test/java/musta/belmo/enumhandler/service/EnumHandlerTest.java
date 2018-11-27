@@ -14,7 +14,7 @@ public class EnumHandlerTest {
         EnumDescriber enumDescriber = new EnumDescriber("RcoEnum");
         enumDescriber.addElement("RCO", new EnumValueHolder("002", EnumAttribute.STRING));
         enumDescriber.addElement("RCB", new EnumValueHolder("003", EnumAttribute.STRING));
-        enumDescriber.addElement("RCA", new EnumValueHolder("004", EnumAttribute.STRING),new EnumValueHolder("004", EnumAttribute.STRING));
+        enumDescriber.addElement("RCA", new EnumValueHolder("004", EnumAttribute.STRING));
 
         EnumHandler enumHandler = new EnumHandler();
         CompilationUnit anEnum = enumHandler.createEnum(enumDescriber);
