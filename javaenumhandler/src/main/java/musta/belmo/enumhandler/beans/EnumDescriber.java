@@ -29,13 +29,13 @@ public class EnumDescriber {
         return map.put(key, enumValueHolder);
     }
 
-    public void addElement(String key, EnumValueHolder ... enumValueHolder) {
+    public void addElement(String key, EnumValueHolder enumValueHolder) {
         List<EnumValueHolder> enumValueHolders = map.get(key);
         if (enumValueHolders == null) {
             enumValueHolders = new ArrayList<>();
             map.put(key, enumValueHolders);
         }
-        enumValueHolders.addAll(Arrays.asList(enumValueHolder));
+        enumValueHolders.add(enumValueHolder);
     }
 
     public List<EnumValueHolder> get(Object key) {

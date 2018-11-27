@@ -1,9 +1,9 @@
 package musta.belmo.enumhandler.beans;
 
 public class EnumAttribute {
-    public static final EnumAttribute STRING = new EnumAttribute("value", "String");
-    public static final EnumAttribute BOOLEAN = new EnumAttribute("value", "boolean");
-    public static final EnumAttribute NUMBER = new EnumAttribute("value", "int");
+    public static final EnumAttribute STRING = new EnumAttribute(null, "String");
+    public static final EnumAttribute BOOLEAN = new EnumAttribute(null, "boolean");
+    public static final EnumAttribute NUMBER = new EnumAttribute(null, "int");
 
     private String name;
     private String concreteType;
@@ -12,7 +12,6 @@ public class EnumAttribute {
         this.concreteType = concreteType;
         this.name = name;
     }
-
     public String getConcreteType() {
         return concreteType;
     }
@@ -20,6 +19,7 @@ public class EnumAttribute {
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;

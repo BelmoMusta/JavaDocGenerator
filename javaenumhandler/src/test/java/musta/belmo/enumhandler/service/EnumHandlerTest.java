@@ -20,4 +20,16 @@ public class EnumHandlerTest {
         CompilationUnit anEnum = enumHandler.createEnum(enumDescriber);
         System.out.println(anEnum);
     }
+    @Test
+    public void testGenerateEnumCase2() throws Exception {
+
+        EnumDescriber enumDescriber = new EnumDescriber("MyEnum");
+        enumDescriber.addElement("RCO", new EnumValueHolder("002", new EnumAttribute("value","String")));
+        enumDescriber.addElement("RCO", new EnumValueHolder("true", new EnumAttribute("tracked","boolean")));
+
+
+        EnumHandler enumHandler = new EnumHandler();
+        CompilationUnit anEnum = enumHandler.createEnum(enumDescriber);
+        System.out.println(anEnum);
+    }
 }

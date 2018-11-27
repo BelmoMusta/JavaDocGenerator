@@ -45,29 +45,42 @@ public class EnumHandler {
             enumDeclaration.addEntry(declaration);
         });
 
+
         List<EnumAttribute> enumAttributes = enumDescriber.getEnumAttributes();
+        int i = 0;
+        for (EnumAttribute enumAttribute : enumAttributes) {
+            if (enumAttribute.getName() == null) {
+                enumAttribute.setName(String.format("pArg%d", i++));
+            }
+        }
+        for (EnumAttribute enumAttribute : enumAttributes) {
+            enumDeclaration.addField(enumAttribute.getConcreteType(), enumAttribute.getName(),
+                    Modifier.PRIVATE);
+        }
 
         ConstructorDeclaration constructorDeclaration = enumDeclaration.addConstructor();
         constructorDeclaration.setName(enumDescriber.getName());
 
+
         for (EnumAttribute enumAttribute : enumAttributes) {
             constructorDeclaration.addParameter(enumAttribute.getConcreteType(), enumAttribute.getName());
-            enumDeclaration.addField(enumAttribute.getConcreteType(), enumAttribute.getName(),
-                    Modifier.PRIVATE);
-
             Expression intialization = new ThisExpr();
             Expression fs = new FieldAccessExpr(intialization, enumAttribute.getName());
             Expression assign = new AssignExpr(fs, new NameExpr(enumAttribute.getName()),
                     AssignExpr.Operator.ASSIGN);
 
-            BlockStmt blockStmt = new BlockStmt();
+            BlockStmt blockStmt;
+            blockStmt = constructorDeclaration.getBody();
             blockStmt.addStatement(assign);
-            constructorDeclaration.setBody(blockStmt);
+            // constructorDeclaration.setBody(blockStmt);
+        }
+        for (EnumAttribute enumAttribute : enumAttributes) {
             MethodDeclaration getter = createGetter(enumAttribute);
             enumDeclaration.addMember(getter);
         }
         return compilationUnit;
     }
+
 
     public MethodDeclaration createGetter(EnumAttribute attribute) {
 
