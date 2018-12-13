@@ -1,7 +1,5 @@
 package musta.belmo.javacodegenerator.service;
 
-import com.github.javaparser.JavaParser;
-import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
@@ -14,22 +12,20 @@ import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
+import musta.belmo.javacodecore.Utils;
+import musta.belmo.javacodecore.ZipUtils;
 import musta.belmo.javacodecore.logger.Level;
 import musta.belmo.javacodecore.logger.MustaLogger;
 import musta.belmo.javacodegenerator.FormattedJavadocBlockTag;
-import musta.belmo.javacodecore.Utils;
-import musta.belmo.javacodecore.ZipUtils;
 import musta.belmo.javacodegenerator.service.exception.CompilationException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -39,79 +35,41 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 1.0.0.SNAPSHOT
  */
-public class JavaDocGenerator implements GeneratorConstantes {
+public class JavaDocGenerator extends AbstractCodeService {
 
     /**
-     * L'attribut {@link #propertiesPath}.
+     * Classe pour l'initialisation à la demande de la classe {@link JavaDocGenerator}.
      */
-    private String propertiesPath;
+    private static class JavaDocGeneratorHolder {
+        /**
+         * L'unique instance de la classe {@link JavaDocGenerator}.
+         */
+        static final JavaDocGenerator INSTANCE = new JavaDocGenerator();
+        /**
+         * Constructeur par défaut de la classe {@link JavaDocGeneratorHolder}.
+         */
+        private JavaDocGeneratorHolder() {
+            // Constructeur par défaut
+        }
+    }
 
-    /**
-     * L'attribut {@link #properties}.
-     */
-    private Properties properties;
+    private JavaDocDeleter deleter;
 
-    /**
-     * L'attribut {@link #logger}.
-     */
-    private final MustaLogger logger;
 
     /**
      * Constructeur de la classe JavaDocGenerator
      */
-    public JavaDocGenerator() {
+    private JavaDocGenerator() {
+        deleter = new JavaDocDeleter();
         logger = new MustaLogger(getClass());
         loadProperties(null);
         // Constructeur par défaut
     }
 
-    /**
-     * Read from properties
-     *
-     * @param key @link String}
-     * @return String
-     */
-    private String readFromProperties(String key) {
-        logger.logCurrentMethod(Level.DEBUG, key);
-        return properties.getProperty(key);
+    public static JavaDocGenerator getInstance() {
+        return JavaDocGeneratorHolder.INSTANCE;
     }
 
-    /**
-     * Load properties
-     *
-     * @param propertiesPath @link String}
-     */
-    public void loadProperties(String propertiesPath) {
-        logger.logCurrentMethod(Level.DEBUG, propertiesPath);
-        URL resource = null;
-        if (propertiesPath == null) {
-            resource = JavaDocGenerator.class.getClassLoader().getResource(APPLICATION_PROPERTIES);
-        } else {
-            File file = new File(propertiesPath);
-            try {
-                resource = file.toURI().toURL();
-            } catch (MalformedURLException e) {
-                logger.error(propertiesPath, e);
-            }
-            if (resource == null) {
-                resource = JavaDocGenerator.class.getClassLoader().getResource(APPLICATION_PROPERTIES);
-            }
-        }
-        if (resource != null) {
-            properties = new Properties();
-            try {
-                InputStream resourceAsStream = resource.openStream();
-                properties.load(resourceAsStream);
-            } catch (IOException e) {
-                logger.error("readFromProperties", e);
-            }
-        }
-        this.propertiesPath = propertiesPath;
-        if (resource != null) {
-            this.propertiesPath = resource.getPath();
-        }
-
-    }
 
     /**
      * Generate java doc for all classes
@@ -122,30 +80,20 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param deleteOldJavadoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDocForAllClasses(File directory,
-                                             File dest,
-                                             boolean toZip,
-                                             boolean deleteOldJavadoc) throws IOException, CompilationException {
+    public void generateJavaDocForAllClasses(File directory, File dest, boolean toZip, boolean deleteOldJavadoc) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, dest);
         logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
         File destinationZip = new File(dest.getAbsolutePath());
         if (directory.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION},
-                    true);
+            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
-                generateJavaDoc(file.getAbsolutePath(),
-                        dest.getAbsolutePath(),
-                        deleteOldJavadoc);
+                generateJavaDoc(file.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
             }
         } else {
-            generateJavaDoc(directory.getAbsolutePath(),
-                    dest.getAbsolutePath(),
-                    deleteOldJavadoc);
+            generateJavaDoc(directory.getAbsolutePath(), dest.getAbsolutePath(), deleteOldJavadoc);
         }
         if (toZip) {
-            ZipUtils.zip(destinationZip,
-                    new File(destinationZip.getParent(),
-                            destinationZip.getName().concat(".zip")));
+            ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
             logger.info("file add to zip file {}", destinationZip.getAbsolutePath());
         }
         logger.info("generateJavaDocForAllClasses : done");
@@ -168,10 +116,8 @@ public class JavaDocGenerator implements GeneratorConstantes {
         } else {
             generateJavaDocInPlace(directory.getAbsolutePath(), false);
         }
-
         logger.info("generateJavaDocForAllClasses : done");
     }
-
 
     /**
      * Generate java doc as string
@@ -183,7 +129,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
      */
     public String generateJavaDocAsString(CompilationUnit compilationUnit, boolean deleteOldJavaDoc) throws IOException {
         if (deleteOldJavaDoc) {
-            deleteOldJavaDoc(compilationUnit);
+            deleter.deleteOldJavaDoc(compilationUnit);
             logger.info("deleted javadoc for  source code {}", compilationUnit.toString());
         }
         compilationUnit.findAll(TypeDeclaration.class).forEach(this::generateJavaDocForTypeDeclaration);
@@ -219,7 +165,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param deleteOldJavaDoc boolean
      * @throws IOException Exception levée si erreur.
      */
-    public void generateJavaDoc(String srcPath, String destinationFile, boolean deleteOldJavaDoc) throws IOException, CompilationException {
+    private void generateJavaDoc(String srcPath, String destinationFile, boolean deleteOldJavaDoc) throws IOException, CompilationException {
         File srcFile = new File(srcPath);
         CompilationUnit compilationUnit = getCompilationUnit(srcFile);
         String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
@@ -228,14 +174,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
         logger.info("generated javadoc for  file {}", srcPath);
     }
 
-    public void generateJavaDocInPlace(String srcPath, boolean deleteOldJavaDoc) throws IOException, CompilationException {
-        File srcFile = new File(srcPath);
-        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
-        String javaDocAsString = generateJavaDocAsString(compilationUnit.toString(), deleteOldJavaDoc);
-        FileUtils.write(srcFile, javaDocAsString, UTF_8);
-        logger.info("generated javadoc for  file {}", srcPath);
+    private void generateJavaDocInPlace(String srcPath, boolean deleteOldJavaDoc) throws IOException, CompilationException {
+        generateJavaDoc(srcPath, srcPath, deleteOldJavaDoc);
     }
-
 
     /**
      * Generate java doc as string
@@ -246,8 +187,7 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @throws IOException Exception levée si erreur.
      */
     public String generateJavaDocAsString(String src, boolean deleteOldJavaDoc) throws IOException, CompilationException {
-        final CompilationUnit compilationUnit = getCompilationUnit(src);
-        return generateJavaDocAsString(compilationUnit, deleteOldJavaDoc);
+        return generateJavaDocAsString(getCompilationUnit(src), deleteOldJavaDoc);
     }
 
     /**
@@ -286,25 +226,19 @@ public class JavaDocGenerator implements GeneratorConstantes {
         if (typeDeclaration.hasJavaDocComment()) {
             Optional<Javadoc> optionalJavaDoc = typeDeclaration.getJavadoc();
             optionalJavaDoc.ifPresent(javadoc -> {
-                List<JavadocBlockTag.Type> blockTypes = javadoc.getBlockTags()
-                        .stream().map(JavadocBlockTag::getType)
-                        .collect(Collectors.toList());
-
+                List<JavadocBlockTag.Type> blockTypes = javadoc.getBlockTags().stream()
+                        .map(JavadocBlockTag::getType).collect(Collectors.toList());
                 if (!blockTypes.contains(JavadocBlockTag.Type.SINCE)) {
-                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc,
-                            readFromProperties(SINCE_VERSION));
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc, readFromProperties(SINCE_VERSION));
                 }
                 if (!blockTypes.contains(JavadocBlockTag.Type.AUTHOR)) {
-                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc,
-                            readFromProperties(AUTHOR));
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc, readFromProperties(AUTHOR));
                 }
                 if (!blockTypes.contains(JavadocBlockTag.Type.VERSION)) {
-                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc,
-                            readFromProperties(VERSION));
+                    addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, readFromProperties(VERSION));
                 }
                 typeDeclaration.setJavadocComment(javadoc);
             });
-
         } else {
             JavadocDescription javadocDescription = new JavadocDescription();
             Javadoc javadoc = new Javadoc(javadocDescription);
@@ -338,7 +272,6 @@ public class JavaDocGenerator implements GeneratorConstantes {
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
         String methodReturnType = methodDeclaration.getType().asString();
         NodeList<Parameter> parameters = methodDeclaration.getParameters();
-
         if (!methodDeclaration.hasJavaDocComment()) {
             if (methodDeclaration.isAnnotationPresent(Override.class)) {
                 javadocDescription.addElement(inheritDocSnippet);
@@ -396,12 +329,10 @@ public class JavaDocGenerator implements GeneratorConstantes {
             if (methodDeclaration.getJavadoc().isPresent()) {
                 oldJavaDoc = methodDeclaration.getJavadoc().get();
             }
-            List<String> paramTypes = oldJavaDoc.getBlockTags().stream().filter(block -> block.getType()
-                    .equals(JavadocBlockTag.Type.PARAM)).
-                    filter(block -> block.getName().isPresent())
-                    .map(block -> block.getName().get())
-                    .collect(Collectors.toList());
-
+            List<String> paramTypes = oldJavaDoc.getBlockTags().stream().filter(block ->
+                    block.getType().equals(JavadocBlockTag.Type.PARAM)).filter(block ->
+                    block.getName().isPresent()).map(block ->
+                    block.getName().get()).collect(Collectors.toList());
             for (Parameter parameter : parameters) {
                 if (!paramTypes.contains(parameter.getNameAsString())) {
                     if (parameter.getType().isPrimitiveType()) {
@@ -409,7 +340,8 @@ public class JavaDocGenerator implements GeneratorConstantes {
                     }
                     if (isSetter) {
                         oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                                String.format(readFromProperties(SETTER_COMMENT), parameter.getName().asString(),
+                                String.format(readFromProperties(SETTER_COMMENT),
+                                        parameter.getName().asString(),
                                         Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
                     } else {
                         JavadocBlockTag blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
@@ -420,62 +352,10 @@ public class JavaDocGenerator implements GeneratorConstantes {
                 }
             }
             addExceptionsToJavaDoc(methodDeclaration.getThrownExceptions(), oldJavaDoc);
-            addReturnTagToJavadoc(methodDeclaration,
-                    methodName,
-                    isGetter, isIs,
-                    methodReturnType,
-                    oldJavaDoc);
-
+            addReturnTagToJavadoc(methodDeclaration, methodName, isGetter, isIs,
+                    methodReturnType, oldJavaDoc);
             methodDeclaration.setJavadocComment(oldJavaDoc);
         }
-    }
-
-
-    public void deleteJavaDocForAllClasses(File directory) throws IOException, CompilationException {
-        logger.logCurrentMethod(Level.DEBUG, directory, directory);
-        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
-        if (directory.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
-            for (File file : files) {
-                deleteJavaDocInPlace(file.getAbsolutePath());
-            }
-        } else {
-            deleteJavaDocInPlace(directory.getAbsolutePath());
-        }
-
-        logger.info("generateJavaDocForAllClasses : done");
-    }
-
-    /**
-     * Delete old java doc
-     *
-     * @param compilationUnit @link CompilationUnit}
-     */
-    private void deleteOldJavaDoc(CompilationUnit compilationUnit) {
-        compilationUnit.findAll(TypeDeclaration.class).forEach(TypeDeclaration::removeJavaDocComment);
-        compilationUnit.findAll(ConstructorDeclaration.class).forEach(ConstructorDeclaration::removeJavaDocComment);
-        compilationUnit.findAll(FieldDeclaration.class).forEach(FieldDeclaration::removeJavaDocComment);
-        compilationUnit.findAll(MethodDeclaration.class).forEach(MethodDeclaration::removeJavaDocComment);
-    }
-
-    public void deleteJavaDocInPlace(String srcPath) throws IOException, CompilationException {
-        File srcFile = new File(srcPath);
-        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
-        String javaDocAsString = deleteJavaDoc(compilationUnit.toString());
-        FileUtils.write(srcFile, javaDocAsString, UTF_8);
-        logger.info("generated javadoc for  file {}", srcPath);
-    }
-
-    /**
-     * Delete java doc
-     *
-     * @param src @link String}
-     * @return String
-     */
-    public String deleteJavaDoc(String src) throws CompilationException {
-        CompilationUnit compilationUnit = getCompilationUnit(src);
-        deleteOldJavaDoc(compilationUnit);
-        return compilationUnit.toString();
     }
 
     /**
@@ -492,57 +372,17 @@ public class JavaDocGenerator implements GeneratorConstantes {
     }
 
     /**
-     * @param destinationFile @link String}
-     * @param srcFile         @link File}
-     * @param compilationUnit @link CompilationUnit}
-     * @return File
-     */
-    private File getDestination(String destinationFile,
-                                File srcFile,
-                                CompilationUnit compilationUnit) {
-        return compilationUnit.getPackageDeclaration()
-                .map(packageDeclaration -> new File(destinationFile,
-                        Utils.convertPackageDeclarationToPath(packageDeclaration.getName()
-                                .asString()) + File.separator + srcFile.getName()))
-                .orElseGet(() ->
-                        new File(destinationFile));
-    }
-
-
-    private CompilationUnit getCompilationUnit(File srcFile) throws FileNotFoundException, CompilationException {
-        CompilationUnit compilationUnit;
-        try {
-            compilationUnit = JavaParser.parse(srcFile);
-        } catch (ParseProblemException parseProleme) {
-            throw new CompilationException(parseProleme);
-        }
-        return compilationUnit;
-    }
-
-    private CompilationUnit getCompilationUnit(String src) throws CompilationException {
-        CompilationUnit compilationUnit;
-        try {
-            compilationUnit = JavaParser.parse(src);
-        } catch (ParseProblemException parseException) {
-            throw new CompilationException(parseException);
-        }
-        return compilationUnit;
-    }
-
-    /**
      * @param constructParams
      * @param javadoc
      */
     private void addParamsToJavaDoc(NodeList<Parameter> constructParams, Javadoc javadoc) {
         for (Parameter parameter : constructParams) {
             FormattedJavadocBlockTag javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                    String.format("%s{@link %s}",
-                            parameter.getName().asString(),
+                    String.format("%s{@link %s}", parameter.getName().asString(),
                             parameter.getType().asString()));
             javadoc.addBlockTag(javadocBlockTag);
         }
     }
-
 
     /**
      * Add exceptions to java doc
@@ -551,19 +391,15 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param javadoc          {@link Javadoc}
      */
     private void addExceptionsToJavaDoc(NodeList<ReferenceType> thrownExceptions, Javadoc javadoc) {
-
         for (ReferenceType thrownException : thrownExceptions) {
-            boolean throwsExist = javadoc.getBlockTags().stream()
-                    .anyMatch(block -> block.getType().equals(JavadocBlockTag.Type.THROWS) &&
-                            block.getContent().getElements()
-                                    .get(0)
-                                    .toText()
-                                    .startsWith(thrownException.toString()));
+            boolean throwsExist = javadoc.getBlockTags().stream().anyMatch(block ->
+                    block.getType().equals(JavadocBlockTag.Type.THROWS)
+                            && block.getContent().getElements().get(0).toText()
+                            .startsWith(thrownException.toString()));
             if (!throwsExist) {
-                FormattedJavadocBlockTag javadocBlockTag =
-                        new FormattedJavadocBlockTag(JavadocBlockTag.Type.THROWS,
-                                String.format(readFromProperties(EXCEPTION_COMMENT),
-                                        thrownException.asReferenceType()));
+                FormattedJavadocBlockTag javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.THROWS,
+                        String.format(readFromProperties(EXCEPTION_COMMENT),
+                                thrownException.asReferenceType()));
                 javadoc.addBlockTag(javadocBlockTag);
             }
         }
@@ -575,6 +411,15 @@ public class JavaDocGenerator implements GeneratorConstantes {
      * @param fieldDeclaration @link FieldDeclaration}
      */
     private void generateFieldJavaDoc(FieldDeclaration fieldDeclaration) {
+        generateFieldJavaDoc(fieldDeclaration, readFromProperties(CONSTANT_COMMENT));
+    }
+
+    /**
+     * Generate field java doc
+     *
+     * @param fieldDeclaration @link FieldDeclaration}
+     */
+    public void generateFieldJavaDoc(FieldDeclaration fieldDeclaration, String text) {
         if (fieldDeclaration.getVariables().isNonEmpty()) {
             JavadocDescription javadocDescription = new JavadocDescription();
             Javadoc javadoc = new Javadoc(javadocDescription);
@@ -586,8 +431,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
             Type type = variable.getType();
             String valueText;
             Object assignedValue;
-            if (fieldDeclaration.isStatic() && fieldDeclaration.isFinal() && variable.getInitializer().isPresent()) {
-                javaDocText = readFromProperties(CONSTANT_COMMENT);
+            if (fieldDeclaration.isStatic() && fieldDeclaration.isFinal()
+                    && variable.getInitializer().isPresent()) {
+                javaDocText = text;
                 String typeText = SINGLE_STRING_FORMAT;
                 if (!type.isPrimitiveType()) {
                     typeText = readFromProperties(LINK_COMMENT);
@@ -603,7 +449,9 @@ public class JavaDocGenerator implements GeneratorConstantes {
                     }
                     valueText = SINGLE_STRING_FORMAT;
                 }
-                javadocSnippet = new JavadocSnippet(String.format(javaDocText, fieldName, String.format(typeText, type.asString()), String.format(valueText, assignedValue)));
+                javadocSnippet = new JavadocSnippet(String.format(javaDocText,
+                        fieldName, String.format(typeText, type.asString()),
+                        String.format(valueText, assignedValue)));
             } else {
                 javaDocText = readFromProperties(FIELD_COMMENT);
                 javadocSnippet = new JavadocSnippet(String.format(javaDocText, fieldName));
@@ -613,9 +461,12 @@ public class JavaDocGenerator implements GeneratorConstantes {
         }
     }
 
-    private void addReturnTagToJavadoc(MethodDeclaration methodDeclaration, String methodName, boolean isGetter, boolean isIs, String methodReturnType, Javadoc oldJavaDoc) {
-        boolean returnExists = oldJavaDoc.getBlockTags().stream()
-                .anyMatch(block -> block.getType().equals(JavadocBlockTag.Type.RETURN));
+    private void addReturnTagToJavadoc(MethodDeclaration methodDeclaration, String methodName,
+                                       boolean isGetter, boolean isIs,
+                                       String methodReturnType,
+                                       Javadoc oldJavaDoc) {
+        boolean returnExists = oldJavaDoc.getBlockTags().stream().anyMatch(block ->
+                block.getType().equals(JavadocBlockTag.Type.RETURN));
         if (!methodDeclaration.getType().isVoidType() && !returnExists) {
             if (isGetter) {
                 oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
@@ -630,73 +481,5 @@ public class JavaDocGenerator implements GeneratorConstantes {
                         methodReturnType));
         }
     }
-
-    /**
-     * @param compilationUnit
-     * @return
-     */
-    public String indentCode(CompilationUnit compilationUnit) throws CompilationException {
-        return indentCode(compilationUnit.toString());
-    }
-
-    /**
-     * @param code
-     * @return
-     */
-    public String indentCode(String code) throws CompilationException {
-        CompilationUnit compilationUnit = getCompilationUnit(code);
-        return compilationUnit.toString();
-    }
-
-    /**
-     * @param code
-     * @return
-     */
-    public String reorganize(String code) throws CompilationException {
-        CompilationUnit compilationUnit = getCompilationUnit(code);
-        CompilationUnit retCompilationUnit = new CompilationUnit();
-        List<ClassOrInterfaceDeclaration> classContained = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
-
-        classContained.stream().forEach(cls -> {
-            ClassOrInterfaceDeclaration classOrInterfaceDeclaration;
-
-            if (cls.isInterface()) {
-                classOrInterfaceDeclaration = retCompilationUnit.addInterface(cls.getName().asString());
-            } else {
-                classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
-            }
-            classOrInterfaceDeclaration.setModifiers(cls.getModifiers());
-            Optional<Javadoc> javadoc = cls.getJavadoc();
-
-            if (javadoc.isPresent()) {
-                classOrInterfaceDeclaration.setJavadocComment(javadoc.get());
-            }
-            List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class);
-            publicStaticFields.sort(CodeUtils.getFieldComparator());
-
-            for (FieldDeclaration fieldDeclaration : publicStaticFields) {
-                FieldDeclaration fieldDec = classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(),
-                        "temp");
-                CodeUtils.cloneFieldDeclaration(fieldDeclaration, fieldDec);
-            }
-// TODO : search for static block first
-
-
-        });
-        return retCompilationUnit.toString();
-    }
-
-    /**
-     * @return Attribut {@link #propertiesPath}
-     */
-    public String getPropertiesPath() {
-        return propertiesPath;
-    }
-
-    /**
-     * @param propertiesPath Valeur à affecter à l'attribut {@link #propertiesPath}
-     */
-    public void setPropertiesPath(String propertiesPath) {
-        this.propertiesPath = propertiesPath;
-    }
 }
+

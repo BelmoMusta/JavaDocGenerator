@@ -26,6 +26,7 @@ import musta.belmo.javacodegenerator.gui.MenuAction;
 import musta.belmo.javacodegenerator.gui.MenuItemWithIcon;
 import musta.belmo.javacodegenerator.gui.PropertiesGUI;
 import musta.belmo.javacodegenerator.service.CodeUtils;
+import musta.belmo.javacodegenerator.service.JavaDocDeleter;
 import musta.belmo.javacodegenerator.service.exception.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.io.FileUtils;
@@ -54,6 +55,11 @@ public class TreeViewController implements ControllerConstants {
      * L'attribut {@link #generator}.
      */
     private JavaDocGenerator generator;
+
+    /**
+     * L'attribut {@link #generator}.
+     */
+    private JavaDocDeleter deleter;
 
     /**
      * L'attribut {@link #root}.
@@ -90,7 +96,8 @@ public class TreeViewController implements ControllerConstants {
     @FXML
     public void initialize() {
         setupTop();
-        generator = new JavaDocGenerator();
+        deleter = JavaDocDeleter.getInstance();
+        generator = JavaDocGenerator.getInstance();
         tree.setVisible(false);
         setupMenuBar();
         setUpIconsBar();
@@ -152,7 +159,7 @@ public class TreeViewController implements ControllerConstants {
         deleteJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
-                generator.deleteJavaDocForAllClasses(folder);
+                deleter.deleteJavaDocForAllClassesInPlace(folder);
                 addFolderToTreeView(treePath);
                 tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
             } catch (IOException e) {
@@ -663,7 +670,7 @@ public class TreeViewController implements ControllerConstants {
             CodeArea content = (CodeArea) selectedItem.getContent();
             String text = content.getText();
             try {
-                content.replaceText(generator.deleteJavaDoc(text));
+                content.replaceText(deleter.deleteJavaDoc(text));
             } catch (CompilationException e) {
                 showExceptionAlert(e);
             }

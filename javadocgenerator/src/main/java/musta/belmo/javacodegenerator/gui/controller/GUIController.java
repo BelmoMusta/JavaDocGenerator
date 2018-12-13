@@ -67,7 +67,7 @@ public class GUIController {
      */
     @FXML
     public void initialize() {
-        mJavaDocGenerator = new JavaDocGenerator();
+        mJavaDocGenerator = JavaDocGenerator.getInstance();
         progressBar.setVisible(false);
     }
 

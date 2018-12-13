@@ -33,7 +33,7 @@ public class PropertiesController {
         valueColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(0.7));
         columns.addAll(keyColumn, valueColumn);
 
-        JavaDocGenerator javaDocGenerator = new JavaDocGenerator();
+        JavaDocGenerator javaDocGenerator =   JavaDocGenerator.getInstance();
         String propertiesPath = URLDecoder.decode(javaDocGenerator.getPropertiesPath(), "UTF-8");
         java.io.File file = new java.io.File(propertiesPath);
         Properties properties = new Properties();
