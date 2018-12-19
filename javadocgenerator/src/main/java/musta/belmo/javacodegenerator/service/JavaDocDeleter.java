@@ -6,7 +6,6 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import musta.belmo.javacodecore.logger.Level;
-import musta.belmo.javacodegenerator.files.FileTransformer;
 import musta.belmo.javacodegenerator.service.exception.CompilationException;
 import org.apache.commons.io.FileUtils;
 
@@ -24,22 +23,19 @@ public class JavaDocDeleter extends AbstractCodeService {
         return JavaDocDeleterHolder.DELETER;
     }
 
-    public void deleteJavaDocForAllClassesInPlace(File directory) throws IOException, CompilationException {
-        deleteJavaDocForAllClasses(directory, directory);
-    }
-
-    public void deleteJavaDocForAllClasses(File directory, File destDirectory) throws IOException, CompilationException {
-        logger.logCurrentMethod(Level.DEBUG, directory);
-        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, destDirectory);
+    public void deleteJavaDocForAllClasses(File directory) throws IOException, CompilationException {
+        logger.logCurrentMethod(Level.DEBUG, directory, directory);
+        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
         if (directory.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
-                deleteJavaDocInPlace(new File(destDirectory, file.getName()));
+                deleteJavaDocInPlace(file.getAbsolutePath());
             }
         } else {
-            deleteJavaDocInPlace(new File(destDirectory, directory.getName()));
+            deleteJavaDocInPlace(directory.getAbsolutePath());
         }
-        logger.info("deleteJavaDocForAllClassesInPlace : done");
+
+        logger.info("deleteJavaDocForAllClasses : done");
     }
 
     /**
@@ -54,27 +50,12 @@ public class JavaDocDeleter extends AbstractCodeService {
         compilationUnit.findAll(MethodDeclaration.class).forEach(MethodDeclaration::removeJavaDocComment);
     }
 
-    public void deleteJavaDoc(final String srcPath, final String destPath) throws IOException, CompilationException {
-        File srcFile = new File(srcPath);
-
-       /* FileTransformer.<IOException> transformInPlace(srcFile, f -> {
-            File destFile = new File(destPath);
-            CompilationUnit compilationUnit = getCompilationUnit(srcFile);
-            String javaDocAsString = deleteJavaDoc(compilationUnit.toString());
-            FileUtils.write(destFile, javaDocAsString, UTF_8);
-            logger.info("deleted javadoc for  file {}", srcPath);
-        });*/
-
-
-    }
-
     public void deleteJavaDocInPlace(String srcPath) throws IOException, CompilationException {
-        deleteJavaDoc(srcPath, srcPath);
-    }
-
-    public void deleteJavaDocInPlace(File srcPath) throws IOException, CompilationException {
-        final String path = srcPath.getAbsolutePath();
-        deleteJavaDoc(path, path);
+        File srcFile = new File(srcPath);
+        CompilationUnit compilationUnit = getCompilationUnit(srcFile);
+        String javaDocAsString = deleteJavaDoc(compilationUnit.toString());
+        FileUtils.write(srcFile, javaDocAsString, UTF_8);
+        logger.info("deleted javadoc for  file {}", srcPath);
     }
 
     /**

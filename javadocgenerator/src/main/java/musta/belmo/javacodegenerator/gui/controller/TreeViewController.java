@@ -159,7 +159,7 @@ public class TreeViewController implements ControllerConstants {
         deleteJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
-                deleter.deleteJavaDocForAllClassesInPlace(folder);
+                deleter.deleteJavaDocForAllClasses(folder);
                 addFolderToTreeView(treePath);
                 tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
             } catch (IOException e) {
