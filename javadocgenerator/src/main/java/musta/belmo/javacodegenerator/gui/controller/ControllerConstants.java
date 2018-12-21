@@ -63,6 +63,7 @@ public interface ControllerConstants {
      */
     Pattern PATTERN = Pattern.compile("(?<KEYWORD>" + KEYWORD_PATTERN + ")" + "|(?<PAREN>" + PAREN_PATTERN + ")" + "|(?<BRACE>" + BRACE_PATTERN + ")" + "|(?<BRACKET>" + BRACKET_PATTERN + ")" + "|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")" + "|(?<STRING>" + STRING_PATTERN + ")" + "|(?<COMMENT>" + COMMENT_PATTERN + ")");
 
+    String FA_SAVE = "fa-save";
 
     KeyCombination CTRL_I = ctrl("I");
     KeyCombination CTRL_J = ctrl("J");

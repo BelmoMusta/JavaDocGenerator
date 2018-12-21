@@ -6,6 +6,7 @@ import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.comments.LineComment;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.SimpleName;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.javadoc.Javadoc;
@@ -37,6 +38,9 @@ import java.util.stream.Collectors;
  */
 public class JavaDocGenerator extends AbstractCodeService {
 
+    private static final String ALL_CLASSES_DOC = "generateJavaDocForAllClasses : directory {}\n destination {}";
+    private static final String GENERATION_DONE = "generateJavaDocForAllClasses : done";
+
     /**
      * Classe pour l'initialisation à la demande de la classe {@link JavaDocGenerator}.
      */
@@ -45,6 +49,7 @@ public class JavaDocGenerator extends AbstractCodeService {
          * L'unique instance de la classe {@link JavaDocGenerator}.
          */
         static final JavaDocGenerator INSTANCE = new JavaDocGenerator();
+
         /**
          * Constructeur par défaut de la classe {@link JavaDocGeneratorHolder}.
          */
@@ -82,7 +87,7 @@ public class JavaDocGenerator extends AbstractCodeService {
      */
     public void generateJavaDocForAllClasses(File directory, File dest, boolean toZip, boolean deleteOldJavadoc) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, dest);
-        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
+        logger.info(ALL_CLASSES_DOC, directory, dest);
         File destinationZip = new File(dest.getAbsolutePath());
         if (directory.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
@@ -96,7 +101,7 @@ public class JavaDocGenerator extends AbstractCodeService {
             ZipUtils.zip(destinationZip, new File(destinationZip.getParent(), destinationZip.getName().concat(".zip")));
             logger.info("file add to zip file {}", destinationZip.getAbsolutePath());
         }
-        logger.info("generateJavaDocForAllClasses : done");
+        logger.info(GENERATION_DONE);
     }
 
     /**
@@ -107,7 +112,7 @@ public class JavaDocGenerator extends AbstractCodeService {
      */
     public void generateJavaDocForAllClasses(File directory) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, directory);
-        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, directory);
+        logger.info(ALL_CLASSES_DOC, directory, directory);
         if (directory.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
@@ -116,7 +121,7 @@ public class JavaDocGenerator extends AbstractCodeService {
         } else {
             generateJavaDocInPlace(directory.getAbsolutePath(), false);
         }
-        logger.info("generateJavaDocForAllClasses : done");
+        logger.info(GENERATION_DONE);
     }
 
     /**
@@ -150,11 +155,11 @@ public class JavaDocGenerator extends AbstractCodeService {
      * @throws IOException Exception levée si erreur.
      */
     public void generateJavaDocForAllClasses(String directory, String dest, boolean toZip, boolean deleteOldJavadoc) throws IOException, CompilationException {
-        logger.info("generateJavaDocForAllClasses : directory {}\n destination {}", directory, dest);
+        logger.info(ALL_CLASSES_DOC, directory, dest);
         File dir = new File(directory);
         File destinationZip = new File(dest);
         generateJavaDocForAllClasses(dir, destinationZip, toZip, deleteOldJavadoc);
-        logger.info("generateJavaDocForAllClasses : done");
+        logger.info(GENERATION_DONE);
     }
 
     /**
@@ -200,9 +205,12 @@ public class JavaDocGenerator extends AbstractCodeService {
         Javadoc javadoc = new Javadoc(javadocDescription);
         NodeList<Parameter> constructParams = constructorDeclaration.getParameters();
         String leadingComment;
-        if (constructParams.isEmpty() && (constructorDeclaration.getBody().getStatements().isEmpty())) {
+        BlockStmt body = constructorDeclaration.getBody();
+
+        if (constructParams.isEmpty() && body.getOrphanComments().isEmpty()
+                && body.getStatements().isEmpty()) {
             leadingComment = readFromProperties(DEFAULT_CONSTR_COMMENT);
-            constructorDeclaration.getBody().addOrphanComment(new LineComment(leadingComment));
+            body.addOrphanComment(new LineComment(leadingComment));
         } else {
             leadingComment = String.format(readFromProperties(CONSTR_COMMENT),
                     constructorDeclaration.getName().asString());
@@ -265,13 +273,16 @@ public class JavaDocGenerator extends AbstractCodeService {
         Javadoc javadoc = new Javadoc(javadocDescription);
         JavadocSnippet element;
         String methodName = methodDeclaration.getName().asString();
+        String methodConcreteName = methodName.substring(3);
         boolean isSetter = Utils.isSetter(methodDeclaration);
         boolean isGetter = Utils.isGetter(methodDeclaration);
         boolean isIs = Utils.isIs(methodDeclaration);
+
         String paramFormat = "%s {@link %s}";
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
         String methodReturnType = methodDeclaration.getType().asString();
         NodeList<Parameter> parameters = methodDeclaration.getParameters();
+
         if (!methodDeclaration.hasJavaDocComment()) {
             if (methodDeclaration.isAnnotationPresent(Override.class)) {
                 javadocDescription.addElement(inheritDocSnippet);
@@ -280,7 +291,10 @@ public class JavaDocGenerator extends AbstractCodeService {
                 if (isSetter || isGetter || isIs) {
                     element = new JavadocSnippet("");
                 } else if (Utils.isCamelCase(methodName)) {
-                    element = new JavadocSnippet(StringUtils.capitalize(StringUtils.lowerCase(Utils.unCamelCase(methodName, " "))));
+                    element = new JavadocSnippet(StringUtils
+                            .capitalize(StringUtils.
+                                    lowerCase(Utils.
+                                            unCamelCase(methodName, " "))));
                 } else {
                     element = new JavadocSnippet(readFromProperties(TODO_METHOD_TEXT));
                 }
@@ -294,7 +308,7 @@ public class JavaDocGenerator extends AbstractCodeService {
                     if (isSetter) {
                         blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
                                 String.format(readFromProperties(SETTER_COMMENT), paramName,
-                                        Utils.toLowerCaseFirstLetter(methodName.substring(3))));
+                                        Utils.toLowerCaseFirstLetter(methodConcreteName)));
                     } else {
                         blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
                                 String.format(paramFormat, paramName, parameter.getType().asString()));
@@ -306,7 +320,7 @@ public class JavaDocGenerator extends AbstractCodeService {
                     if (isGetter) {
                         javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
                                 String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
-                                        Utils.toLowerCaseFirstLetter(methodName.substring(3))));
+                                        Utils.toLowerCaseFirstLetter(methodConcreteName)));
                     } else if (isIs) {
                         javadocBlockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.RETURN,
                                 String.format(readFromProperties(ATTRIBUT_COMMENT_FORMAT),
@@ -321,32 +335,37 @@ public class JavaDocGenerator extends AbstractCodeService {
                 methodDeclaration.setJavadocComment(javadoc);
             }
         } else if (methodDeclaration.isAnnotationPresent(Override.class)) {
-            methodDeclaration.removeJavaDocComment();
-            javadocDescription.addElement(inheritDocSnippet);
-            methodDeclaration.setJavadocComment(javadoc);
+            addDocForOverriddenMethods(methodDeclaration);
         } else {
             Javadoc oldJavaDoc = javadoc;
-            if (methodDeclaration.getJavadoc().isPresent()) {
-                oldJavaDoc = methodDeclaration.getJavadoc().get();
+            Optional<Javadoc> optionalJavaDoc = methodDeclaration.getJavadoc();
+            if (optionalJavaDoc.isPresent()) {
+                oldJavaDoc = optionalJavaDoc.get();
             }
-            List<String> paramTypes = oldJavaDoc.getBlockTags().stream().filter(block ->
-                    block.getType().equals(JavadocBlockTag.Type.PARAM)).filter(block ->
-                    block.getName().isPresent()).map(block ->
-                    block.getName().get()).collect(Collectors.toList());
+            List<String> paramTypes = oldJavaDoc.getBlockTags()
+                    .stream()
+                    .filter(block ->
+                            block.getType().equals(JavadocBlockTag.Type.PARAM))
+                    .filter(block -> block.getName().isPresent())
+                    .map(block -> block.getName().get()).collect(Collectors.toList());
             for (Parameter parameter : parameters) {
                 if (!paramTypes.contains(parameter.getNameAsString())) {
-                    if (parameter.getType().isPrimitiveType()) {
+
+                    Type paramType = parameter.getType();
+                    SimpleName paramName = parameter.getName();
+
+                    if (paramType.isPrimitiveType()) {
                         paramFormat = "%s %s ";
                     }
                     if (isSetter) {
                         oldJavaDoc.addBlockTag(new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
                                 String.format(readFromProperties(SETTER_COMMENT),
-                                        parameter.getName().asString(),
-                                        Utils.toLowerCaseFirstLetter(methodName.substring(3)))));
+                                        paramName.asString(),
+                                        Utils.toLowerCaseFirstLetter(methodConcreteName))));
                     } else {
                         JavadocBlockTag blockTag = new FormattedJavadocBlockTag(JavadocBlockTag.Type.PARAM,
-                                String.format(paramFormat, parameter.getName().asString(),
-                                        parameter.getType().asString()));
+                                String.format(paramFormat, paramName.asString(),
+                                        paramType.asString()));
                         oldJavaDoc.addBlockTag(blockTag);
                     }
                 }
@@ -356,6 +375,16 @@ public class JavaDocGenerator extends AbstractCodeService {
                     methodReturnType, oldJavaDoc);
             methodDeclaration.setJavadocComment(oldJavaDoc);
         }
+    }
+
+    private void addDocForOverriddenMethods(MethodDeclaration methodDeclaration) {
+        JavadocDescription javadocDescription = new JavadocDescription();
+        Javadoc javadoc = new Javadoc(javadocDescription);
+        JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
+        methodDeclaration.removeJavaDocComment();
+        javadocDescription.addElement(inheritDocSnippet);
+        methodDeclaration.setJavadocComment(javadoc);
+
     }
 
     /**
