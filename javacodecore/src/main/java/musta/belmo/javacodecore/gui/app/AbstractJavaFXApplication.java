@@ -24,10 +24,9 @@ public abstract class AbstractJavaFXApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         LOG.info("start ");
-        Parent root = FXMLLoader.load(loadFXMLFile());
+        FXMLLoader fxmlLoader = new FXMLLoader(loadFXMLFile());
+        primaryStage.setScene(new Scene(fxmlLoader.load(), 800, 500));
         LOG.info("root set ");
-   //     primaryStage.setTitle("Return counter table");
-        primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
 }
