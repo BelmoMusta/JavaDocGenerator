@@ -443,7 +443,7 @@ public class TreeViewController implements ControllerConstants {
     /**
      * Load properties
      */
-    void loadProperties() throws IOException {
+    private void loadProperties() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PropertiesGUI.class.getClassLoader().getResource(PropertiesGUI.FXML_LOCATION));
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent, 600, 400);
@@ -648,7 +648,6 @@ public class TreeViewController implements ControllerConstants {
      * Delete java doc
      *
      * @param actionEvent {@link ActionEvent}
-     * @throws CompilationException Exception levée si erreur.
      */
     private void deleteJavaDoc(ActionEvent actionEvent) {
         Tab selectedItem = tabPane.getSelectionModel().getSelectedItem();
@@ -694,6 +693,9 @@ public class TreeViewController implements ControllerConstants {
                         }
                     }
                     break;
+                case F: {
+
+                }
             }
         }
     }
