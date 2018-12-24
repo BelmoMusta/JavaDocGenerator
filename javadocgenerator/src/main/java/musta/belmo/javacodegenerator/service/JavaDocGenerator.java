@@ -130,9 +130,8 @@ public class JavaDocGenerator extends AbstractCodeService {
      * @param compilationUnit  @link CompilationUnit}
      * @param deleteOldJavaDoc boolean
      * @return String
-     * @throws IOException Exception levée si erreur.
      */
-    public String generateJavaDocAsString(CompilationUnit compilationUnit, boolean deleteOldJavaDoc) throws IOException {
+    public String generateJavaDocAsString(CompilationUnit compilationUnit, boolean deleteOldJavaDoc) {
         if (deleteOldJavaDoc) {
             deleter.deleteOldJavaDoc(compilationUnit);
             logger.info("deleted javadoc for  source code {}", compilationUnit.toString());
