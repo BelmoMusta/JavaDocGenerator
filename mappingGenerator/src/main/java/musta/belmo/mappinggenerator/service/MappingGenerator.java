@@ -77,36 +77,37 @@ public class MappingGenerator {
         if (sourcePackageDeclaration.isPresent()) {
             packageDeclaration = sourcePackageDeclaration.get().getName().asString();
         }
-        result = new CompilationUnit();
-        result.setPackageDeclaration(destinationPackage);
+        result = new CompilationUnit()
+                .setPackageDeclaration(destinationPackage);
         List<ClassOrInterfaceDeclaration> allClasses = source.findAll(ClassOrInterfaceDeclaration.class);
 
         for (ClassOrInterfaceDeclaration classDef : allClasses) {
             String srcClassName = classDef.getName().asString();
-            ClassOrInterfaceDeclaration myClass = result.addClass(srcClassName + mapperClassPrefix);
-            myClass.setModifiers(classDef.getModifiers());
-            ConstructorDeclaration constructorDeclaration = myClass.addConstructor();
-            constructorDeclaration.setPrivate(staticMethod); // if only static methods, then make the constructor private
+            ClassOrInterfaceDeclaration myClass = result.addClass(srcClassName + mapperClassPrefix)
+                    .setModifiers(classDef.getModifiers());
+            myClass.addConstructor()
+                    .setPrivate(staticMethod); // if only static methods, then make the constructor private
             MethodDeclaration mapperMethod = myClass.addMethod(mappingMethodPrefix + srcClassName);
-            ClassOrInterfaceType destClassType = new ClassOrInterfaceType();
-            ClassOrInterfaceType srcClassType = new ClassOrInterfaceType();
-            destClassType.setName(destinationClassName);
+
+            ClassOrInterfaceType destClassType = new ClassOrInterfaceType()
+                    .setName(destinationClassName);
             if (StringUtils.isNotBlank(packageDeclaration)) {
-                packageDeclaration = packageDeclaration + ".";
+                packageDeclaration = String.format("%s.", packageDeclaration);
             }
-            srcClassType.setName(packageDeclaration + srcClassName);
-            mapperMethod.setType(destClassType);
-            mapperMethod.addModifier(Modifier.PUBLIC);
-            mapperMethod.setStatic(staticMethod);
-            Parameter param = new Parameter(srcClassType, "p" + srcClassName);
-            param.addModifier(Modifier.FINAL);
+            ClassOrInterfaceType srcClassType = new ClassOrInterfaceType()
+                    .setName(packageDeclaration + srcClassName);
+            mapperMethod.setType(destClassType)
+                    .addModifier(Modifier.PUBLIC)
+                    .setStatic(staticMethod);
+            Parameter param = new Parameter(srcClassType, String.format("p%s", srcClassName))
+                    .addModifier(Modifier.FINAL);
             mapperMethod.addParameter(param);
             Optional<BlockStmt> body = mapperMethod.getBody();
             if (body.isPresent()) {
                 BlockStmt methodBody = body.get();
 
                 VariableDeclarator variableDeclarator = CodeUtils.variableDeclaratorFromType(destClassType,
-                        "l" + Utils.getSimpleClassName(destinationClassName));
+                        String.format("l%s", Utils.getSimpleClassName(destinationClassName)));
 
                 VariableDeclarationExpr variableDeclarationExpr =
                         CodeUtils.variableDeclarationExprFromVariable(variableDeclarator)
@@ -131,33 +132,28 @@ public class MappingGenerator {
                         .addStatement(objectDeclarationStmt);
 
                 IfStmt ifStmt = CodeUtils.createIfStamtement(condition, thenStatement, elseStatement);
-
                 methodBody.addStatement(ifStmt);
-
                 source.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
-                    MethodCallExpr call;
-                    String methodName = methodDeclaration.getName().asString();
-                    String methodReturnType = methodDeclaration.getType().asString();
                     boolean isCollectionType = false;
-                    NodeList<Parameter> methodParameters = methodDeclaration.getParameters();
-                    if (methodName.startsWith("set")) {
+                    MethodCallExpr methodCallExpr;
+                    if (CodeUtils.isSetter(methodDeclaration)) {
+                        NodeList<Parameter> methodParameters = methodDeclaration.getParameters();
                         if (methodParameters.size() == 1) {
-                            Parameter parameter = methodParameters.get(0);
-                            isCollectionType = CodeUtils.isCollectionType(parameter.getType().asString());
+                            isCollectionType = CodeUtils.isCollectionType(methodParameters.get(0));
                         }
                         if (accessCollectionByGetter && isCollectionType) {
                             return;
                         } else {
-                            call = createCallStmt(methodDeclaration, param, variableDeclarator, true);
+                            methodCallExpr = createCallStmt(methodDeclaration, param, variableDeclarator, true);
                         }
-                    } else if (methodName.startsWith("get")
+                    } else if (CodeUtils.isGetter(methodDeclaration)
                             && accessCollectionByGetter
-                            && CodeUtils.isCollectionType(methodReturnType)) {
-                        call = createCallStmt(methodDeclaration, param, variableDeclarator, false);
+                            && CodeUtils.isCollectionType(methodDeclaration)) {
+                        methodCallExpr = createCallStmt(methodDeclaration, param, variableDeclarator, false);
                     } else {
                         return;
                     }
-                    elseStatement.addStatement(call);
+                    elseStatement.addStatement(methodCallExpr);
                 });
                 methodBody.addStatement(new ReturnStmt(variableDeclarator.getNameAsExpression()));
             }
@@ -173,7 +169,7 @@ public class MappingGenerator {
                 methodDeclaration.getName().asString());
         MethodCallExpr addAllMethod;
         MethodCallExpr retValue;
-        String methodGetter = "get" + methodDeclaration.getName().asString().substring(3);
+        String methodGetter = String.format("get%s", methodDeclaration.getName().asString().substring(3));
         MethodCallExpr getExpression = new MethodCallExpr(param.getNameAsExpression(), methodGetter);
 
         if (!isSetter) {

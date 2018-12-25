@@ -1,5 +1,7 @@
 package musta.belmo.javacodecore;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
@@ -40,6 +42,28 @@ public class CodeUtils {
                 .setCondition(condition)
                 .setThenStmt(thenStatement)
                 .setElseStmt(elseStatement);
+    }
+
+    private static boolean isMethodStartsWith(MethodDeclaration methodDeclaration, String prefix) {
+        return methodDeclaration != null && methodDeclaration.getName()
+                .asString().startsWith(prefix);
+    }
+
+    public static boolean isGetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "get");
+    }
+
+    public static boolean isSetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "set");
+
+    }
+
+    public static boolean isCollectionType(Parameter methodDeclaration) {
+        return methodDeclaration != null && isCollectionType(methodDeclaration.getType().asString());
+    }
+
+    public static boolean isCollectionType(MethodDeclaration methodDeclaration) {
+        return methodDeclaration != null && isCollectionType(methodDeclaration.getType().asString());
     }
 
     public static boolean isCollectionType(String methodReturnType) {
