@@ -10,11 +10,10 @@ import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import musta.belmo.javacodecore.CodeUtils;
 import musta.belmo.javacodecore.Utils;
-import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,35 +104,35 @@ public class MappingGenerator {
             Optional<BlockStmt> body = mapperMethod.getBody();
             if (body.isPresent()) {
                 BlockStmt methodBody = body.get();
-                VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
-                VariableDeclarator variableDeclarator = new VariableDeclarator();
-                variableDeclarator.setType(destClassType);
-                variableDeclarator.setName("l" + Utils.getSimpleClassName(destinationClassName));
-                variableDeclarationExpr.addVariable(variableDeclarator);
-                variableDeclarationExpr.addModifier(Modifier.FINAL);
+
+                VariableDeclarator variableDeclarator = CodeUtils.variableDeclaratorFromType(destClassType,
+                        "l" + Utils.getSimpleClassName(destinationClassName));
+
+                VariableDeclarationExpr variableDeclarationExpr =
+                        CodeUtils.variableDeclarationExprFromVariable(variableDeclarator)
+                                .addModifier(Modifier.FINAL);
 
                 AssignExpr objectDeclarationStmt = new AssignExpr(variableDeclarator.getNameAsExpression(),
                         nullLiteralExpr, AssignExpr.Operator.ASSIGN);
                 methodBody.addStatement(variableDeclarationExpr);
-                IfStmt ifStmt = new IfStmt();
-                Expression checkNotNullExpression = new BinaryExpr(param.getNameAsExpression(),
+
+                Expression condition = new BinaryExpr(param.getNameAsExpression(),
                         nullLiteralExpr, BinaryExpr.Operator.EQUALS);
 
-                ifStmt.setCondition(checkNotNullExpression);
-                ObjectCreationExpr objectCreationExpr = new ObjectCreationExpr();
-                objectCreationExpr.setType(destClassType);
+                ObjectCreationExpr objectCreationExpr = CodeUtils.objectCreationExpFromType(destClassType);
+
                 AssignExpr objectCreationStmt = new AssignExpr(variableDeclarator.getNameAsExpression(),
                         objectCreationExpr, AssignExpr.Operator.ASSIGN);
-                BlockStmt blockStmt = new BlockStmt();
-                BlockStmt thenStatement = new BlockStmt();
 
-                thenStatement.addStatement(objectDeclarationStmt);
-                blockStmt.addStatement(objectCreationStmt);
-                ifStmt.setThenStmt(thenStatement);
+                BlockStmt elseStatement = new BlockStmt()
+                        .addStatement(objectCreationStmt);
+
+                BlockStmt thenStatement = new BlockStmt()
+                        .addStatement(objectDeclarationStmt);
+
+                IfStmt ifStmt = CodeUtils.createIfStamtement(condition, thenStatement, elseStatement);
+
                 methodBody.addStatement(ifStmt);
-
-                ifStmt.setElseStmt(blockStmt);
-
 
                 source.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
                     MethodCallExpr call;
@@ -144,7 +143,7 @@ public class MappingGenerator {
                     if (methodName.startsWith("set")) {
                         if (methodParameters.size() == 1) {
                             Parameter parameter = methodParameters.get(0);
-                            isCollectionType = isCollectionType(parameter.getType().asString());
+                            isCollectionType = CodeUtils.isCollectionType(parameter.getType().asString());
                         }
                         if (accessCollectionByGetter && isCollectionType) {
                             return;
@@ -153,95 +152,18 @@ public class MappingGenerator {
                         }
                     } else if (methodName.startsWith("get")
                             && accessCollectionByGetter
-                            && isCollectionType(methodReturnType)) {
+                            && CodeUtils.isCollectionType(methodReturnType)) {
                         call = createCallStmt(methodDeclaration, param, variableDeclarator, false);
                     } else {
                         return;
                     }
-                    blockStmt.addStatement(call);
+                    elseStatement.addStatement(call);
                 });
                 methodBody.addStatement(new ReturnStmt(variableDeclarator.getNameAsExpression()));
             }
         }
     }
 
-    public static boolean isCollectionType(String methodReturnType) {
-        boolean ret;
-        int index = StringUtils.indexOf(methodReturnType, "<");
-        if (index >= 0) {
-            methodReturnType = methodReturnType.substring(0, index);
-        }
-        try {
-            Class clazz = Class.forName("java.util." + methodReturnType);
-            ret = java.util.Collection.class.isAssignableFrom(clazz) ||
-                    java.util.Map.class.isAssignableFrom(clazz);
-        } catch (ClassNotFoundException e) {
-            ret = false;
-        }
-        return ret;
-    }
-
-    public CompilationUnit createMapper(CompilationUnit source, String destClass) {
-        // CompilationUnit destination  = new CompilationUnit();
-
-        String packageDeclaration = "";
-        if (source.getPackageDeclaration().isPresent()) {
-            packageDeclaration = source.getPackageDeclaration().get().getName().asString();
-        }
-        CompilationUnit result = new CompilationUnit();
-        String srcClassName = source.findFirst(ClassOrInterfaceDeclaration.class)
-                .get().getName().asString();
-        ClassOrInterfaceDeclaration myClass = result.addClass(srcClassName + "Mapper").setPublic(true);
-        MethodDeclaration mapperMethod = myClass.addMethod("map" + srcClassName);
-        ClassOrInterfaceType destClassType = new ClassOrInterfaceType();
-        ClassOrInterfaceType srcClassType = new ClassOrInterfaceType();
-        destClassType.setName(destClass);
-        srcClassType.setName(packageDeclaration + "." + srcClassName);
-        mapperMethod.setType(destClassType);
-        mapperMethod.addModifier(Modifier.PUBLIC);
-        Parameter param = new Parameter(srcClassType, "p" + srcClassName);
-        param.addModifier(Modifier.FINAL);
-        mapperMethod.addParameter(param);
-        Optional<BlockStmt> body = mapperMethod.getBody();
-        if (body.isPresent()) {
-            VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
-            VariableDeclarator variableDeclarator = new VariableDeclarator();
-            variableDeclarator.setType(destClassType);
-            variableDeclarator.setName("l" + Utils.getSimpleClassName(destClass));
-            variableDeclarationExpr.addVariable(variableDeclarator);
-            AssignExpr objectDeclarationStmt = new AssignExpr(variableDeclarationExpr,
-                    new NullLiteralExpr(), AssignExpr.Operator.ASSIGN);
-            body.get().addStatement(objectDeclarationStmt);
-            IfStmt ifStmt = new IfStmt();
-            Expression checkNotNullExpression = new BinaryExpr(param.getNameAsExpression(),
-                    new NullLiteralExpr(),
-                    BinaryExpr.Operator.NOT_EQUALS);
-            ifStmt.setCondition(checkNotNullExpression);
-            ObjectCreationExpr objectCreationExpr = new ObjectCreationExpr();
-            objectCreationExpr.setType(destClassType);
-            AssignExpr objectCreationStmt = new AssignExpr(variableDeclarator.getNameAsExpression(),
-                    objectCreationExpr, AssignExpr.Operator.ASSIGN);
-            BlockStmt blockStmt = new BlockStmt();
-            blockStmt.addStatement(objectCreationStmt);
-            ifStmt.setThenStmt(blockStmt);
-            body.get().addStatement(ifStmt);
-            source.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
-                MethodCallExpr call;
-                if (methodDeclaration.getName().asString().startsWith("set")) {
-                    call = createCallStmt(methodDeclaration, param, variableDeclarator, true);
-                } else if (methodDeclaration.getName().asString().startsWith("get")
-                        && (methodDeclaration.getType().asString().contains("List")
-                        || methodDeclaration.getType().asString().contains("Collection"))) {
-                    call = createCallStmt(methodDeclaration, param, variableDeclarator, false);
-                } else {
-                    return;
-                }
-                blockStmt.addStatement(call);
-            });
-            body.get().addStatement(new ReturnStmt(variableDeclarator.getNameAsExpression()));
-        }
-        return result;
-    }
 
     private MethodCallExpr createCallStmt(MethodDeclaration methodDeclaration,
                                           Parameter param,
@@ -285,10 +207,5 @@ public class MappingGenerator {
         return result;
     }
 
-    public void addJavaDocToResult() {
-        JavaDocGenerator javaDocGenerator = JavaDocGenerator.getInstance();
-        javaDocGenerator.generateJavaDocAsString(result, false);
 
-
-    }
 }

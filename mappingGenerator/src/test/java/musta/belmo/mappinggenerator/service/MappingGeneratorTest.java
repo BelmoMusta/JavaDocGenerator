@@ -2,6 +2,7 @@ package musta.belmo.mappinggenerator.service;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import musta.belmo.javacodecore.CodeUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,7 +23,6 @@ public class MappingGeneratorTest {
         mappingGenerator.setAccessCollectionByGetter(true);
 
         mappingGenerator.createMapperV2();
-        mappingGenerator.addJavaDocToResult();
         CompilationUnit bookMapper = mappingGenerator.getResult();
         System.out.println(bookMapper);
 
@@ -31,18 +31,18 @@ public class MappingGeneratorTest {
     @Test
     public void testIsCollectionType() {
 
-        MappingGenerator.isCollectionType("List");
-        Assert.assertTrue(MappingGenerator.isCollectionType("List"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("List<OfSth>"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("Collection"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("ArrayList"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("LinkedList"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("Map"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("Map<K,V>"));
-        Assert.assertTrue(MappingGenerator.isCollectionType("SortedMap"));
+        CodeUtils.isCollectionType("List");
+        Assert.assertTrue(CodeUtils.isCollectionType("List"));
+        Assert.assertTrue(CodeUtils.isCollectionType("List<OfSth>"));
+        Assert.assertTrue(CodeUtils.isCollectionType("Collection"));
+        Assert.assertTrue(CodeUtils.isCollectionType("ArrayList"));
+        Assert.assertTrue(CodeUtils.isCollectionType("LinkedList"));
+        Assert.assertTrue(CodeUtils.isCollectionType("Map"));
+        Assert.assertTrue(CodeUtils.isCollectionType("Map<K,V>"));
+        Assert.assertTrue(CodeUtils.isCollectionType("SortedMap"));
 //
-        Assert.assertFalse(MappingGenerator.isCollectionType("String"));
-        Assert.assertFalse(MappingGenerator.isCollectionType("Object"));
+        Assert.assertFalse(CodeUtils.isCollectionType("String"));
+        Assert.assertFalse(CodeUtils.isCollectionType("Object"));
 
     }
 
