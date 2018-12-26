@@ -3,6 +3,7 @@ package musta.belmo.javacodecore;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.expr.AssignExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
@@ -64,6 +65,11 @@ public class CodeUtils {
 
     public static boolean isCollectionType(MethodDeclaration methodDeclaration) {
         return methodDeclaration != null && isCollectionType(methodDeclaration.getType().asString());
+    }
+
+    public static AssignExpr createAssignExpression(Expression target, Expression value) {
+     return    new AssignExpr(target,
+                value, AssignExpr.Operator.ASSIGN);
     }
 
     public static boolean isCollectionType(String methodReturnType) {

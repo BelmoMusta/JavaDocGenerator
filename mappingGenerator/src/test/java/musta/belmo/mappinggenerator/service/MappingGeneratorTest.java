@@ -21,7 +21,7 @@ public class MappingGeneratorTest {
         mappingGenerator.setMapperClassPrefix("Mapper");
         mappingGenerator.setStaticMethod(true);
         mappingGenerator.setAccessCollectionByGetter(true);
-
+        mappingGenerator.mapField("title", "titre");
         mappingGenerator.createMapperV2();
         CompilationUnit bookMapper = mappingGenerator.getResult();
         System.out.println(bookMapper);

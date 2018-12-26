@@ -23,12 +23,17 @@ public class MappingGenerator {
     private CompilationUnit source;
     private String destinationClassName;
     private String destinationPackage;
-    private Map<String, String> fieldsMapper = new LinkedHashMap<>();
+    private Map<String, String> fieldsMapper;
     private String mappingMethodPrefix;
     private String mapperClassPrefix;
     private boolean staticMethod;
     private boolean accessCollectionByGetter;
     private CompilationUnit result;
+
+
+    public MappingGenerator() {
+        fieldsMapper = new LinkedHashMap<>();
+    }
 
     public CompilationUnit getSource() {
         return source;
@@ -105,7 +110,6 @@ public class MappingGenerator {
             Optional<BlockStmt> body = mapperMethod.getBody();
             if (body.isPresent()) {
                 BlockStmt methodBody = body.get();
-
                 VariableDeclarator variableDeclarator = CodeUtils.variableDeclaratorFromType(destClassType,
                         String.format("l%s", Utils.getSimpleClassName(destinationClassName)));
 
@@ -113,8 +117,9 @@ public class MappingGenerator {
                         CodeUtils.variableDeclarationExprFromVariable(variableDeclarator)
                                 .addModifier(Modifier.FINAL);
 
-                AssignExpr objectDeclarationStmt = new AssignExpr(variableDeclarator.getNameAsExpression(),
-                        nullLiteralExpr, AssignExpr.Operator.ASSIGN);
+                NameExpr varName = variableDeclarator.getNameAsExpression();
+                AssignExpr objectDeclarationStmt = CodeUtils.createAssignExpression(varName,
+                        nullLiteralExpr);
                 methodBody.addStatement(variableDeclarationExpr);
 
                 Expression condition = new BinaryExpr(param.getNameAsExpression(),
@@ -122,8 +127,8 @@ public class MappingGenerator {
 
                 ObjectCreationExpr objectCreationExpr = CodeUtils.objectCreationExpFromType(destClassType);
 
-                AssignExpr objectCreationStmt = new AssignExpr(variableDeclarator.getNameAsExpression(),
-                        objectCreationExpr, AssignExpr.Operator.ASSIGN);
+                AssignExpr objectCreationStmt = CodeUtils.createAssignExpression(varName,
+                        objectCreationExpr);
 
                 BlockStmt elseStatement = new BlockStmt()
                         .addStatement(objectCreationStmt);
@@ -133,6 +138,7 @@ public class MappingGenerator {
 
                 IfStmt ifStmt = CodeUtils.createIfStamtement(condition, thenStatement, elseStatement);
                 methodBody.addStatement(ifStmt);
+
                 source.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
                     boolean isCollectionType = false;
                     MethodCallExpr methodCallExpr;
@@ -155,30 +161,44 @@ public class MappingGenerator {
                     }
                     elseStatement.addStatement(methodCallExpr);
                 });
-                methodBody.addStatement(new ReturnStmt(variableDeclarator.getNameAsExpression()));
+                methodBody.addStatement(new ReturnStmt(varName));
             }
         }
     }
 
-
+    /**
+     * @param methodDeclaration
+     * @param param
+     * @param variableDeclarator
+     * @param isSetter
+     * @return MethodCallExpr
+     */
     private MethodCallExpr createCallStmt(MethodDeclaration methodDeclaration,
                                           Parameter param,
                                           VariableDeclarator variableDeclarator,
                                           boolean isSetter) {
-        MethodCallExpr call = new MethodCallExpr(variableDeclarator.getNameAsExpression(),
-                methodDeclaration.getName().asString());
+        String srcSetterName = methodDeclaration.getName().asString();
+        String srcFieldName = srcSetterName.substring(3);
+
+        String destSetterName = srcSetterName;
+        String mappedName = fieldsMapper.get(Utils.toLowerCaseFirstLetter(srcFieldName));
+        if (mappedName != null) {
+            destSetterName = "set" + StringUtils.capitalize(mappedName);
+        }
+        MethodCallExpr call = new MethodCallExpr(
+                variableDeclarator.getNameAsExpression(), destSetterName);
         MethodCallExpr addAllMethod;
         MethodCallExpr retValue;
-        String methodGetter = String.format("get%s", methodDeclaration.getName().asString().substring(3));
+        String methodGetter = String.format("get%s", srcFieldName);
         MethodCallExpr getExpression = new MethodCallExpr(param.getNameAsExpression(), methodGetter);
 
-        if (!isSetter) {
+        if (isSetter) {
+            call.addArgument(getExpression);
+            retValue = call;
+        } else {
             addAllMethod = new MethodCallExpr(call, "addAll");
             addAllMethod.addArgument(getExpression);
             retValue = addAllMethod;
-        } else {
-            call.addArgument(getExpression);
-            retValue = call;
         }
         return retValue;
     }
@@ -204,4 +224,7 @@ public class MappingGenerator {
     }
 
 
+    public void mapField(String oldField, String newField) {
+        fieldsMapper.put(oldField, newField);
+    }
 }
