@@ -1,0 +1,2 @@
+# JavaDocGenerator
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2e93e000860c4070800b3431646f65ed)](https://app.codacy.com/app/BelmoMusta/JavaDocGenerator?utm_source=github.com&utm_medium=referral&utm_content=BelmoMusta/JavaDocGenerator&utm_campaign=Badge_Grade_Dashboard)
