@@ -24,6 +24,7 @@ public class Utils {
      */
     private static final String CAMELCASE_REGEX = "(?<!(^|[A-Z\\d]))((?=[A-Z\\d])|[A-Z](?=[\\d]))|(?<!^)(?=[A-Z\\d][a-z])";
 
+
     /**
      * To lower case first letter
      *
@@ -104,24 +105,6 @@ public class Utils {
         saveToFile(bytes, new java.io.File(dest));
     }
 
-    private static boolean isMethodStartsWith(MethodDeclaration methodDeclaration, String prefix) {
-        return methodDeclaration != null && methodDeclaration.getName().asString().startsWith(prefix);
-    }
-
-    public static boolean isSetter(MethodDeclaration methodDeclaration) {
-        return isMethodStartsWith(methodDeclaration, "set");
-    }
-
-    public static boolean isGetter(MethodDeclaration methodDeclaration) {
-        return isMethodStartsWith(methodDeclaration, "get");
-    }
-
-    public static boolean isIs(MethodDeclaration methodDeclaration) {
-        return isMethodStartsWith(methodDeclaration, "is") && methodDeclaration.getType()
-                .toString()
-                .equalsIgnoreCase("boolean");
-    }
-
     public static boolean isImutable(Type type) {
         return type.isPrimitiveType() || isBoxedType(type);
     }
@@ -143,48 +126,9 @@ public class Utils {
         return (T) a;
     }
 
-    private static MethodCallExpr createCallStmt(LinkedList<Expression> literals) {
-        MethodCallExpr call = new MethodCallExpr(new NameExpr("StringBuilder"), "append");
-        call.addArgument(literals.get(0));
-
-        for (int i = 1; i < literals.size(); i++) {
-            call = new MethodCallExpr(call, "append");
-            call.addArgument(literals.get(i));
-        }
-        return call;
-    }
-
-    public static void concatenationToAppend(Expression expression) {
-        Expression temp = expression;
-        LinkedList<Expression> literals = new LinkedList<>();
-
-        while (temp.isBinaryExpr()) {
-            BinaryExpr binaryExpr = temp.asBinaryExpr();
-            temp = binaryExpr.getLeft();
-            if (binaryExpr.getOperator() == BinaryExpr.Operator.PLUS) {
-                literals.addFirst(binaryExpr.getRight());
-            }
-            if (temp.isLiteralExpr()) {
-                literals.addFirst(temp);
-            }
-        }
-
-        ObjectCreationExpr creationExpr = new ObjectCreationExpr();
-        creationExpr.setType("StringBuilder");
-        VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
-        VariableDeclarator variableDeclarator = new VariableDeclarator();
-        variableDeclarationExpr.addVariable(variableDeclarator);
-        variableDeclarator.setName("lStringBuilder");
-        variableDeclarator.setType("StringBuilder");
 
 
-        AssignExpr objectCreationStmt = new AssignExpr(variableDeclarationExpr,
-                creationExpr, AssignExpr.Operator.ASSIGN);
-        System.out.println(objectCreationStmt);
-        MethodCallExpr callStmt = createCallStmt(literals);
-        System.out.println(callStmt);
 
-    }
 
     public static void main(String[] args) {
         Number integer = castTo(2L);

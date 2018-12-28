@@ -3,16 +3,17 @@ package musta.belmo.javacodecore;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.expr.AssignExpr;
-import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.ObjectCreationExpr;
-import com.github.javaparser.ast.expr.VariableDeclarationExpr;
+import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.LinkedList;
+
 public class CodeUtils {
+
+    private static final String STRING_BUILDER = "StringBuilder";
 
     public static ObjectCreationExpr objectCreationExpFromType(final ClassOrInterfaceType destClassType) {
         final ObjectCreationExpr objectCreationExpr = new ObjectCreationExpr();
@@ -45,19 +46,6 @@ public class CodeUtils {
                 .setElseStmt(elseStatement);
     }
 
-    private static boolean isMethodStartsWith(MethodDeclaration methodDeclaration, String prefix) {
-        return methodDeclaration != null && methodDeclaration.getName()
-                .asString().startsWith(prefix);
-    }
-
-    public static boolean isGetter(MethodDeclaration methodDeclaration) {
-        return isMethodStartsWith(methodDeclaration, "get");
-    }
-
-    public static boolean isSetter(MethodDeclaration methodDeclaration) {
-        return isMethodStartsWith(methodDeclaration, "set");
-
-    }
 
     public static boolean isCollectionType(Parameter methodDeclaration) {
         return methodDeclaration != null && isCollectionType(methodDeclaration.getType().asString());
@@ -68,7 +56,7 @@ public class CodeUtils {
     }
 
     public static AssignExpr createAssignExpression(Expression target, Expression value) {
-     return    new AssignExpr(target,
+        return new AssignExpr(target,
                 value, AssignExpr.Operator.ASSIGN);
     }
 
@@ -86,5 +74,66 @@ public class CodeUtils {
             ret = false;
         }
         return ret;
+    }
+
+    public static void concatenationToAppend(Expression expression) {
+        Expression temp = expression;
+        LinkedList<Expression> literals = new LinkedList<>();
+
+        while (temp.isBinaryExpr()) {
+            BinaryExpr binaryExpr = temp.asBinaryExpr();
+            temp = binaryExpr.getLeft();
+            if (binaryExpr.getOperator() == BinaryExpr.Operator.PLUS) {
+                literals.addFirst(binaryExpr.getRight());
+            }
+            if (temp.isLiteralExpr()) {
+                literals.addFirst(temp);
+            }
+        }
+
+        ObjectCreationExpr creationExpr = new ObjectCreationExpr();
+        creationExpr.setType("StringBuilder");
+        VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
+        VariableDeclarator variableDeclarator = new VariableDeclarator();
+        variableDeclarationExpr.addVariable(variableDeclarator);
+        variableDeclarator.setName("lStringBuilder");
+        variableDeclarator.setType("StringBuilder");
+
+
+        AssignExpr objectCreationStmt = new AssignExpr(variableDeclarationExpr,
+                creationExpr, AssignExpr.Operator.ASSIGN);
+        System.out.println(objectCreationStmt);
+        MethodCallExpr callStmt = createStringBuilderAppendStmt(literals);
+        System.out.println(callStmt);
+
+    }
+
+    private static MethodCallExpr createStringBuilderAppendStmt(LinkedList<Expression> literals) {
+        MethodCallExpr call = new MethodCallExpr(new NameExpr(STRING_BUILDER), "append");
+        call.addArgument(literals.get(0));
+
+        for (int i = 1; i < literals.size(); i++) {
+            call = new MethodCallExpr(call, "append");
+            call.addArgument(literals.get(i));
+        }
+        return call;
+    }
+
+    private static boolean isMethodStartsWith(MethodDeclaration methodDeclaration, String prefix) {
+        return methodDeclaration != null && methodDeclaration.getName().asString().startsWith(prefix);
+    }
+
+    public static boolean isSetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "set");
+    }
+
+    public static boolean isGetter(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "get");
+    }
+
+    public static boolean isIs(MethodDeclaration methodDeclaration) {
+        return isMethodStartsWith(methodDeclaration, "is") && methodDeclaration.getType()
+                .toString()
+                .equalsIgnoreCase("boolean");
     }
 }

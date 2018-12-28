@@ -26,30 +26,15 @@ import java.util.*;
 public class CodeUtils {
 
     public static Comparator<FieldDeclaration> getFieldComparator() {
-        return new Comparator<FieldDeclaration>() {
-            @Override
-            public int compare(FieldDeclaration o1, FieldDeclaration o2) {
-                int compare = getFieldLevel(o2) -
-                        getFieldLevel(o1);
+        return (o1, o2) -> {
+            int compare = getFieldLevel(o2) -
+                    getFieldLevel(o1);
 
-                if (compare == 0)
-                    compare = o1.getVariables().get(0).getName().asString().compareTo(
-                            o2.getVariables().get(0).getName().asString());
-                return compare;
-            }
+            if (compare == 0)
+                compare = o1.getVariables().get(0).getName().asString().compareTo(
+                        o2.getVariables().get(0).getName().asString());
+            return compare;
         };
-    }
-
-    public static Expression creatAssignStement(String left, String right, AssignExpr.Operator operator) {
-        return new AssignExpr(new NameExpr(left), new NameExpr(right), operator);
-
-    }
-
-    static public String printAsYaml(String code) {
-        YamlPrinter yamlPrinter = new YamlPrinter(true);
-        CompilationUnit compilationUnit = JavaParser.parse(code);
-        String output = yamlPrinter.output(compilationUnit);
-        return output;
     }
 
     public static void cloneFieldDeclaration(FieldDeclaration from, final FieldDeclaration to) {

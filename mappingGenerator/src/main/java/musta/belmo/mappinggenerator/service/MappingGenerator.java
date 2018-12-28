@@ -136,7 +136,7 @@ public class MappingGenerator {
                     .addStatement(objectDeclarationStmt);
             final IfStmt ifStmt = CodeUtils.createIfStamtement(condition, thenStatement, elseStatement);
             methodBody.addStatement(ifStmt);
-            source.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
+            classDef.findAll(MethodDeclaration.class).forEach(methodDeclaration -> {
                 MethodCallExpr expr = mapSetterToGetter(methodDeclaration, variableDeclarator, param);
                 if (expr != null) {
                     elseStatement.addStatement(expr);

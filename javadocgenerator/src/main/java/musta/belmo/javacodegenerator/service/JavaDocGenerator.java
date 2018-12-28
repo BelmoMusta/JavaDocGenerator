@@ -13,6 +13,7 @@ import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
+import musta.belmo.javacodecore.CodeUtils;
 import musta.belmo.javacodecore.Utils;
 import musta.belmo.javacodecore.ZipUtils;
 import musta.belmo.javacodecore.logger.Level;
@@ -273,9 +274,9 @@ public class JavaDocGenerator extends AbstractCodeService {
         JavadocSnippet element;
         String methodName = methodDeclaration.getName().asString();
         String methodConcreteName = methodName.substring(3);
-        boolean isSetter = Utils.isSetter(methodDeclaration);
-        boolean isGetter = Utils.isGetter(methodDeclaration);
-        boolean isIs = Utils.isIs(methodDeclaration);
+        boolean isSetter = CodeUtils.isSetter(methodDeclaration);
+        boolean isGetter = CodeUtils.isGetter(methodDeclaration);
+        boolean isIs = CodeUtils.isIs(methodDeclaration);
 
         String paramFormat = "%s {@link %s}";
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
