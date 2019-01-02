@@ -13,6 +13,7 @@
         <module>javacodecore</module>
         <module>mappingGenerator</module>
         <module>javaenumhandler</module>
+        <module>mustagui</module>
     </modules>
     <build>
         <plugins>

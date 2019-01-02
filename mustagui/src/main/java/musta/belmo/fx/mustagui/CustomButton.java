@@ -1,4 +1,4 @@
-package musta.belmo.javacodegenerator.gui;
+package musta.belmo.fx.mustagui;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.scene.Node;
@@ -22,6 +22,12 @@ public class CustomButton extends Button {
     public CustomButton(String text, String graphic) {
         this(text);
         setGraphic(graphic);
+    }
+
+    public CustomButton(String text, String graphic,String toolTip) {
+        this(text);
+        setGraphic(graphic);
+        setTooltip(toolTip);
     }
 
     public void disableWhen(BooleanBinding booleanBinding) {

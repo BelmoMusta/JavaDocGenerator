@@ -54,5 +54,11 @@
             <artifactId>javacodecore</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>musta.belmo</groupId>
+            <artifactId>musta-gui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

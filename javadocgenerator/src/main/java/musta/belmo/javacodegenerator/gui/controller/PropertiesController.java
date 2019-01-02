@@ -6,9 +6,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
-import javafx.util.converter.DefaultStringConverter;
 import musta.belmo.javacodecore.gui.table.MustaTableColumn;
-import musta.belmo.javacodegenerator.gui.CustomButton;
+import musta.belmo.fx.mustagui.CustomButton;
 import musta.belmo.javacodegenerator.gui.beans.PropertiesHolder;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 

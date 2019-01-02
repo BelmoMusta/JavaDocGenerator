@@ -1,5 +1,6 @@
 package musta.belmo.mappinggenerator.service;
 
+import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
@@ -41,6 +42,10 @@ public class MappingGenerator {
 
     public void setSource(CompilationUnit source) {
         this.source = source;
+    }
+
+    public void setSource(String code) {
+        this.source = JavaParser.parse(code);
     }
 
     public String getDestinationClassName() {
