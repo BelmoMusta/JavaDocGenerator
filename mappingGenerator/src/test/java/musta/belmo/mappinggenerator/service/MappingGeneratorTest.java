@@ -23,6 +23,7 @@ public class MappingGeneratorTest {
         mappingGenerator.setAccessCollectionByGetter(true);
         mappingGenerator.mapField("title", "titre");
         mappingGenerator.createMapper();
+
         CompilationUnit bookMapper = mappingGenerator.getResult();
         System.out.println(bookMapper);
 

@@ -60,5 +60,12 @@
             <artifactId>javadocgenerator</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.pixelduke</groupId>
+            <artifactId>fxribbon</artifactId>
+            <version>1.2.1</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 </project>

@@ -1,15 +1,15 @@
 package musta.belmo.javacodecore;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
-import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class CodeUtils {
 
@@ -135,5 +135,25 @@ public class CodeUtils {
         return isMethodStartsWith(methodDeclaration, "is") && methodDeclaration.getType()
                 .toString()
                 .equalsIgnoreCase("boolean");
+    }
+
+    public static MethodDeclaration cloneMethod(MethodDeclaration methodDeclaration, boolean isAbstract) {
+        final MethodDeclaration lMethodDeclaration = methodDeclaration.clone();
+
+        if (isAbstract) {
+            lMethodDeclaration.setBody(null);
+            lMethodDeclaration.setPublic(true); // an abstract method should be public in order to be overridden
+        }
+        return lMethodDeclaration;
+    }
+
+
+
+    /**
+     *
+     * @param classOrInterfaceDeclaration
+     */
+    public static void deletFields(ClassOrInterfaceDeclaration classOrInterfaceDeclaration) {
+        classOrInterfaceDeclaration.getMembers().removeIf(member->member instanceof FieldDeclaration);
     }
 }

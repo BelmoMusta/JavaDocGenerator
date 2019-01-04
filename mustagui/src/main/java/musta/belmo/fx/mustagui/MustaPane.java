@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class MustaPane extends BorderPane {
     private TextArea textArea;
-    private VBox buttonBox;
+    private HBox buttonBox;
     private MenuBar menuBar;
 
     public MustaPane() {
@@ -17,7 +17,7 @@ public class MustaPane extends BorderPane {
         menuBar = new MenuBar();
         final VBox top = new VBox();
         final HBox menuBarBox = new HBox();
-        buttonBox = new VBox();
+        buttonBox = new HBox();
         menuBarBox.getChildren().add(menuBar);
         top.getChildren().add(menuBarBox);
         top.getChildren().add(buttonBox);
@@ -87,11 +87,11 @@ public class MustaPane extends BorderPane {
         return menuBar;
     }
 
-    public VBox getButtonBox() {
+    public HBox getButtonBox() {
         return buttonBox;
     }
 
-    public void setButtonBox(VBox buttonBox) {
+    public void setButtonBox(HBox buttonBox) {
         this.buttonBox = buttonBox;
     }
 
