@@ -2,11 +2,16 @@ package musta.belmo.mappinggenerator.service;
 
 import com.github.javaparser.ast.CompilationUnit;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import musta.belmo.fx.mustagui.Binder;
 import musta.belmo.fx.mustagui.CustomButton;
 import musta.belmo.fx.mustagui.FormControllerExample;
 import musta.belmo.fx.mustagui.MustaPane;
+import musta.belmo.javacodecore.MyOptional;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Optional;
 
 public class MappingGuiController {
     @FXML
@@ -18,7 +23,14 @@ public class MappingGuiController {
         CustomButton deriveInterface = mustaPane.addButton("derive interface", "fa-fire", "Derive interface");
         deriveInterface.setOnAction(event -> {
             InterfaceDeriver interfaceDeriver = new InterfaceDeriver();
-            CompilationUnit compilationUnit = interfaceDeriver.deriveInterfaceFromClass(mustaPane.getTextArea().getText(), "");
+            TextInputDialog inputDialog = new TextInputDialog();
+            inputDialog.setTitle("interface name");
+            inputDialog.setHeaderText("Interface");
+            inputDialog.setContentText("Enter the interface name");
+            MyOptional<String> stringMyOptional = MyOptional.fromOptional(inputDialog.showAndWait());
+            String iterfaceName = stringMyOptional.orElseIfPredicate("I", StringUtils::isBlank);
+            CompilationUnit compilationUnit = interfaceDeriver
+                    .deriveInterfaceFromClass(mustaPane.getTextArea().getText(), iterfaceName);
             mustaPane.setText(compilationUnit);
         });
         generateMapper.setOnAction(event -> {
@@ -45,7 +57,7 @@ public class MappingGuiController {
 
         try {
             Pane bind = binder.bind(formControllerExample);
-            mustaPane.getChildren().add(bind) ;
+            mustaPane.getChildren().add(bind);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,6 +16,10 @@ public class MyOptional<T> {
         internalOptional = Optional.empty();
     }
 
+    private MyOptional(Optional<T> other) {
+        internalOptional = other;
+    }
+
     private MyOptional(T t) {
         internalOptional = Optional.of(t);
     }
@@ -90,5 +94,9 @@ public class MyOptional<T> {
             }
         }
         return other;
+    }
+
+    public static <T> MyOptional<T> fromOptional(Optional<T> interfaceName) {
+       return new MyOptional<>(interfaceName);
     }
 }
