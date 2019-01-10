@@ -36,7 +36,14 @@ public class MappingGuiController {
         generateMapper.setOnAction(event -> {
             MappingGenerator mappingGenerator = new MappingGenerator();
             mappingGenerator.setSource(mustaPane.getTextArea().getText());
-            mappingGenerator.setDestinationClassName("BookV2");
+            TextInputDialog inputDialog = new TextInputDialog();
+            inputDialog.setTitle("Classe name");
+            inputDialog.setHeaderText("");
+            inputDialog.setContentText("Destination class name");
+            MyOptional<String> stringMyOptional = MyOptional.fromOptional(inputDialog.showAndWait());
+            String iterfaceName = stringMyOptional.orElseIfPredicate("", StringUtils::isBlank);
+
+            mappingGenerator.setDestinationClassName(iterfaceName);
             mappingGenerator.setDestinationPackage("logic.book");
             mappingGenerator.setMappingMethodPrefix("map");
             mappingGenerator.setMapperClassPrefix("Mapper");
