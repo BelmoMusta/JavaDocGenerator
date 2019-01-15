@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<?import musta.belmo.fx.mustagui.MustaPane?>
+<MustaPane fx:id="mustaPane"
+           fx:controller="musta.belmo.enumhandler.scratch.JavaMethodTesterController"
+           xmlns:fx="http://javafx.com/fxml/1"></MustaPane>
+
