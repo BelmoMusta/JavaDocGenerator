@@ -14,6 +14,7 @@
         <module>mappingGenerator</module>
         <module>javaenumhandler</module>
         <module>mustagui</module>
+        <module>javacodetools</module>
     </modules>
     <build>
         <plugins>

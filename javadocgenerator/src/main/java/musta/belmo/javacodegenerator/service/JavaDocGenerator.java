@@ -377,15 +377,7 @@ public class JavaDocGenerator extends AbstractCodeService {
         }
     }
 
-    private void addDocForOverriddenMethods(MethodDeclaration methodDeclaration) {
-        JavadocDescription javadocDescription = new JavadocDescription();
-        Javadoc javadoc = new Javadoc(javadocDescription);
-        JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
-        methodDeclaration.removeJavaDocComment();
-        javadocDescription.addElement(inheritDocSnippet);
-        methodDeclaration.setJavadocComment(javadoc);
 
-    }
 
     /**
      * Add block tag to class javadoc

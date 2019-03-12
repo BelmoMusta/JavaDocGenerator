@@ -5,6 +5,11 @@ import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.javadoc.Javadoc;
+import com.github.javaparser.javadoc.description.JavadocDescription;
+import com.github.javaparser.javadoc.description.JavadocSnippet;
+import musta.belmo.javacodecore.CodeUtils;
 import musta.belmo.javacodecore.Utils;
 import musta.belmo.javacodecore.logger.Level;
 import musta.belmo.javacodecore.logger.MustaLogger;
@@ -128,7 +133,7 @@ public abstract class AbstractCodeService implements GeneratorConstantes {
             ClassOrInterfaceDeclaration classOrInterfaceDeclaration = retCompilationUnit.addClass(cls.getName().asString());
             classOrInterfaceDeclaration.setModifiers(cls.getModifiers());
             List<FieldDeclaration> publicStaticFields = cls.findAll(FieldDeclaration.class);
-            publicStaticFields.sort(CodeUtils.getFieldComparator());
+            publicStaticFields.sort(musta.belmo.javacodecore.CodeUtils.getFieldComparator());
             for (FieldDeclaration fieldDeclaration : publicStaticFields) {
                 FieldDeclaration fieldDec = classOrInterfaceDeclaration.addField(fieldDeclaration.getCommonType(), "temp");
                 CodeUtils.cloneFieldDeclaration(fieldDeclaration, fieldDec);
@@ -163,5 +168,19 @@ public abstract class AbstractCodeService implements GeneratorConstantes {
      */
     public File getDestination(String destinationFile, File srcFile, CompilationUnit compilationUnit) {
         return compilationUnit.getPackageDeclaration().map(packageDeclaration -> new File(destinationFile, Utils.convertPackageDeclarationToPath(packageDeclaration.getName().asString()) + File.separator + srcFile.getName())).orElseGet(() -> new File(destinationFile));
+    }
+
+    /**
+     *
+     * @param methodDeclaration
+     */
+    public void addDocForOverriddenMethods(MethodDeclaration methodDeclaration) {
+        JavadocDescription javadocDescription = new JavadocDescription();
+        Javadoc javadoc = new Javadoc(javadocDescription);
+        JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
+        methodDeclaration.removeJavaDocComment();
+        javadocDescription.addElement(inheritDocSnippet);
+        methodDeclaration.setJavadocComment(javadoc);
+
     }
 }

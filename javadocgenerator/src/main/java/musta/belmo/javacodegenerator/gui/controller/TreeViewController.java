@@ -145,6 +145,7 @@ public class TreeViewController implements ControllerConstants {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem addJavadocMenuItem = new MenuItem("add javadoc for all java classes");
         MenuItem deleteJavadocMenuItem = new MenuItem("delete javadoc for all classes");
+        MenuItem generateImplMenuItem = new MenuItem("generate the implementation for this interface");
         addJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
@@ -160,6 +161,18 @@ public class TreeViewController implements ControllerConstants {
                 e.printStackTrace();
             }
         });
+
+
+        generateImplMenuItem.setOnAction(event -> {
+            File folder = tree.getSelectionModel().getSelectedItem().getValue();
+            try {
+                deleter.deleteJavaDocForAllClasses(folder);
+                addFolderToTreeView(treePath);
+                tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
+            } catch (IOException | CompilationException e) {
+                showExceptionAlert(e);
+            }
+        });
         deleteJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
@@ -172,6 +185,7 @@ public class TreeViewController implements ControllerConstants {
         });
         contextMenu.getItems().add(addJavadocMenuItem);
         contextMenu.getItems().add(deleteJavadocMenuItem);
+        contextMenu.getItems().add(generateImplMenuItem);
         tree.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 TreeItem<File> selectedItem = tree.getSelectionModel().getSelectedItem();

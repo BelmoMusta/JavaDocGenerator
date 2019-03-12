@@ -1,15 +1,29 @@
 package musta.belmo.javacodecore;
 
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Modifier;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.comments.LineComment;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.IfStmt;
+import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import com.github.javaparser.ast.type.PrimitiveType;
+import com.github.javaparser.ast.type.Type;
+import com.github.javaparser.ast.type.TypeParameter;
+import com.github.javaparser.javadoc.Javadoc;
+import com.github.javaparser.javadoc.description.JavadocDescription;
+import com.github.javaparser.javadoc.description.JavadocDescriptionElement;
+import com.github.javaparser.javadoc.description.JavadocSnippet;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class CodeUtils {
 
@@ -155,5 +169,149 @@ public class CodeUtils {
      */
     public static void deletFields(ClassOrInterfaceDeclaration classOrInterfaceDeclaration) {
         classOrInterfaceDeclaration.getMembers().removeIf(member->member instanceof FieldDeclaration);
+    }
+
+    public static FieldDeclaration newField(Type type, String name, Modifier... modifiers) {
+        FieldDeclaration fieldDeclaration = new FieldDeclaration();
+        VariableDeclarator variable = new VariableDeclarator(type, name);
+        fieldDeclaration.getVariables().add(variable);
+        fieldDeclaration.setModifiers(Arrays.stream(modifiers)
+                .collect(toCollection(() -> EnumSet.noneOf(Modifier.class))));
+        return fieldDeclaration;
+    }
+
+    public static Comparator<FieldDeclaration> getFieldComparator() {
+        return (o1, o2) -> {
+            int compare = getFieldLevel(o2) -
+                    getFieldLevel(o1);
+
+            if (compare == 0)
+                compare = o1.getVariables().get(0).getName().asString().compareTo(
+                        o2.getVariables().get(0).getName().asString());
+            return compare;
+        };
+    }
+
+    public static void cloneFieldDeclaration(FieldDeclaration from, final FieldDeclaration to) {
+        to.setModifiers(from.getModifiers());
+        to.setVariables(from.getVariables());
+        from.getComment().ifPresent((str) -> to.setBlockComment(str.getContent()));
+        to.setAnnotations(from.getAnnotations());
+    }
+
+    public static int getFieldLevel(FieldDeclaration fieldDeclaration) {
+
+        int level = 0;
+
+        if (fieldDeclaration.isPublic() && fieldDeclaration.isStatic()) {
+            level += 100000;
+        } else if (fieldDeclaration.isPublic()) {
+            level += 20;
+        }
+        if (fieldDeclaration.isStatic()) {
+            level += 10000;
+        }
+        if (fieldDeclaration.isFinal()) {
+            level += 1000;
+        }
+        if (fieldDeclaration.isProtected()) {
+            level += 100;
+        }
+        if (fieldDeclaration.isPrivate()) {
+            level += 10;
+        }
+        if (fieldDeclaration.isTransient()) {
+            level += 1;
+        }
+        return level;
+
+    }
+
+
+    public static String removeUnusedFields(CompilationUnit compilationUnit) {
+        List<ClassOrInterfaceDeclaration> all = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
+
+        for (ClassOrInterfaceDeclaration classOrInterfaceDeclaration : all) {
+            Optional<FieldDeclaration> aInstance = classOrInterfaceDeclaration.getFieldByName("aInstance");
+
+
+            if (!aInstance.isPresent()) {
+                aInstance = classOrInterfaceDeclaration.getFieldByName("instance");
+            }
+
+            if (aInstance.isPresent()) {
+                FieldDeclaration fieldDeclaration = aInstance.get();
+                classOrInterfaceDeclaration.remove(fieldDeclaration);
+            }
+
+        }
+        return compilationUnit.toString();
+
+    }
+
+    public static String removeModifierForFields(CompilationUnit compilationUnit, Modifier modifier) {
+        boolean changed = false;
+        List<ClassOrInterfaceDeclaration> all = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
+
+        for (ClassOrInterfaceDeclaration classOrInterfaceDeclaration : all) {
+            List<FieldDeclaration> fields = classOrInterfaceDeclaration.findAll(FieldDeclaration.class);
+
+            for (FieldDeclaration field : fields) {
+                if (field.getModifiers().contains(modifier)) {
+                    changed = true;
+                    field.getModifiers().remove(modifier);
+                }
+            }
+
+        }
+        if (changed) {
+            return compilationUnit.toString();
+        }
+        return null;
+
+    }
+
+    public  static <T> Stream<T> reverse(Stream<T> input) {
+        Object[] temp = input.toArray();
+        return (Stream<T>) IntStream.range(0, temp.length)
+                .mapToObj(i -> temp[temp.length - i - 1]);
+    }
+
+    public static String getTypeDefaultValue(PrimitiveType primitiveType) {
+        String defaultValue;
+        switch (primitiveType.getType()) {
+
+            case BOOLEAN:
+                defaultValue = "false";
+                break;
+            case CHAR:
+                defaultValue = "'0'";
+
+                break;
+            case BYTE:
+                defaultValue = "0";
+
+                break;
+            case SHORT:
+                defaultValue = "0";
+
+                break;
+            case INT:
+                defaultValue = "0";
+
+                break;
+            case LONG:
+                defaultValue = "0L";
+
+                break;
+            case FLOAT:
+                defaultValue = "0f";
+                break;
+            case DOUBLE:
+            default:
+                defaultValue = "0.0d";
+                break;
+        }
+        return defaultValue;
     }
 }
