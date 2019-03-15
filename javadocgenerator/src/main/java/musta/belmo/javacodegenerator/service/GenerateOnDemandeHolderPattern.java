@@ -32,15 +32,19 @@ public class GenerateOnDemandeHolderPattern extends AbstractJavaCodeGenerator {
             while (iterator.hasNext() && !addOnDemand) {
                 MethodDeclaration methodDeclaration = iterator.next();
                 if ("getInstance".equals(methodDeclaration.getName().asString())) {
-                    BlockStmt blockStmt = new BlockStmt();
-                    ReturnStmt returnStmt = new ReturnStmt();
-                    NameExpr nameExpr = new NameExpr();
-                    nameExpr.setName(className + "Holder.INSTANCE");
-                    returnStmt.setExpression(nameExpr);
-                    blockStmt.addStatement(returnStmt);
-                    methodDeclaration.setBody(blockStmt);
-                    addOnDemand = true;
+                    iterator.remove();
                 }
+                MethodDeclaration getInstance = classOrInterfaceDeclaration.addMethod("getInstance", Modifier.PUBLIC, Modifier.STATIC);
+                getInstance.setType(new TypeParameter(classOrInterfaceDeclaration.getNameAsString()));
+                BlockStmt blockStmt = new BlockStmt();
+                ReturnStmt returnStmt = new ReturnStmt();
+                NameExpr nameExpr = new NameExpr();
+                nameExpr.setName(className + "Holder.INSTANCE");
+                returnStmt.setExpression(nameExpr);
+                blockStmt.addStatement(returnStmt);
+                getInstance.setBody(blockStmt);
+                addOnDemand = true;
+
             }
 
             if (addOnDemand) {

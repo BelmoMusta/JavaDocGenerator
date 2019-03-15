@@ -4,10 +4,11 @@ import musta.belmo.fx.mustagui.annotations.Pane;
 import musta.belmo.fx.mustagui.annotations.TextField;
 
 @Pane
-public class FormControllerExample {
+public class TextFieldFormController {
 
     @TextField(name = "name", label = "Name")
     private String name;
+    private String value;
 
     public String getName() {
         return name;
@@ -17,4 +18,11 @@ public class FormControllerExample {
         this.name = name;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }

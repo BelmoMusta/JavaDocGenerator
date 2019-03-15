@@ -6,12 +6,11 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
 import musta.belmo.fx.mustagui.Binder;
 import musta.belmo.fx.mustagui.CustomButton;
-import musta.belmo.fx.mustagui.FormControllerExample;
 import musta.belmo.fx.mustagui.MustaPane;
+import musta.belmo.fx.mustagui.TextFieldFormController;
 import musta.belmo.javacodecore.MyOptional;
+import musta.belmo.javacodegenerator.service.GenerateOnDemandeHolderPattern;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Optional;
 
 public class MappingGuiController {
     @FXML
@@ -21,6 +20,7 @@ public class MappingGuiController {
     public void initialize() {
         CustomButton generateMapper = mustaPane.addButton("generate mapper", "fa-save", "Generate mapper");
         CustomButton deriveInterface = mustaPane.addButton("derive interface", "fa-fire", "Derive interface");
+        CustomButton generateOnDemandeHolder = mustaPane.addButton("ODH pattern", "fa-fire", "Generate ODH pattern");
         deriveInterface.setOnAction(event -> {
             InterfaceDeriver interfaceDeriver = new InterfaceDeriver();
             TextInputDialog inputDialog = new TextInputDialog();
@@ -54,16 +54,22 @@ public class MappingGuiController {
             mappingGenerator.createMapper();
             mustaPane.setText(mappingGenerator.getResult());
         });
+        generateOnDemandeHolder.setOnAction(event -> {
+            GenerateOnDemandeHolderPattern generateOnDemandeHolderPattern = new GenerateOnDemandeHolderPattern();
+            CompilationUnit compilationUnit = generateOnDemandeHolderPattern.generate(mustaPane.getTextArea().getText());
+            mustaPane.setText(compilationUnit);
+        });
 
         mustaPane.addMenuGroup("File");
         mustaPane.addMenuItemToGroup("Save", "File");
         //
+
         Binder binder = new Binder();
-        FormControllerExample formControllerExample = new FormControllerExample();
-        formControllerExample.setName("a simple name");
+        TextFieldFormController textFieldFormController = new TextFieldFormController();
+        textFieldFormController.setName("a simple name");
 
         try {
-            Pane bind = binder.bind(formControllerExample);
+            Pane bind = binder.bind(textFieldFormController);
             mustaPane.getChildren().add(bind);
 
         } catch (Exception e) {
