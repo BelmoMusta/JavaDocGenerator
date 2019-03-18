@@ -18,6 +18,7 @@ import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
 import musta.belmo.javacodecore.CodeUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,9 +28,11 @@ import java.util.function.Predicate;
 
 public class InterfaceImplementation extends AbstractJavaCodeGenerator {
     static final String PATH = "C:\\Users\\mbelmokhtar\\Desktop\\Nouveau dossier\\JavaDocGenerator\\javadocgenerator\\src\\main\\resources\\";
-    private static final Predicate<MethodDeclaration> IS_SET = aMethod -> aMethod.getName().toString().startsWith("set");
-    private static final Predicate<MethodDeclaration> IS_GET = aMethod -> aMethod.getName().toString().startsWith("get");
-    private static final Predicate<MethodDeclaration> IS_IS = aMethod -> aMethod.getName().toString().startsWith("is");
+    private static final Predicate<MethodDeclaration> IS_SET = aMethod -> aMethod.getNameAsString().length() > 3
+            && aMethod.getName().toString().startsWith("set")
+            && aMethod.getParameters().size() == 1;
+    private static final Predicate<MethodDeclaration> IS_GET = aMethod -> aMethod.getNameAsString().startsWith("get") && aMethod.getParameters().isEmpty();
+    private static final Predicate<MethodDeclaration> IS_IS = aMethod -> aMethod.getNameAsString().startsWith("is");
     private static final Predicate<MethodDeclaration> IS_VOID = aMethod -> aMethod.getType().isVoidType();
     private static final Predicate<MethodDeclaration> OTHER_METHODS = IS_SET.negate()
             .and(IS_GET.negate())
@@ -83,9 +86,9 @@ public class InterfaceImplementation extends AbstractJavaCodeGenerator {
         CodeUtils.reverse(aClass.findAll(MethodDeclaration.class).stream())
                 .filter(IS_GET)
                 .forEach(aMethod -> {
-                    String methodeName = aMethod.getName().toString().substring(3);
+                    String methodName = aMethod.getName().toString().substring(3);
                     FieldDeclaration fieldDeclaration = CodeUtils.newField(aMethod.getType(),
-                            "a" + methodeName,
+                            "a" + methodName,
                             Modifier.PRIVATE);
                     aClass.getMembers().add(0, fieldDeclaration);
                     ReturnStmt returnStmt = new ReturnStmt(fieldDeclaration.getVariable(0).getNameAsExpression());
@@ -105,11 +108,20 @@ public class InterfaceImplementation extends AbstractJavaCodeGenerator {
         declarations.stream()
                 .filter(IS_SET)
                 .forEach(setterMethod -> {
-                    String methodeName = setterMethod.getName().toString().substring(3);
+                    String methodName = setterMethod.getName().toString().substring(3);
                     BlockStmt blockStmt = new BlockStmt();
-                    Expression assign = new AssignExpr(new NameExpr("a" + methodeName),
-                            setterMethod.getParameter(0).getNameAsExpression(), AssignExpr.Operator.ASSIGN);
-                    blockStmt.addStatement(assign);
+                    if (setterMethod.getParameters().size() == 1) {
+                        NameExpr paramName = setterMethod.getParameter(0).getNameAsExpression();
+                        String fieldName = "a" + methodName;
+                        if (fieldName.equals(paramName.getNameAsString())) {
+                            paramName.setName("p" + StringUtils.capitalize(paramName.getNameAsString()));
+                        }
+                        Expression assign = new AssignExpr(new NameExpr(fieldName),
+                                paramName, AssignExpr.Operator.ASSIGN);
+                        blockStmt.addStatement(assign);
+                    } else {
+                        blockStmt.setBlockComment("TODO");
+                    }
                     setterMethod.setBody(blockStmt);
                 });
     }

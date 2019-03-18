@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -200,13 +201,29 @@ public class JavaDocGenerator extends AbstractCodeService {
      *
      * @param constructorDeclaration @link ConstructorDeclaration}
      */
-    private void generateConstructorJavaDoc(ConstructorDeclaration constructorDeclaration) {
+    public void generateConstructorJavaDoc(ConstructorDeclaration constructorDeclaration, String text) {
         JavadocDescription javadocDescription = new JavadocDescription();
         Javadoc javadoc = new Javadoc(javadocDescription);
         NodeList<Parameter> constructParams = constructorDeclaration.getParameters();
+
+        JavadocSnippet element = new JavadocSnippet(text);
+        javadocDescription.addElement(element);
+        if (!constructorDeclaration.getJavadoc().isPresent()) {
+            addParamsToJavaDoc(constructParams, javadoc);
+            addExceptionsToJavaDoc(constructorDeclaration.getThrownExceptions(), javadoc);
+            constructorDeclaration.setJavadocComment(javadoc);
+        }
+    }
+
+    /**
+     * Generate constructor java doc
+     *
+     * @param constructorDeclaration @link ConstructorDeclaration}
+     */
+    private void generateConstructorJavaDoc(ConstructorDeclaration constructorDeclaration) {
+        NodeList<Parameter> constructParams = constructorDeclaration.getParameters();
         String leadingComment;
         BlockStmt body = constructorDeclaration.getBody();
-
         if (constructParams.isEmpty() && body.getOrphanComments().isEmpty()
                 && body.getStatements().isEmpty()) {
             leadingComment = readFromProperties(DEFAULT_CONSTR_COMMENT);
@@ -215,13 +232,7 @@ public class JavaDocGenerator extends AbstractCodeService {
             leadingComment = String.format(readFromProperties(CONSTR_COMMENT),
                     constructorDeclaration.getName().asString());
         }
-        JavadocSnippet element = new JavadocSnippet(leadingComment);
-        javadocDescription.addElement(element);
-        if (!constructorDeclaration.getJavadoc().isPresent()) {
-            addParamsToJavaDoc(constructParams, javadoc);
-            addExceptionsToJavaDoc(constructorDeclaration.getThrownExceptions(), javadoc);
-            constructorDeclaration.setJavadocComment(javadoc);
-        }
+        generateConstructorJavaDoc(constructorDeclaration, leadingComment);
     }
 
     /**
@@ -261,6 +272,48 @@ public class JavaDocGenerator extends AbstractCodeService {
             addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, readFromProperties(VERSION));
             typeDeclaration.setJavadocComment(javadoc);
         }
+    }
+
+    /**
+     * Generate java doc for type declaration
+     *
+     * @param typeDeclaration @link TypeDeclaration}
+     */
+    @SuppressWarnings("unchecked")
+    private void generateJavaDocForTypeDeclaration(TypeDeclaration typeDeclaration , Map<String,String> javaDocElements) {
+        Javadoc javadoc;
+        if (typeDeclaration.hasJavaDocComment()) {
+            Optional<Javadoc> optionalJavaDoc = typeDeclaration.getJavadoc();
+           {
+                javadoc = optionalJavaDoc.get();
+                List<JavadocBlockTag.Type> blockTypes = javadoc.getBlockTags().stream()
+                        .map(JavadocBlockTag::getType).collect(Collectors.toList());
+
+                javaDocElements.forEach((k,v)->{
+                    JavadocBlockTag.Type type  = JavadocBlockTag.Type.valueOf(k);
+
+                    if (!blockTypes.contains(type)) {
+                        addBlockTagToClassJavaDoc(type, javadoc, v);
+                    }
+                });
+                typeDeclaration.setJavadocComment(javadoc);
+            }
+        }
+        else {
+            JavadocDescription javadocDescription = new JavadocDescription();
+              javadoc = new Javadoc(javadocDescription);
+            String text = readFromProperties(TODO_CLASS_TEXT);
+            if (typeDeclaration.isEnumDeclaration()) {
+                text = readFromProperties(TODO_ENUM_TEXT);
+            }
+            JavadocSnippet element = new JavadocSnippet(text);
+            javadocDescription.addElement(element);
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.AUTHOR, javadoc, readFromProperties(AUTHOR));
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.SINCE, javadoc, readFromProperties(SINCE_VERSION));
+            addBlockTagToClassJavaDoc(JavadocBlockTag.Type.VERSION, javadoc, readFromProperties(VERSION));
+
+        }
+        typeDeclaration.setJavadocComment(javadoc);
     }
 
     /**

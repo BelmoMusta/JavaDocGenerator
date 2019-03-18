@@ -23,53 +23,46 @@ public class GenerateOnDemandeHolderPattern extends AbstractJavaCodeGenerator {
     public CompilationUnit generate(CompilationUnit compilationUnitSrc) {
         CompilationUnit compilationUnit = compilationUnitSrc.clone();
         List<ClassOrInterfaceDeclaration> all = compilationUnit.findAll(ClassOrInterfaceDeclaration.class);
-        boolean addOnDemand = false;
+        boolean onDemandAdded = false;
         for (ClassOrInterfaceDeclaration classOrInterfaceDeclaration : all) {
             List<MethodDeclaration> methods = classOrInterfaceDeclaration.getMethods();
             Iterator<MethodDeclaration> iterator = methods.iterator();
 
-            String className = classOrInterfaceDeclaration.getName().asString();
-            while (iterator.hasNext() && !addOnDemand) {
+            String className = classOrInterfaceDeclaration.getNameAsString();
+            while (iterator.hasNext() && !onDemandAdded) {
                 MethodDeclaration methodDeclaration = iterator.next();
-                if ("getInstance".equals(methodDeclaration.getName().asString())) {
+                if ("getInstance".equals(methodDeclaration.getNameAsString()) && methodDeclaration.getParameters().isEmpty()) {
                     iterator.remove();
                 }
-                MethodDeclaration getInstance = classOrInterfaceDeclaration.addMethod("getInstance", Modifier.PUBLIC, Modifier.STATIC);
-                getInstance.setType(new TypeParameter(classOrInterfaceDeclaration.getNameAsString()));
+                MethodDeclaration getInstanceMethod = classOrInterfaceDeclaration.addMethod("getInstance", Modifier.PUBLIC, Modifier.STATIC);
+                getInstanceMethod.setType(new TypeParameter(classOrInterfaceDeclaration.getNameAsString()));
                 BlockStmt blockStmt = new BlockStmt();
                 ReturnStmt returnStmt = new ReturnStmt();
                 NameExpr nameExpr = new NameExpr();
                 nameExpr.setName(className + "Holder.INSTANCE");
                 returnStmt.setExpression(nameExpr);
                 blockStmt.addStatement(returnStmt);
-                getInstance.setBody(blockStmt);
-                addOnDemand = true;
+                getInstanceMethod.setBody(blockStmt);
+                onDemandAdded = true;
 
             }
 
-            if (addOnDemand) {
-                ClassOrInterfaceDeclaration decl = new ClassOrInterfaceDeclaration();
-                decl.setName(className + "Holder");
-                decl.setStatic(true);
-                decl.setPrivate(true);
+            if (onDemandAdded) {
+                ClassOrInterfaceDeclaration staticInnerClass = new ClassOrInterfaceDeclaration();
+                staticInnerClass.setName(className + "Holder");
+                staticInnerClass.setStatic(true);
+                staticInnerClass.setPrivate(true);
 
-
-                JavadocDescription javadocDescription = new JavadocDescription();
-                Javadoc javadoc = new Javadoc(javadocDescription);
-                String text = "Classe pour l'initialisation à la demande de la classe {@link " + className + "}.";
-
-                JavadocSnippet element = new JavadocSnippet(text);
-                javadocDescription.addElement(element);
-                decl.setJavadocComment(javadoc);
+                addJavaDoc(staticInnerClass);
 
                 ObjectCreationExpr objectCreationExpr = new ObjectCreationExpr();
                 objectCreationExpr.setType(className);
-                FieldDeclaration fieldDeclaration = decl.addFieldWithInitializer(new TypeParameter(className), "INSTANCE", objectCreationExpr, Modifier.STATIC, Modifier.FINAL, Modifier.PUBLIC);
+                FieldDeclaration fieldDeclaration = staticInnerClass.addFieldWithInitializer(new TypeParameter(className), "INSTANCE", objectCreationExpr, Modifier.STATIC, Modifier.FINAL, Modifier.PUBLIC);
 
                 JavaDocGenerator generator = JavaDocGenerator.getInstance();
                 generator.generateFieldJavaDoc(fieldDeclaration, "L'unique instance de la classe {@link " + className + "}.");
 
-                ConstructorDeclaration constructorDeclaration = decl.addConstructor(Modifier.PRIVATE);
+                ConstructorDeclaration constructorDeclaration = staticInnerClass.addConstructor(Modifier.PRIVATE);
                 constructorDeclaration.getBody().addOrphanComment(new LineComment("Constructeur par défaut"));
                 JavadocDescription jDocdescription = new JavadocDescription();
                 JavadocDescriptionElement javadocDescriptionElement = new JavadocSnippet("Constructeur par défaut de la classe {@link " + constructorDeclaration.getName() + "}.");
@@ -78,14 +71,25 @@ public class GenerateOnDemandeHolderPattern extends AbstractJavaCodeGenerator {
                 constructorDeclaration.setJavadocComment(javadocO);
 
                 NodeList<BodyDeclaration<?>> list = new NodeList<>();
-                list.add(decl);
+                list.add(staticInnerClass);
                 list.addAll(classOrInterfaceDeclaration.getMembers());
                 classOrInterfaceDeclaration.getMembers().clear();
                 classOrInterfaceDeclaration.getMembers().addAll(list);
             }
         }
-        if (addOnDemand)
+        if (onDemandAdded)
             return compilationUnit;
         return null;
+    }
+
+    private void addJavaDoc(ClassOrInterfaceDeclaration staticInnerClass) {
+        String className = staticInnerClass.getNameAsString();
+        JavadocDescription javadocDescription = new JavadocDescription();
+        Javadoc javadoc = new Javadoc(javadocDescription);
+        String commentText = "Classe pour l'initialisation à la demande de la classe {@link " + className + "}.";
+
+        JavadocSnippet javadocSnippet = new JavadocSnippet(commentText);
+        javadocDescription.addElement(javadocSnippet);
+        staticInnerClass.setJavadocComment(javadoc);
     }
 }
