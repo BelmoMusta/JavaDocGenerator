@@ -174,7 +174,7 @@ public abstract class AbstractCodeService implements GeneratorConstantes {
      *
      * @param methodDeclaration
      */
-    public void addDocForOverriddenMethods(MethodDeclaration methodDeclaration) {
+    public void setupOverriddenMethods(MethodDeclaration methodDeclaration) {
         JavadocDescription javadocDescription = new JavadocDescription();
         Javadoc javadoc = new Javadoc(javadocDescription);
         JavadocSnippet inheritDocSnippet = new JavadocSnippet(readFromProperties(INHERIT_DOC));
