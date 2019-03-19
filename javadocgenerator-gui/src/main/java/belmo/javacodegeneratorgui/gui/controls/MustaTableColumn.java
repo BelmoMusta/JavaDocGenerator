@@ -1,4 +1,4 @@
-package belmo.javacodegeneratorgui.gui.table;
+package belmo.javacodegeneratorgui.gui.controls;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;

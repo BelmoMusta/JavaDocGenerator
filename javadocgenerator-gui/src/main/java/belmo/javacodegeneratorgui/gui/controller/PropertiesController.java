@@ -2,7 +2,7 @@ package belmo.javacodegeneratorgui.gui.controller;
 
 import belmo.javacodegeneratorgui.gui.beans.PropertiesHolder;
 import belmo.javacodegeneratorgui.gui.controls.CustomButton;
-import belmo.javacodegeneratorgui.gui.table.MustaTableColumn;
+import belmo.javacodegeneratorgui.gui.controls.MustaTableColumn;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
