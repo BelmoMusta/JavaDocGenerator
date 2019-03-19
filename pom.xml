@@ -8,13 +8,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>javamethodreturncounter</module>
-        <module>javadocgenerator</module>
-        <module>javacodecore</module>
-        <module>mappingGenerator</module>
-        <module>javaenumhandler</module>
-        <module>mustagui</module>
-        <module>javacodetools</module>
+
+        <module>javadocgenerator-service</module>
+        <module>javadocgenerator-gui</module>
+
     </modules>
     <build>
         <plugins>
@@ -27,28 +24,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>musta.belmo.musta.belmo.javacodegenerator.gui.GeneratorGUI</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- bind to the packaging phase -->
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -73,14 +48,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/sonar-maven-plugin -->
-        <!-- https://mvnrepository.com/artifact/org.codehaus.sonar/sonar-maven3-plugin -->
-        <dependency>
-            <groupId>org.codehaus.sonar</groupId>
-            <artifactId>sonar-maven3-plugin</artifactId>
-            <version>5.1</version>
-            <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
