@@ -5,7 +5,7 @@ import com.github.javaparser.Problem;
 
 public class CompilationException extends Exception {
 
-    private ParseProblemException problemException;
+    private final ParseProblemException problemException;
 
     public CompilationException(String message, ParseProblemException cause) {
         super(message, cause);

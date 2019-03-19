@@ -35,10 +35,9 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 1.0.0.SNAPSHOT
  */
-public class JavaDocGenerator extends AbstractCodeService {
+public class JavaDocGenerator extends AbstractJavaDocService {
 
-    private static final String ALL_CLASSES_DOC = "generateJavaDocForAllClasses : directory {}\n destination {}";
-    private static final String GENERATION_DONE = "generateJavaDocForAllClasses : done";
+
 
     /**
      * Classe pour l'initialisation à la demande de la classe {@link JavaDocGenerator}.

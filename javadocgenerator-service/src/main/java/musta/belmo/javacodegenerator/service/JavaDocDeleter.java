@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
-public class JavaDocDeleter extends AbstractCodeService {
+public class JavaDocDeleter extends AbstractJavaDocService {
 
     private static class JavaDocDeleterHolder {
         static final JavaDocDeleter DELETER = new JavaDocDeleter();

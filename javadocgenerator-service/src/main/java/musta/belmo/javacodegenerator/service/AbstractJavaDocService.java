@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Properties;
 
-public abstract class AbstractCodeService implements GeneratorConstantes {
+public abstract class AbstractJavaDocService implements GeneratorConstantes {
     /**
      * L'attribut {@link #properties}.
      */

@@ -89,4 +89,6 @@ public interface GeneratorConstantes {
      * La constante {@link #TODO_ENUM_TEXT} de type {@link String} ayant la valeur {@value #TODO_ENUM_TEXT}.
      */
     String TODO_ENUM_TEXT = "TODO_ENUM_TEXT";
+    String ALL_CLASSES_DOC = "generateJavaDocForAllClasses : directory {}\n destination {}";
+    String GENERATION_DONE = "generateJavaDocForAllClasses : done";
 }
