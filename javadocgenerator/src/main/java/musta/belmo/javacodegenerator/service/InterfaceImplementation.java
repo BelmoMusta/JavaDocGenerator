@@ -1,7 +1,6 @@
 package musta.belmo.javacodegenerator.service;
 
 
-import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.PackageDeclaration;
@@ -17,21 +16,18 @@ import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.description.JavadocDescription;
 import com.github.javaparser.javadoc.description.JavadocSnippet;
 import musta.belmo.javacodecore.CodeUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 public class InterfaceImplementation extends AbstractJavaCodeGenerator {
-    static final String PATH = "C:\\Users\\mbelmokhtar\\Desktop\\Nouveau dossier\\JavaDocGenerator\\javadocgenerator\\src\\main\\resources\\";
     private static final Predicate<MethodDeclaration> IS_SET = aMethod -> aMethod.getNameAsString().length() > 3
             && aMethod.getName().toString().startsWith("set")
             && aMethod.getParameters().size() == 1;
-    private static final Predicate<MethodDeclaration> IS_GET = aMethod -> aMethod.getNameAsString().startsWith("get") && aMethod.getParameters().isEmpty();
+    private static final Predicate<MethodDeclaration> IS_GET = aMethod -> aMethod.getNameAsString().startsWith("get")
+            && aMethod.getParameters().isEmpty();
     private static final Predicate<MethodDeclaration> IS_IS = aMethod -> aMethod.getNameAsString().startsWith("is");
     private static final Predicate<MethodDeclaration> IS_VOID = aMethod -> aMethod.getType().isVoidType();
     private static final Predicate<MethodDeclaration> OTHER_METHODS = IS_SET.negate()
@@ -180,20 +176,4 @@ public class InterfaceImplementation extends AbstractJavaCodeGenerator {
                 });
     }
 
-    public static void main(String[] args) {
-
-        FileUtils.listFiles(new File(PATH), new String[]{"java"}, true).forEach(file -> {
-
-
-            CompilationUnit compilationUnit = null;
-            try {
-                compilationUnit = JavaParser.parse(file);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            CompilationUnit fieldsFromGetters = new InterfaceImplementation().generate(compilationUnit);
-            System.out.println(fieldsFromGetters);
-        });
-
-    }
 }

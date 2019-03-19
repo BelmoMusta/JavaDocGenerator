@@ -19,7 +19,7 @@ import musta.belmo.javacodecore.ZipUtils;
 import musta.belmo.javacodecore.logger.Level;
 import musta.belmo.javacodecore.logger.MustaLogger;
 import musta.belmo.javacodegenerator.FormattedJavadocBlockTag;
-import musta.belmo.javacodegenerator.service.exception.CompilationException;
+import musta.belmo.javacodegenerator.exception.CompilationException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 

@@ -31,7 +31,7 @@ import musta.belmo.javacodegenerator.gui.MenuAction;
 import musta.belmo.fx.mustagui.MenuItemWithIcon;
 import musta.belmo.javacodegenerator.gui.PropertiesGUI;
 import musta.belmo.javacodegenerator.service.JavaDocDeleter;
-import musta.belmo.javacodegenerator.service.exception.CompilationException;
+import musta.belmo.javacodegenerator.exception.CompilationException;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.BooleanUtils;

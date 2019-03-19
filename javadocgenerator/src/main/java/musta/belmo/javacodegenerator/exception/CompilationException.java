@@ -1,4 +1,4 @@
-package musta.belmo.javacodegenerator.service.exception;
+package musta.belmo.javacodegenerator.exception;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.Problem;

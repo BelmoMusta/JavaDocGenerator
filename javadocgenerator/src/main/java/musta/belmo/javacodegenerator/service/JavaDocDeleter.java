@@ -6,7 +6,7 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import musta.belmo.javacodecore.logger.Level;
-import musta.belmo.javacodegenerator.service.exception.CompilationException;
+import musta.belmo.javacodegenerator.exception.CompilationException;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

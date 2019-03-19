@@ -13,7 +13,8 @@ import musta.belmo.javacodecore.CodeUtils;
 import musta.belmo.javacodecore.Utils;
 import musta.belmo.javacodecore.logger.Level;
 import musta.belmo.javacodecore.logger.MustaLogger;
-import musta.belmo.javacodegenerator.service.exception.CompilationException;
+import musta.belmo.javacodegenerator.exception.CompilationException;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;

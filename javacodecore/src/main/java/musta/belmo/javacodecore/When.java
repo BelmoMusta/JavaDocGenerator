@@ -48,6 +48,7 @@ public class When<T> {
         return this;
     }
 
+    @SuppressWarnings("all")
     public <R> R evaluate() {
         if (ifPredicate.test(t) && thenAction != null) {
             return (R) thenAction.apply(t);
