@@ -15,7 +15,6 @@
             <groupId>musta.belmo</groupId>
             <artifactId>javadocgenerator-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-
         </dependency>
     </dependencies>
 

@@ -150,34 +150,18 @@ public class TreeViewController implements ControllerConstants {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem addJavadocMenuItem = new MenuItem("add javadoc for all java classes");
         MenuItem deleteJavadocMenuItem = new MenuItem("delete javadoc for all classes");
-        MenuItem generateImplMenuItem = new MenuItem("generate the implementation for this interface");
         addJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
-                try {
-                    generator.generateJavaDocForAllClasses(folder);
-                } catch (CompilationException e) {
-                    showExceptionAlert(e);
-                }
-                // tree.getSelectionModel().getSelectedItem().setValue(folder);
-                addFolderToTreeView(treePath);
-                tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-
-        generateImplMenuItem.setOnAction(event -> {
-            File folder = tree.getSelectionModel().getSelectedItem().getValue();
-            try {
-                deleter.deleteJavaDocForAllClasses(folder);
+                generator.generateJavaDocForAllClasses(folder);
                 addFolderToTreeView(treePath);
                 tree.getSelectionModel().select(tree.getSelectionModel().getSelectedItem());
             } catch (IOException | CompilationException e) {
                 showExceptionAlert(e);
             }
         });
+
+
         deleteJavadocMenuItem.setOnAction(event -> {
             File folder = tree.getSelectionModel().getSelectedItem().getValue();
             try {
@@ -188,9 +172,9 @@ public class TreeViewController implements ControllerConstants {
                 showExceptionAlert(e);
             }
         });
+
         contextMenu.getItems().add(addJavadocMenuItem);
         contextMenu.getItems().add(deleteJavadocMenuItem);
-        contextMenu.getItems().add(generateImplMenuItem);
         tree.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 TreeItem<File> selectedItem = tree.getSelectionModel().getSelectedItem();
@@ -266,6 +250,7 @@ public class TreeViewController implements ControllerConstants {
     }
 
     /**
+     *
      */
     private void setupTop() {
         VBox vBox = new VBox();
@@ -287,6 +272,11 @@ public class TreeViewController implements ControllerConstants {
         MenuItem deleteJavadoc = new MenuItemWithIcon("Remove Javadoc", "fa-remove");
         MenuItem indentCode = new MenuItemWithIcon("Indent Code", "fa-indent");
         MenuItem reorganizeCode = new MenuItemWithIcon("Reorganize code", "fa-sitemap");
+
+        ObservableList<MenuItem> items = menu.getItems();
+        items.addAll(addJavadoc, deleteJavadoc, indentCode, reorganizeCode, new SeparatorMenuItem());
+        menus.add(menu);
+
         setupMenuItemAction(addJavadoc, MenuAction.ADD_JAVADOC);
         setupMenuItemAction(deleteJavadoc, MenuAction.DELETE_JAVADOC);
         setupMenuItemAction(indentCode, MenuAction.INDENT_CODE);
@@ -299,13 +289,7 @@ public class TreeViewController implements ControllerConstants {
         addJavadoc.setAccelerator(CTRL_J);
         reorganizeCode.setAccelerator(CTRL_R);
         deleteJavadoc.setAccelerator(CTRL_SHIFT_J);
-        ObservableList<MenuItem> items = menu.getItems();
-        items.add(addJavadoc);
-        items.add(deleteJavadoc);
-        items.add(indentCode);
-        items.add(reorganizeCode);
-        items.add(new SeparatorMenuItem());
-        menus.add(menu);
+
     }
 
     /**
@@ -320,12 +304,19 @@ public class TreeViewController implements ControllerConstants {
         MenuItem openFile = new MenuItemWithIcon("Open file", "fa-file");
         MenuItem saveFile = new MenuItemWithIcon("Save File", FA_SAVE);
         MenuItem saveFileAs = new MenuItemWithIcon("Save File As ...", FA_SAVE);
+
+        ObservableList<MenuItem> items = menu.getItems();
+        items.addAll(newFile, new SeparatorMenuItem(), openFolder, saveAllFilesInFolder, saveFolderFilesAs);
+        items.addAll(new SeparatorMenuItem(), openFile, saveFile, saveFileAs);
+        menuBar.getMenus().add(menu);
+
         setupMenuItemAction(openFolder, MenuAction.OPEN_FOLDER);
         setupMenuItemAction(saveFile, MenuAction.SAVE_FILE);
         setupMenuItemAction(saveFileAs, MenuAction.SAVE_FILE_AS);
         setupMenuItemAction(newFile, MenuAction.NEW_FILE);
         setupMenuItemAction(openFile, MenuAction.OPEN_FILE);
         setupMenuItemAction(saveAllFilesInFolder, MenuAction.SAVE_ALL_FILES);
+
         saveFile.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         saveFileAs.disableProperty().bind(Bindings.isEmpty(tabPane.getTabs()));
         saveFolderFilesAs.disableProperty().bind(Bindings.not(tree.visibleProperty()));
@@ -336,17 +327,7 @@ public class TreeViewController implements ControllerConstants {
         openFolder.setAccelerator(CTRL_SHIFT_O);
         saveFile.setAccelerator(CTRL_S);
         saveAllFilesInFolder.setAccelerator(CTRL_SHIFT_S);
-        ObservableList<MenuItem> items = menu.getItems();
-        items.add(newFile);
-        items.add(new SeparatorMenuItem());
-        items.add(openFolder);
-        items.add(saveAllFilesInFolder);
-        items.add(saveFolderFilesAs);
-        items.add(new SeparatorMenuItem());
-        items.add(openFile);
-        items.add(saveFile);
-        items.add(saveFileAs);
-        menuBar.getMenus().add(menu);
+
     }
 
     /**
@@ -385,7 +366,7 @@ public class TreeViewController implements ControllerConstants {
                     try {
                         loadProperties();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        showExceptionAlert(e);
                     }
                     break;
                 case SAVE_FILE:
@@ -528,7 +509,8 @@ public class TreeViewController implements ControllerConstants {
             CodeArea codeArea = new CodeArea();
             codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
             // Subscription cleanupWhenNoLongerNeedIt =
-            codeArea.multiPlainChanges().successionEnds(Duration.ofMillis(500)).subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+            codeArea.multiPlainChanges().successionEnds(Duration.ofMillis(500))
+                    .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
             Tab tab = new Tab();
             Tooltip tooltip = new Tooltip();
             if (file == null) {
@@ -543,40 +525,7 @@ public class TreeViewController implements ControllerConstants {
             codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
             codeArea.setPadding(new Insets(0, 0, 0, 10));
             addListenerToCodeArea(codeArea, tab);
-            tab.setOnCloseRequest(event -> {
-                Boolean isEdited = markedFiles.get(tab.getId());
-                if (BooleanUtils.isTrue(isEdited)) {
-                    Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save this file before you close ? ");
-                    ObservableList<ButtonType> buttonTypes = dialogPane.getButtonTypes();
-
-                    buttonTypes.clear();
-                    buttonTypes.add(ButtonType.OK);
-                    buttonTypes.add(ButtonType.NO);
-                    buttonTypes.add(ButtonType.CANCEL);
-                    Optional<ButtonType> buttonType = dialogPane.showAndWait();
-                    if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
-                        CodeArea codeArea1 = CodeUtils.castTo(tab.getContent());
-                        try {
-                            String path = tab.getId();
-                            if (path == null) {
-                                FileChooser fileChooser = new FileChooser();
-                                File saved = fileChooser.showSaveDialog(null);
-                                if (saved != null) {
-                                    path = saved.getAbsolutePath();
-                                }
-                            }
-                            if (path != null) {
-                                CodeUtils.saveToFile(codeArea1.getText().getBytes(), path);
-                            } else
-                                event.consume();
-                        } catch (IOException e) {
-                            showExceptionAlert(e);
-                        }
-                    } else if (buttonType.isPresent() && buttonType.get().equals(ButtonType.CANCEL)) {
-                        event.consume();
-                    }
-                }
-            });
+            setOnCloseRequest(tab);
             tab.setOnClosed(event -> {
                 String id = tab.getId();
                 // remove from the marked files so that it can be reopened
@@ -601,6 +550,46 @@ public class TreeViewController implements ControllerConstants {
         } catch (IOException e) {
             showExceptionAlert(e);
         }
+    }
+
+    private void setOnCloseRequest(Tab tab) {
+        tab.setOnCloseRequest(event -> {
+            Boolean isEdited = markedFiles.get(tab.getId());
+            if (BooleanUtils.isTrue(isEdited)) {
+                Alert dialogPane = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save this file before you close ? ");
+                ObservableList<ButtonType> buttonTypes = dialogPane.getButtonTypes();
+
+                buttonTypes.clear();
+                buttonTypes.add(ButtonType.OK);
+                buttonTypes.add(ButtonType.NO);
+                buttonTypes.add(ButtonType.CANCEL);
+
+                Optional<ButtonType> buttonType = dialogPane.showAndWait();
+                if (buttonType.isPresent() && ButtonType.OK.equals(buttonType.get())) {
+                    CodeArea codeArea = CodeUtils.castTo(tab.getContent());
+                    try {
+                        String path = tab.getId();
+                        if (path == null) {
+                            FileChooser fileChooser = new FileChooser();
+                            File saved = fileChooser.showSaveDialog(null);
+                            if (saved != null) {
+                                path = saved.getAbsolutePath();
+                            }
+                        }
+
+                        if (path != null) {
+                            CodeUtils.saveToFile(codeArea.getText().getBytes(), path);
+                        } else {
+                            event.consume();
+                        }
+                    } catch (IOException e) {
+                        showExceptionAlert(e);
+                    }
+                } else if (buttonType.isPresent() && buttonType.get().equals(ButtonType.CANCEL)) {
+                    event.consume();
+                }
+            }
+        });
     }
 
     private void addListenerToCodeArea(CodeArea codeArea, Tab tab) {
@@ -713,7 +702,7 @@ public class TreeViewController implements ControllerConstants {
                     }
                     break;
                 case F: {
-
+                    //TODO: add search bar
                 }
             }
         }
