@@ -1,5 +1,4 @@
-    package belmo.javacodegeneratorgui.gui;
-
+package belmo.javacodegeneratorgui.gui;
 
 
 import belmo.javacodegeneratorgui.gui.app.AbstractJavaFXApplication;

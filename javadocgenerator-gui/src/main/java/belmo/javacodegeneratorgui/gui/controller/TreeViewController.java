@@ -511,6 +511,9 @@ public class TreeViewController implements ControllerConstants {
             // Subscription cleanupWhenNoLongerNeedIt =
             codeArea.multiPlainChanges().successionEnds(Duration.ofMillis(500))
                     .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+            DoubleProperty fontSize = new SimpleDoubleProperty(18);
+            codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
+            codeArea.setPadding(new Insets(0, 0, 0, 10));
             Tab tab = new Tab();
             Tooltip tooltip = new Tooltip();
             if (file == null) {
@@ -521,9 +524,6 @@ public class TreeViewController implements ControllerConstants {
             tab.setTooltip(tooltip);
             URL resource = getClass().getClassLoader().getResource("java-style.css");
             Optional.ofNullable(resource).ifPresent(url -> codeArea.getStylesheets().add(url.toExternalForm()));
-            DoubleProperty fontSize = new SimpleDoubleProperty(18);
-            codeArea.styleProperty().bind(Bindings.format("-fx-font-size: %.2fpt;", fontSize));
-            codeArea.setPadding(new Insets(0, 0, 0, 10));
             addListenerToCodeArea(codeArea, tab);
             setOnCloseRequest(tab);
             tab.setOnClosed(event -> {
