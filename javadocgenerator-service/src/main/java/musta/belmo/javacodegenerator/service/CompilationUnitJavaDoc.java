@@ -8,9 +8,9 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
 import musta.belmo.javacodegenerator.exception.CompilationException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * TODO: Complete the description of this class
@@ -27,7 +27,7 @@ public class CompilationUnitJavaDoc {
      * @param compilationUnit {@link CompilationUnit}
      * @return String
      */
-    public static String generateJavaDocAsString(CompilationUnit compilationUnit) {
+    private static String generateJavaDocAsString(CompilationUnit compilationUnit) {
         compilationUnit.findAll(TypeDeclaration.class).forEach(JavaTypeJavaDoc::generateJavaDocForTypeDeclaration);
         compilationUnit.findAll(ConstructorDeclaration.class).forEach(JavaTypeJavaDoc::generateConstructorJavaDoc);
         compilationUnit.findAll(FieldDeclaration.class).forEach(FieldJavaDoc::generateFieldJavaDoc);
@@ -67,8 +67,8 @@ public class CompilationUnitJavaDoc {
      * @return Attribut {@link #compilationUnit}
      * @throws CompilationException the raised exception if error.
      */
-    protected static CompilationUnit getCompilationUnit(String src) throws CompilationException {
-        CompilationUnit compilationUnit;
+    public static CompilationUnit getCompilationUnit(String src) throws CompilationException {
+        final CompilationUnit compilationUnit;
         try {
             compilationUnit = JavaParser.parse(src);
         } catch (ParseProblemException parseException) {

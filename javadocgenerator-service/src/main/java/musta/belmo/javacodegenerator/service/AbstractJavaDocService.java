@@ -3,13 +3,10 @@ package musta.belmo.javacodegenerator.service;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.javadoc.Javadoc;
-import com.github.javaparser.javadoc.description.JavadocDescription;
-import com.github.javaparser.javadoc.description.JavadocSnippet;
 import musta.belmo.javacodegenerator.exception.CompilationException;
 import musta.belmo.javacodegenerator.logger.MustaLogger;
 import musta.belmo.javacodegenerator.util.CodeUtils;
+
 import java.io.File;
 import java.util.List;
 
@@ -73,15 +70,4 @@ public abstract class AbstractJavaDocService implements GeneratorConstantes {
         return new File(destinationFile, srcFile.getName());
     }
 
-    /**
-     * @param methodDeclaration Value to be assigned to the {@link #upOverriddenMethods} attribute.
-     */
-    public static void setupOverriddenMethods(MethodDeclaration methodDeclaration) {
-        JavadocDescription javadocDescription = new JavadocDescription();
-        Javadoc javadoc = new Javadoc(javadocDescription);
-        JavadocSnippet inheritDocSnippet = new JavadocSnippet(PropertiesHandler.readFromProperties(INHERIT_DOC));
-        methodDeclaration.removeJavaDocComment();
-        javadocDescription.addElement(inheritDocSnippet);
-        methodDeclaration.setJavadocComment(javadoc);
-    }
 }

@@ -5,6 +5,7 @@ import musta.belmo.javacodegenerator.exception.CompilationException;
 import musta.belmo.javacodegenerator.logger.Level;
 import musta.belmo.javacodegenerator.logger.MustaLogger;
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -13,8 +14,8 @@ import java.util.Collection;
  * TODO: Complete the description of this class
  *
  * @author default author
- * @since 0.0.0.SNAPSHOT
  * @version 0.0.0
+ * @since 0.0.0.SNAPSHOT
  */
 public class JavaDocGenerator extends AbstractJavaDocService {
 
@@ -22,8 +23,8 @@ public class JavaDocGenerator extends AbstractJavaDocService {
      * TODO: Complete the description of this class
      *
      * @author default author
-     * @since 0.0.0.SNAPSHOT
      * @version 0.0.0
+     * @since 0.0.0.SNAPSHOT
      */
     private static class JavaDocGeneratorHolder {
 
@@ -36,7 +37,7 @@ public class JavaDocGenerator extends AbstractJavaDocService {
          * The JavaDocGeneratorHolder class constructor.
          */
         private JavaDocGeneratorHolder() {
-        // Constructeur par défaut
+            // Constructeur par défaut
         }
     }
 
@@ -59,14 +60,14 @@ public class JavaDocGenerator extends AbstractJavaDocService {
      * Generate java doc for all classes
      *
      * @param directory {@link File}
-     * @throws IOException the raised exception if error.
+     * @throws IOException          the raised exception if error.
      * @throws CompilationException the raised exception if error.
      */
     public void generateJavaDocForAllClasses(File directory) throws IOException, CompilationException {
         logger.logCurrentMethod(Level.DEBUG, directory, directory);
         logger.info(ALL_CLASSES_DOC, directory, directory);
         if (directory.isDirectory()) {
-            Collection<File> files = FileUtils.listFiles(directory, new String[] { JAVA_EXTENSION }, true);
+            Collection<File> files = FileUtils.listFiles(directory, new String[]{JAVA_EXTENSION}, true);
             for (File file : files) {
                 generateJavaDoc(file);
             }
@@ -79,12 +80,12 @@ public class JavaDocGenerator extends AbstractJavaDocService {
     /**
      * Generate java doc
      *
-     * @param srcFile {@link File}
+     * @param srcFile         {@link File}
      * @param destinationFile {@link File}
-     * @throws IOException the raised exception if error.
+     * @throws IOException          the raised exception if error.
      * @throws CompilationException the raised exception if error.
      */
-    private static void generateJavaDoc(File srcFile, File destinationFile) throws IOException, CompilationException {
+    private void generateJavaDoc(File srcFile, File destinationFile) throws IOException, CompilationException {
         CompilationUnit compilationUnit = CompilationUnitJavaDoc.getCompilationUnit(srcFile);
         String javaDocAsString = CompilationUnitJavaDoc.generateJavaDocAsString(compilationUnit.toString());
         File destFile = getDestination(srcFile, destinationFile);
@@ -96,10 +97,10 @@ public class JavaDocGenerator extends AbstractJavaDocService {
      * Generate java doc
      *
      * @param currentFile {@link File}
-     * @throws IOException the raised exception if error.
+     * @throws IOException          the raised exception if error.
      * @throws CompilationException the raised exception if error.
      */
-    private static void generateJavaDoc(File currentFile) throws IOException, CompilationException {
+    private void generateJavaDoc(File currentFile) throws IOException, CompilationException {
         generateJavaDoc(currentFile, currentFile.getParentFile());
     }
 }

@@ -94,7 +94,7 @@ public class JavaTypeJavaDoc {
         javadocDescription.addElement(element);
         if (!constructorDeclaration.getJavadoc().isPresent()) {
             CodeUtils.addParamsToJavaDoc(constructParams, javadoc);
-            MethodJavaDoc.addExceptionsToJavaDoc(constructorDeclaration.getThrownExceptions(), javadoc);
+            ExceptionJavaDoc.addExceptionsToJavaDoc(constructorDeclaration.getThrownExceptions(), javadoc);
             constructorDeclaration.setJavadocComment(javadoc);
         }
     }
