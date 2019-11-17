@@ -33,6 +33,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import musta.belmo.javacodegenerator.exception.CompilationException;
+import musta.belmo.javacodegenerator.service.CompilationUnitJavaDoc;
 import musta.belmo.javacodegenerator.service.JavaDocDeleter;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
 import musta.belmo.javacodegenerator.util.CodeUtils;
@@ -645,8 +646,8 @@ public class TreeViewController implements ControllerConstants {
             CodeArea content = (CodeArea) selectedItem.getContent();
             String text = content.getText();
             try {
-                content.replaceText(generator.generateJavaDocAsString(text, false));
-            } catch (IOException | CompilationException e) {
+                content.replaceText(CompilationUnitJavaDoc.generateJavaDocAsString(text));
+            } catch (CompilationException e) {
                 showExceptionAlert(e);
             }
         }
@@ -709,6 +710,7 @@ public class TreeViewController implements ControllerConstants {
     }
 
     private void showExceptionAlert(Exception exception) {
+        exception.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(exception.getMessage());
         alert.setTitle("Error while processing");

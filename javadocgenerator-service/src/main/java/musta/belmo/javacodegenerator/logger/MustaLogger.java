@@ -3,24 +3,25 @@ package musta.belmo.javacodegenerator.logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
-
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by DELL on 03/10/2018.
+ * TODO: Complete the description of this class
  *
- * @since 1.0.0
+ * @author default author
+ * @since 0.0.0.SNAPSHOT
+ * @version 0.0.0
  */
 public class MustaLogger {
 
     /**
-     * L'attribut {@link #logger}.
+     * The {@link #logger} attribute.
      */
     Logger logger;
 
     /**
-     * Constructeur de la classe MustaLogger
+     * The MustaLogger class constructor.
      *
      * @param cls{@link Class}
      */
@@ -36,9 +37,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s         {@link String}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void trace(String s, Throwable throwable) {
@@ -53,7 +54,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      */
@@ -62,11 +63,11 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      */
     public void error(Marker marker, String s, Object o) {
         logger.error(marker, s, o);
@@ -81,10 +82,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker  {@link Marker}
-     * @param s       {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void debug(Marker marker, String s, Object... objects) {
@@ -92,10 +93,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s  {@link String}
-     * @param o  {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      * @param o1 {@link Object}
      */
     public void info(String s, Object o, Object o1) {
@@ -103,30 +104,30 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
+     * @param s {@link String}
      */
     public void info(Marker marker, String s) {
         logger.info(marker, s);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      */
     public void warn(Marker marker, String s, Object o) {
         logger.warn(marker, s, o);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s       {@link String}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void trace(String s, Object... objects) {
@@ -134,9 +135,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s       {@link String}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void error(String s, Object... objects) {
@@ -144,7 +145,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      * @param o {@link Object}
@@ -154,10 +155,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s  {@link String}
-     * @param o  {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      * @param o1 {@link Object}
      */
     public void debug(String s, Object o, Object o1) {
@@ -165,21 +166,21 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      */
     public void trace(Marker marker, String s, Object o) {
         logger.trace(marker, s, o);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s  {@link String}
-     * @param o  {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      * @param o1 {@link Object}
      */
     public void trace(String s, Object o, Object o1) {
@@ -194,20 +195,20 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
+     * @param s {@link String}
      */
     public void debug(Marker marker, String s) {
         logger.debug(marker, s);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker    {@link Marker}
-     * @param s         {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void debug(Marker marker, String s, Throwable throwable) {
@@ -222,10 +223,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker    {@link Marker}
-     * @param s         {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void trace(Marker marker, String s, Throwable throwable) {
@@ -233,10 +234,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker  {@link Marker}
-     * @param s       {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void trace(Marker marker, String s, Object... objects) {
@@ -244,9 +245,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s         {@link String}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void warn(String s, Throwable throwable) {
@@ -254,20 +255,20 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
+     * @param s {@link String}
      */
     public void trace(Marker marker, String s) {
         logger.trace(marker, s);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker  {@link Marker}
-     * @param s       {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void error(Marker marker, String s, Object... objects) {
@@ -283,10 +284,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s  {@link String}
-     * @param o  {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      * @param o1 {@link Object}
      */
     public void warn(String s, Object o, Object o1) {
@@ -294,10 +295,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker    {@link Marker}
-     * @param s         {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void warn(Marker marker, String s, Throwable throwable) {
@@ -305,10 +306,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker    {@link Marker}
-     * @param s         {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void error(Marker marker, String s, Throwable throwable) {
@@ -316,21 +317,21 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
-     * @param o1     {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
+     * @param o1 {@link Object}
      */
     public void trace(Marker marker, String s, Object o, Object o1) {
         logger.trace(marker, s, o, o1);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s       {@link String}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void info(String s, Object... objects) {
@@ -345,11 +346,11 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      */
     public void info(Marker marker, String s, Object o) {
         logger.info(marker, s, o);
@@ -363,30 +364,30 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      */
     public void debug(Marker marker, String s, Object o) {
         logger.debug(marker, s, o);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
-     * @param o1     {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
+     * @param o1 {@link Object}
      */
     public void info(Marker marker, String s, Object o, Object o1) {
         logger.info(marker, s, o, o1);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      */
@@ -403,7 +404,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      */
@@ -420,7 +421,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      * @param o {@link Object}
@@ -430,29 +431,29 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
+     * @param s {@link String}
      */
     public void error(Marker marker, String s) {
         logger.error(marker, s);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
-     * @param o1     {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
+     * @param o1 {@link Object}
      */
     public void warn(Marker marker, String s, Object o, Object o1) {
         logger.warn(marker, s, o, o1);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      * @param o {@link Object}
@@ -462,9 +463,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s         {@link String}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void debug(String s, Throwable throwable) {
@@ -472,10 +473,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s  {@link String}
-     * @param o  {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
      * @param o1 {@link Object}
      */
     public void error(String s, Object o, Object o1) {
@@ -483,7 +484,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      */
@@ -492,9 +493,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s       {@link String}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void warn(String s, Object... objects) {
@@ -502,7 +503,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      */
@@ -511,10 +512,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker  {@link Marker}
-     * @param s       {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void info(Marker marker, String s, Object... objects) {
@@ -522,10 +523,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker  {@link Marker}
-     * @param s       {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void warn(Marker marker, String s, Object... objects) {
@@ -533,12 +534,12 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
-     * @param o1     {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
+     * @param o1 {@link Object}
      */
     public void debug(Marker marker, String s, Object o, Object o1) {
         logger.debug(marker, s, o, o1);
@@ -553,10 +554,10 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param marker    {@link Marker}
-     * @param s         {@link String}
+     * @param marker {@link Marker}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void info(Marker marker, String s, Throwable throwable) {
@@ -564,19 +565,19 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
+     * @param s {@link String}
      */
     public void warn(Marker marker, String s) {
         logger.warn(marker, s);
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s         {@link String}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void info(String s, Throwable throwable) {
@@ -584,7 +585,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      * @param o {@link Object}
@@ -594,9 +595,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s       {@link String}
+     * @param s {@link String}
      * @param objects {@link Object}
      */
     public void debug(String s, Object... objects) {
@@ -604,7 +605,7 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param s {@link String}
      * @param o {@link Object}
@@ -614,9 +615,9 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
-     * @param s         {@link String}
+     * @param s {@link String}
      * @param throwable {@link Throwable}
      */
     public void error(String s, Throwable throwable) {
@@ -624,12 +625,12 @@ public class MustaLogger {
     }
 
     /**
-     * TODO: Compléter la description de cette méthode
+     * TODO: Complete the description of this method
      *
      * @param marker {@link Marker}
-     * @param s      {@link String}
-     * @param o      {@link Object}
-     * @param o1     {@link Object}
+     * @param s {@link String}
+     * @param o {@link Object}
+     * @param o1 {@link Object}
      */
     public void error(Marker marker, String s, Object o, Object o1) {
         logger.error(marker, s, o, o1);
@@ -638,7 +639,7 @@ public class MustaLogger {
     /**
      * Log current method
      *
-     * @param level   {@link Level}
+     * @param level {@link Level}
      * @param objects {@link Object}
      */
     public void logCurrentMethod(Level level, Object... objects) {
@@ -647,22 +648,16 @@ public class MustaLogger {
             StackTraceElement stackTraceElement = stackTrace[2];
             List<String> strings = Collections.nCopies(objects.length, "{}");
             String str = "Method : %s";
-
             if (objects.length > 0) {
                 str = str.concat(" with values ");
             }
             String join = String.join(",", strings);
-
-            StringBuilder strBuilder = new StringBuilder()
-                    .append(str)
-                    .append(join);
+            StringBuilder strBuilder = new StringBuilder().append(str).append(join);
             String methodName = String.format(strBuilder.toString(), stackTraceElement.getMethodName());
-
             if (logger == null) {
                 logger = LoggerFactory.getLogger(stackTraceElement.getClassName());
             }
-
-            switch (level) {
+            switch(level) {
                 case INFO:
                     info(methodName, objects);
                     break;

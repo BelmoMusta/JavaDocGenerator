@@ -1,94 +1,131 @@
 package musta.belmo.javacodegenerator.service;
 
+/**
+ * TODO: Complete the description of this class
+ *
+ * @author default author
+ * @since 0.0.0.SNAPSHOT
+ * @version 0.0.0
+ */
 public interface GeneratorConstantes {
+
     /**
-     * La constante {@link #ATTRIBUT_COMMENT_FORMAT} de type {@link String} ayant la valeur {@value #ATTRIBUT_COMMENT_FORMAT}.
+     * The {@link #ATTRIBUT_COMMENT_FORMAT} attribute.
      */
     String ATTRIBUT_COMMENT_FORMAT = "ATTRIBUT_COMMENT_FORMAT";
+
     /**
-     * La constante {@link #UTF_8} de type {@link String} ayant la valeur {@value #UTF_8}.
+     * The {@link #UTF_8} attribute.
      */
     String UTF_8 = "UTF-8";
+
     /**
-     * La constante {@link #TODO_METHOD_TEXT} de type {@link String} ayant la valeur {@value #TODO_METHOD_TEXT}.
+     * The {@link #TODO_METHOD_TEXT} attribute.
      */
     String TODO_METHOD_TEXT = "TODO_METHOD_TEXT";
+
     /**
-     * La constante {@link #INHERIT_DOC} de type {@link String} ayant la valeur {@value #INHERIT_DOC}.
+     * The {@link #INHERIT_DOC} attribute.
      */
     String INHERIT_DOC = "INHERIT_DOC";
+
     /**
-     * La constante {@link #SETTER_COMMENT} de type {@link String} ayant la valeur {@value #SETTER_COMMENT}.
+     * The {@link #SETTER_COMMENT} attribute.
      */
     String SETTER_COMMENT = "SETTER_COMMENT";
+
     /**
-     * La constante {@link #FIELD_COMMENT} de type {@link String} ayant la valeur {@value #FIELD_COMMENT}.
+     * The {@link #FIELD_COMMENT} attribute.
      */
     String FIELD_COMMENT = "FIELD_COMMENT";
+
     /**
-     * La constante {@link #CONSTANT_COMMENT} de type {@link String} ayant la valeur {@value #CONSTANT_COMMENT}.
+     * The {@link #CONSTANT_COMMENT} attribute.
      */
     String CONSTANT_COMMENT = "CONSTANT_COMMENT";
+
     /**
-     * La constante {@link #LINK_COMMENT} de type {@link String} ayant la valeur {@value #LINK_COMMENT}.
+     * The {@link #LINK_COMMENT} attribute.
      */
     String LINK_COMMENT = "LINK_COMMENT";
+
     /**
-     * La constante {@link #STRING} de type {@link String} ayant la valeur {@value #STRING}.
+     * The {@link #STRING} attribute.
      */
     String STRING = "String";
+
     /**
-     * La constante {@link #FIELD_VALUE_COMMENT} de type {@link String} ayant la valeur {@value #FIELD_VALUE_COMMENT}.
+     * The {@link #FIELD_VALUE_COMMENT} attribute.
      */
     String FIELD_VALUE_COMMENT = "FIELD_VALUE_COMMENT";
+
     /**
-     * La constante {@link #SINGLE_STRING_FORMAT} de type {@link String} ayant la valeur {@value #SINGLE_STRING_FORMAT}.
+     * The {@link #SINGLE_STRING_FORMAT} attribute.
      */
     String SINGLE_STRING_FORMAT = "%s";
+
     /**
-     * La constante {@link #CONSTR_COMMENT} de type {@link String} ayant la valeur {@value #CONSTR_COMMENT}.
+     * The {@link #CONSTR_COMMENT} attribute.
      */
     String CONSTR_COMMENT = "CONSTR_COMMENT";
+
     /**
-     * La constante {@link #DEFAULT_CONSTR_COMMENT} de type {@link String} ayant la valeur {@value #DEFAULT_CONSTR_COMMENT}.
+     * The {@link #DEFAULT_CONSTR_COMMENT} attribute.
      */
     String DEFAULT_CONSTR_COMMENT = "DEFAULT_CONSTR_COMMENT";
+
     /**
-     * La constante {@link #EXCEPTION_COMMENT} de type {@link String} ayant la valeur {@value #EXCEPTION_COMMENT}.
+     * The {@link #EXCEPTION_COMMENT} attribute.
      */
     String EXCEPTION_COMMENT = "EXCEPTION_COMMENT";
+
     /**
-     * La constante {@link #JAVA_EXTENSION} de type {@link String} ayant la valeur {@value #JAVA_EXTENSION}.
+     * The {@link #JAVA_EXTENSION} attribute.
      */
     String JAVA_EXTENSION = "java";
+
     /**
-     * La constante {@link #ZIP_EXTENSION} de type {@link String} ayant la valeur {@value #ZIP_EXTENSION}.
+     * The {@link #ZIP_EXTENSION} attribute.
      */
     String ZIP_EXTENSION = ".zip";
+
     /**
-     * La constante {@link #SINCE_VERSION} de type {@link String} ayant la valeur {@value #SINCE_VERSION}.
+     * The {@link #SINCE_VERSION} attribute.
      */
     String SINCE_VERSION = "SINCE_VERSION";
 
+    /**
+     * The {@link #VERSION} attribute.
+     */
     String VERSION = "VERSION";
 
-
     /**
-     * La constante {@link #AUTHOR} de type {@link String} ayant la valeur {@value #AUTHOR}.
+     * The {@link #AUTHOR} attribute.
      */
     String AUTHOR = "AUTHOR";
+
     /**
-     * La constante {@link #APPLICATION_PROPERTIES} de type {@link String} ayant la valeur {@value #APPLICATION_PROPERTIES}.
+     * The {@link #APPLICATION_PROPERTIES} attribute.
      */
     String APPLICATION_PROPERTIES = "application.properties";
+
     /**
-     * La constante {@link #TODO_CLASS_TEXT} de type {@link String} ayant la valeur {@value #TODO_CLASS_TEXT}.
+     * The {@link #TODO_CLASS_TEXT} attribute.
      */
     String TODO_CLASS_TEXT = "TODO_CLASS_TEXT";
+
     /**
-     * La constante {@link #TODO_ENUM_TEXT} de type {@link String} ayant la valeur {@value #TODO_ENUM_TEXT}.
+     * The {@link #TODO_ENUM_TEXT} attribute.
      */
     String TODO_ENUM_TEXT = "TODO_ENUM_TEXT";
+
+    /**
+     * The {@link #ALL_CLASSES_DOC} attribute.
+     */
     String ALL_CLASSES_DOC = "generateJavaDocForAllClasses : directory {}\n destination {}";
+
+    /**
+     * The {@link #GENERATION_DONE} attribute.
+     */
     String GENERATION_DONE = "generateJavaDocForAllClasses : done";
 }

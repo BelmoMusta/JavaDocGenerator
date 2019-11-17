@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import musta.belmo.javacodegenerator.service.JavaDocGenerator;
+import musta.belmo.javacodegenerator.service.PropertiesHandler;
 
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class PropertiesController {
         columns.addAll(keyColumn, valueColumn);
 
         JavaDocGenerator javaDocGenerator = JavaDocGenerator.getInstance();
-        String propertiesPath = URLDecoder.decode(javaDocGenerator.getPropertiesPath(), "UTF-8");
+        String propertiesPath = URLDecoder.decode(PropertiesHandler.getPropertiesPath(), "UTF-8");
         java.io.File file = new java.io.File(propertiesPath);
         Properties properties = new Properties();
         properties.load(file.toURI().toURL().openStream());

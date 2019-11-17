@@ -1,7 +1,11 @@
 package musta.belmo.javacodegenerator.logger;
 
 /**
- * Created by DELL on 03/10/2018.
+ * TODO: Complete the description of this enumeration
+ *
+ * @author default author
+ * @since 0.0.0.SNAPSHOT
+ * @version 0.0.0
  */
 public enum Level {
 
