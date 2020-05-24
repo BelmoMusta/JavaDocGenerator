@@ -56,7 +56,7 @@ public class MethodJavaDoc {
                 oldJavaDoc = optionalJavaDoc.get();
             }
             paramTypesJavaDoc(methodDeclaration,
-                     oldJavaDoc);
+                    oldJavaDoc);
             ExceptionJavaDoc.addExceptionsToJavaDoc(methodDeclaration.getThrownExceptions(), oldJavaDoc);
             addReturnTagToJavadoc(methodDeclaration, methodName, isGetter, isIs, methodReturnType, oldJavaDoc);
             methodDeclaration.setJavadocComment(oldJavaDoc);
@@ -183,7 +183,7 @@ public class MethodJavaDoc {
     }
 
     /**
-     * @param methodDeclaration Value to be assigned to the {@link #upOverriddenMethods} attribute.
+     * @param methodDeclaration Value to be assigned to the attribute.
      */
     private static void setupOverriddenMethods(MethodDeclaration methodDeclaration) {
         JavadocDescription javadocDescription = new JavadocDescription();
@@ -192,5 +192,21 @@ public class MethodJavaDoc {
         methodDeclaration.removeJavaDocComment();
         javadocDescription.addElement(inheritDocSnippet);
         methodDeclaration.setJavadocComment(javadoc);
+    }
+
+    public static void addMethodJavaDocDescription(MethodDeclaration methodDeclaration) {
+        final JavadocDescription javadocDescription = new JavadocDescription();
+        final Javadoc javadoc = new Javadoc(javadocDescription);
+        final String methodName = methodDeclaration.getName().asString();
+
+        final JavadocSnippet inheritDocSnippet;
+        if ((!methodDeclaration.hasJavaDocComment()) && methodDeclaration.isAnnotationPresent(Override.class)) {
+            inheritDocSnippet = new JavadocSnippet(PropertiesHandler.readFromProperties(GeneratorConstantes.INHERIT_DOC));
+        } else {
+            inheritDocSnippet = new JavadocSnippet(methodName + " " + PropertiesHandler.readFromProperties(GeneratorConstantes.TODO_METHOD_TEXT));
+        }
+        javadocDescription.addElement(inheritDocSnippet);
+        methodDeclaration.setJavadocComment(javadoc);
+
     }
 }

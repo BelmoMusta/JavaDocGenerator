@@ -3,11 +3,8 @@ package musta.belmo.javacodegenerator.service;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.ConstructorDeclaration;
-import com.github.javaparser.ast.body.FieldDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.TypeDeclaration;
 import musta.belmo.javacodegenerator.exception.CompilationException;
+import musta.belmo.javacodegenerator.service.visitor.CompilationUnitJavaDocVisitor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,11 +25,14 @@ public class CompilationUnitJavaDoc {
      * @return String
      */
     private static String generateJavaDocAsString(CompilationUnit compilationUnit) {
-        compilationUnit.findAll(TypeDeclaration.class).forEach(JavaTypeJavaDoc::generateJavaDocForTypeDeclaration);
-        compilationUnit.findAll(ConstructorDeclaration.class).forEach(JavaTypeJavaDoc::generateConstructorJavaDoc);
-        compilationUnit.findAll(FieldDeclaration.class).forEach(FieldJavaDoc::generateFieldJavaDoc);
-        compilationUnit.findAll(MethodDeclaration.class).forEach(MethodJavaDoc::generateMethodJavaDoc);
-        return compilationUnit.toString();
+        //compilationUnit.findAll(TypeDeclaration.class).forEach(JavaTypeJavaDoc::generateJavaDocForTypeDeclaration);
+        //compilationUnit.findAll(ConstructorDeclaration.class).forEach(JavaTypeJavaDoc::generateConstructorJavaDoc);
+        //compilationUnit.findAll(FieldDeclaration.class).forEach(FieldJavaDoc::generateFieldJavaDoc);
+       // compilationUnit.findAll(MethodDeclaration.class).forEach(MethodJavaDoc::generateMethodJavaDoc);
+
+        final CompilationUnit destination = compilationUnit.clone();
+        destination.accept(new CompilationUnitJavaDocVisitor(), destination);
+        return destination.toString();
     }
 
     /**
