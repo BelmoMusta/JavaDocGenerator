@@ -39,15 +39,12 @@ public class StaticFinalVariableDeclaratorVisitor extends AbstractCommonVisitor<
 
         Type type = variable.getType();
         SimpleName fieldName = variable.getName();
-        String javaDocText;
-        String valueText;
-        Object assignedValue;
-        JavadocSnippet javadocSnippet;
-        javaDocText = PropertiesHandler.readFromProperties(GeneratorConstantes.CONSTANT_COMMENT);
         String typeText = GeneratorConstantes.SINGLE_STRING_FORMAT;
         if (!type.isPrimitiveType()) {
             typeText = PropertiesHandler.readFromProperties(GeneratorConstantes.LINK_COMMENT);
         }
+        String valueText;
+        Object assignedValue;
         if (type.isPrimitiveType() || GeneratorConstantes.STRING.equals(type.asString())) {
             valueText = PropertiesHandler.readFromProperties(GeneratorConstantes.FIELD_VALUE_COMMENT);
             assignedValue = fieldName;
@@ -59,7 +56,8 @@ public class StaticFinalVariableDeclaratorVisitor extends AbstractCommonVisitor<
             }
             valueText = GeneratorConstantes.SINGLE_STRING_FORMAT;
         }
-        javadocSnippet = new JavadocSnippet(String.format(javaDocText, fieldName, String.format(typeText, type.asString()), String.format(valueText, assignedValue)));
+        String javaDocText = PropertiesHandler.readFromProperties(GeneratorConstantes.CONSTANT_COMMENT);
+        JavadocSnippet javadocSnippet = new JavadocSnippet(String.format(javaDocText, fieldName, String.format(typeText, type.asString()), String.format(valueText, assignedValue)));
         return javadocSnippet;
     }
 

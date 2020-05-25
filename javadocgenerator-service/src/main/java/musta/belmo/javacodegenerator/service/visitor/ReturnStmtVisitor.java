@@ -19,11 +19,9 @@ public class ReturnStmtVisitor extends AbstractCommonVisitor<MethodDeclaration> 
                 .anyMatch(bloc -> bloc.getType().equals(JavadocBlockTag.Type.RETURN));
 
         if (!returnExists) {
-            addBlockTag(JavadocBlockTag.Type.RETURN,
-                    methodDeclaration.getType().asString(),
-                    javadoc);
+            addBlockTag("a value" , methodDeclaration.getType(), javadoc);
+            methodDeclaration.setJavadocComment(javadoc);
         }
-        methodDeclaration.setJavadocComment(javadoc);
         super.visit(returnStmt, methodDeclaration);
     }
 }

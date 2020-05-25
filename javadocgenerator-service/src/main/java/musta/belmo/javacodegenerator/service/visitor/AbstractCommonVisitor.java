@@ -1,5 +1,6 @@
 package musta.belmo.javacodegenerator.service.visitor;
 
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
@@ -20,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public abstract class AbstractCommonVisitor<T> extends VoidVisitorAdapter<T> {
-    
+
     protected Javadoc getOrCreateJavadoc(MethodDeclaration destinationMethod) {
         final Optional<Javadoc> optionalJavadoc = destinationMethod.getJavadoc();
         return optionalJavadoc.orElseGet(() -> new Javadoc(new JavadocDescription()));
@@ -39,10 +40,22 @@ public abstract class AbstractCommonVisitor<T> extends VoidVisitorAdapter<T> {
 
 
     protected void addBlockTag(Parameter parameter, Javadoc javadoc) {
-        final List<JavadocBlockTag> blockTags = javadoc.getBlockTags();
-
         final JavadocDescriptionElement inlineTag = createJavaDocSnippetFor(parameter);
-        final JavadocBlockTag blockTag = new JavadocBlockTag(Type.PARAM, "");
+        refactored(Type.PARAM, javadoc, inlineTag);
+    }
+
+    protected void addBlockTag(com.github.javaparser.ast.type.Type type, Javadoc javadoc) {
+        addBlockTag("", type, javadoc);
+    }
+
+    protected void addBlockTag(String name, com.github.javaparser.ast.type.Type type, Javadoc javadoc) {
+        final JavadocDescriptionElement inlineTag = createJavaDocSnippetFor(name, type);
+        refactored(Type.RETURN, javadoc, inlineTag);
+    }
+
+    private void refactored(Type type, Javadoc javadoc, JavadocDescriptionElement inlineTag) {
+        final List<JavadocBlockTag> blockTags = javadoc.getBlockTags();
+        final JavadocBlockTag blockTag = new JavadocBlockTag(type, "");
         blockTag.getContent().getElements().add(inlineTag);
         blockTags.add(blockTag);
         blockTags.sort(compareBlockTagTypes());
@@ -79,18 +92,36 @@ public abstract class AbstractCommonVisitor<T> extends VoidVisitorAdapter<T> {
         return new JavadocSnippet(snippetText);
     }
 
+    protected JavadocDescriptionElement createJavaDocSnippetFor(String name, com.github.javaparser.ast.type.Type type) {
+        String paramFormat = "%s of type " + createLinkSnippet(type);
+        final String snippetText = String.format(paramFormat, name,
+                type.asString());
+        return new JavadocSnippet(snippetText);
+    }
+
+    public String createLinkSnippet(com.github.javaparser.ast.type.Type node) {
+
+        String paramFormat = "{@link %s}";
+        if (node.isPrimitiveType()) {
+            paramFormat = "%s ";
+        }
+
+        return String.format(paramFormat, node.asString());
+    }
+
+
     /**
-     * getInt TODO: Complete the description of this method
+     * setInt TODO: Complete the description of this method
      *
-     * @param u of type {@link String}
-     * @param h of type int
+     * @param u   of type {@link String}
+     * @param h   of type int
      * @param <T> The generic type annotated by T
      * @param <R> The generic type annotated by R
-     * @throws Exception This method is expected to throw {@link Exception}
+     * @return a value of type {@link Integer}
+     * @throws Exception   This method is expected to throw {@link Exception}
      * @throws IOException This method is expected to throw {@link IOException}
-     * @return int
      */
-    public <T, R> int getInt(String u, int h) throws Exception, IOException {
+    public <T, R> Integer setInt(String u, int h) throws Exception, IOException {
         if (true)
             return 0;
         else
