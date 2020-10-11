@@ -48,7 +48,7 @@ public class JavaTypeJavaDoc {
      * @param typeDeclaration {@link TypeDeclaration}
      */
     @SuppressWarnings("unchecked")
-    static void generateJavaDocForTypeDeclaration(TypeDeclaration typeDeclaration) {
+    public static void generateJavaDocForTypeDeclaration(TypeDeclaration typeDeclaration) {
         if (typeDeclaration.hasJavaDocComment()) {
             Optional<Javadoc> optionalJavaDoc = typeDeclaration.getJavadoc();
             optionalJavaDoc.ifPresent(javadoc -> {

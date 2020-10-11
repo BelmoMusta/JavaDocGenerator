@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="belmo.javacodegeneratorgui.gui.controller.PropertiesController">
-   <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-   </center>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="belmo.javacodegeneratorgui.gui.controller.PropertiesController">
    <top>
-      <HBox fx:id="btnGroup" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox fx:id="btnGroup" prefHeight="244.0" prefWidth="509.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="244.0" prefWidth="476.0">
+               <children>
+                  <Label fx:id="order" layoutX="15.0" layoutY="14.0" text="1" />
+                  <TextField fx:id="startsAt" layoutX="21.0" layoutY="39.0" prefHeight="25.0" prefWidth="127.0" />
+                  <TextField fx:id="endsAt" layoutX="197.0" layoutY="39.0" prefHeight="25.0" prefWidth="119.0" />
+                  <Label layoutX="168.0" layoutY="43.0" text="--&gt;" />
+                  <TextArea fx:id="text" layoutX="20.0" layoutY="79.0" prefHeight="154.0" prefWidth="446.0" />
+               </children>
+            </Pane>
+         </children></HBox>
    </top>
+   <left>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="478.0" />
+        </content>
+      </ScrollPane>
+   </left>
 </BorderPane>

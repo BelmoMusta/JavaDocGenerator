@@ -9,7 +9,7 @@ public class MethodJavaDocVisitor extends AbstractCommonVisitor<MethodDeclaratio
     private static final MethodJavaDocVisitor INSTANCE = new MethodJavaDocVisitor();
     private static final TypeParameterVisitor TYPE_PARAMETER_VISITOR = TypeParameterVisitor.getInstance();
     private static final ReturnStmtVisitor RETURN_STMT_VISITOR = ReturnStmtVisitor.getInstance();
-    private static final MethodDeclarationVisitor METHOD_DECLARATION_VISITOR = MethodDeclarationVisitor.getInstance();
+    private static final ThrownExceptionsVisitor METHOD_DECLARATION_VISITOR = ThrownExceptionsVisitor.getInstance();
     private static final ParameterVisitor PARAMETER_VISITOR = ParameterVisitor.getInstance();
 
     public static MethodJavaDocVisitor getInstance() {

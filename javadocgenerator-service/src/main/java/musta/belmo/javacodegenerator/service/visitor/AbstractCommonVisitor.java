@@ -1,7 +1,7 @@
 package musta.belmo.javacodegenerator.service.visitor;
 
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.type.ReferenceType;
@@ -23,6 +23,11 @@ import java.util.Optional;
 public abstract class AbstractCommonVisitor<T> extends VoidVisitorAdapter<T> {
 
     protected Javadoc getOrCreateJavadoc(MethodDeclaration destinationMethod) {
+        final Optional<Javadoc> optionalJavadoc = destinationMethod.getJavadoc();
+        return optionalJavadoc.orElseGet(() -> new Javadoc(new JavadocDescription()));
+    }
+
+    protected Javadoc getOrCreateJavadoc(ClassOrInterfaceDeclaration destinationMethod) {
         final Optional<Javadoc> optionalJavadoc = destinationMethod.getJavadoc();
         return optionalJavadoc.orElseGet(() -> new Javadoc(new JavadocDescription()));
     }
@@ -107,6 +112,10 @@ public abstract class AbstractCommonVisitor<T> extends VoidVisitorAdapter<T> {
         }
 
         return String.format(paramFormat, node.asString());
+    }
+
+    protected boolean isInheritedMethod(MethodDeclaration methodDeclaration) {
+        return methodDeclaration.isAnnotationPresent(Override.class);
     }
 
 
