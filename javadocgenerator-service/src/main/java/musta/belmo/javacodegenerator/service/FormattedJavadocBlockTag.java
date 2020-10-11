@@ -21,6 +21,10 @@ public class FormattedJavadocBlockTag extends JavadocBlockTag {
         super(type, content);
     }
 
+    public FormattedJavadocBlockTag(Type type) {
+        super(type, "");
+    }
+
     /**
      * {@inheritDoc}
      */
